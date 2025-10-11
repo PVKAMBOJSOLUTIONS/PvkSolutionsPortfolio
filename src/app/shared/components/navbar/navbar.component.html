@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" (click)="scrollToSection('hero')">YourName</div>
+    
+    <!-- Desktop Navigation -->
+    <div class="nav-links desktop-nav">
+      <a (click)="scrollToSection('about')">About</a>
+      <a (click)="scrollToSection('projects')">Projects</a>
+      <a (click)="scrollToSection('skills')">Skills</a>
+      <a (click)="scrollToSection('hobbies')">Hobbies</a>
+      <a (click)="scrollToSection('contact')">Contact</a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <span class="menu-icon" [class.open]="isMobileMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" [class.active]="isMobileMenuOpen">
+    <a (click)="scrollToSection('about')">About</a>
+    <a (click)="scrollToSection('projects')">Projects</a>
+    <a (click)="scrollToSection('skills')">Skills</a>
+    <a (click)="scrollToSection('hobbies')">Hobbies</a>
+    <a (click)="scrollToSection('contact')">Contact</a>
+  </div>
+</nav>

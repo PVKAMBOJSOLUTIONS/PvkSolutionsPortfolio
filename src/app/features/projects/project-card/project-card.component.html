@@ -1,0 +1,57 @@
+<div class="project-card">
+  <!-- Project Image/Icon -->
+  <div class="project-image">
+    <div class="project-icon">{{ project.icon }}</div>
+    <div class="project-overlay">
+      <button 
+        class="overlay-btn" 
+        *ngIf="project.demoUrl"
+        (click)="onViewDemo()"
+        title="View Demo">
+        👁️ View Demo
+      </button>
+    </div>
+  </div>
+
+  <!-- Project Content -->
+  <div class="project-content">
+    <!-- Title and Status -->
+    <div class="project-header">
+      <h3 class="project-title">{{ project.title }}</h3>
+      <span 
+        class="project-status" 
+        [class.status-published]="project.status === 'published'"
+        [class.status-draft]="project.status === 'draft'">
+        {{ project.status === 'published' ? '✓ Live' : '🔨 Draft' }}
+      </span>
+    </div>
+
+    <!-- Description -->
+    <p class="project-description">{{ project.description }}</p>
+
+    <!-- Technology Tags -->
+    <div class="project-tags">
+      <span class="tag" *ngFor="let tag of project.tags">
+        {{ tag }}
+      </span>
+    </div>
+
+    <!-- Action Links -->
+    <div class="project-links" *ngIf="hasLinks">
+      <a 
+        *ngIf="project.demoUrl"
+        (click)="onViewDemo()" 
+        class="project-link demo-link">
+        <span class="link-icon">🚀</span>
+        <span>View Demo</span>
+      </a>
+      <a 
+        *ngIf="project.githubUrl"
+        (click)="onViewGithub()" 
+        class="project-link github-link">
+        <span class="link-icon">💻</span>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+</div>

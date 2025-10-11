@@ -1,0 +1,46 @@
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Footer Top Section -->
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3 class="brand-name">YourName</h3>
+        <p class="brand-tagline">Full Stack .NET Developer</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="link-group">
+          <h4>Quick Links</h4>
+          <ul>
+            <li *ngFor="let link of quickLinks">
+              <a (click)="scrollToSection(link.sectionId)">{{ link.label }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a 
+              *ngFor="let social of socialLinks" 
+              [href]="social.url" 
+              target="_blank"
+              [title]="social.name"
+              class="social-link">
+              <span class="icon">{{ social.icon }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Section -->
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; {{ currentYear }} YourName. All rights reserved. Built with Angular & .NET
+      </p>
+      <button class="scroll-top" (click)="scrollToTop()" title="Back to top">
+        ↑
+      </button>
+    </div>
+  </div>
+</footer>

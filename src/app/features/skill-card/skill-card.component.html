@@ -1,0 +1,29 @@
+<div class="slide-grid">
+  <div class="slide-card" *ngFor="let skill of skills">
+    <div class="slide-card-main" [style.background]="skill.gradient">
+      <div>
+        <div class="icon">{{ skill.icon }}</div>
+        <h3>{{ skill.title }}</h3>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">{{ skill.projectCount }}</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">{{ skill.yearsExperience }}</div>
+          <div class="stat-label">Years</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-panel">
+      <h3>{{ skill.title }}</h3>
+      <p>{{ skill.description }}</p>
+      <div class="tech-stack">
+        <span class="tech-tag" *ngFor="let tech of skill.techStack">
+          {{ tech }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
