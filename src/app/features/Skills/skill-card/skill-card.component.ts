@@ -16,7 +16,7 @@ interface Skill {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './skill-card.component.html',
-  styleUrls: ['./skill-card.component.css']
+  styleUrls: ['./skill-card.component.scss']
 })
 export class SkillsShowcaseComponent {
   skills: Skill[] = [

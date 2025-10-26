@@ -1,0 +1,23 @@
+<section id="hobbies" class="hobbies-section">
+  <div class="hobbies-container">
+    <app-section-header 
+      title="Beyond Code" 
+      subtitle="What I do when I'm not coding">
+    </app-section-header>
+
+    <div class="hobbies-grid">
+      <app-hobby-card 
+        *ngFor="let hobby of displayedHobbies" 
+        [hobby]="hobby">
+      </app-hobby-card>
+    </div>
+
+    <!-- View All Button -->
+    <div class="view-all-container" *ngIf="showViewAll && hobbies.length > limit">
+      <button class="view-all-btn" (click)="viewAllHobbies()">
+        <span>View All Hobbies</span>
+        <span class="arrow">→</span>
+      </button>
+    </div>
+  </div>
+</section>

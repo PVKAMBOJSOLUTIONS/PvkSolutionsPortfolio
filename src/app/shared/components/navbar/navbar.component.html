@@ -1,13 +1,14 @@
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo" (click)="scrollToSection('hero')">YourName</div>
+    <div class="logo" (click)="navigateTo('')">YourName</div>
     
     <!-- Desktop Navigation -->
     <div class="nav-links desktop-nav">
-      <a (click)="scrollToSection('about')">About</a>
-      <a (click)="scrollToSection('projects')">Projects</a>
-      <a (click)="scrollToSection('skills')">Skills</a>
-      <a (click)="scrollToSection('hobbies')">Hobbies</a>
+      <a (click)="navigateTo('')">Home</a>
+      <a (click)="navigateTo('projects')">Projects</a>
+      <a (click)="navigateTo('skills')">Skills</a>
+      <a (click)="navigateTo('hobbies')">Hobbies</a>
+      <a (click)="navigateTo('experience')">Experience</a>
       <a (click)="scrollToSection('contact')">Contact</a>
     </div>
 
@@ -23,10 +24,11 @@
 
   <!-- Mobile Navigation -->
   <div class="mobile-nav" [class.active]="isMobileMenuOpen">
-    <a (click)="scrollToSection('about')">About</a>
-    <a (click)="scrollToSection('projects')">Projects</a>
-    <a (click)="scrollToSection('skills')">Skills</a>
-    <a (click)="scrollToSection('hobbies')">Hobbies</a>
+    <a (click)="navigateTo('')">Home</a>
+    <a (click)="navigateTo('projects')">Projects</a>
+    <a (click)="navigateTo('skills')">Skills</a>
+    <a (click)="navigateTo('hobbies')">Hobbies</a>
+    <a (click)="navigateTo('experience')">Experience</a>
     <a (click)="scrollToSection('contact')">Contact</a>
   </div>
 </nav>

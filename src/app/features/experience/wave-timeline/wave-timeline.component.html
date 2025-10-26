@@ -1,0 +1,66 @@
+<div class="wave-timeline-wrapper">
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading experiences...</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="wave-timeline" *ngIf="!loading">
+    <div class="wave-item" *ngFor="let exp of experiences; let i = index">
+      <!-- Left Side Card -->
+      <div class="wave-left" *ngIf="exp.position === 'left'">
+        <div class="wave-card">
+          <div class="wave-card-header">
+            <div class="wave-icon-box">{{ exp.icon }}</div>
+            <div class="wave-info">
+              <h3>{{ exp.title }}</h3>
+              <div class="company">{{ exp.company }}</div>
+            </div>
+          </div>
+          <div class="wave-card-body">
+            <div class="wave-date">{{ getDateRange(exp) }}</div>
+            <p class="wave-desc">{{ exp.description }}</p>
+            <div class="wave-tags">
+              <span class="wave-tag" *ngFor="let tag of exp.tags">{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wave-left" *ngIf="exp.position === 'right'"></div>
+
+      <!-- Center Node -->
+      <div class="wave-center">
+        <div class="wave-node">{{ exp.icon }}</div>
+      </div>
+
+      <!-- Right Side Card -->
+      <div class="wave-right" *ngIf="exp.position === 'right'">
+        <div class="wave-card">
+          <div class="wave-card-header">
+            <div class="wave-icon-box">{{ exp.icon }}</div>
+            <div class="wave-info">
+              <h3>{{ exp.title }}</h3>
+              <div class="company">{{ exp.company }}</div>
+            </div>
+          </div>
+          <div class="wave-card-body">
+            <div class="wave-date">{{ getDateRange(exp) }}</div>
+            <p class="wave-desc">{{ exp.description }}</p>
+            <div class="wave-tags">
+              <span class="wave-tag" *ngFor="let tag of exp.tags">{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wave-right" *ngIf="exp.position === 'left'"></div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!loading && experiences.length === 0">
+    <div class="empty-icon">📋</div>
+    <h3>No Experience Yet</h3>
+    <p>Experience timeline will appear here soon!</p>
+  </div>
+</div>

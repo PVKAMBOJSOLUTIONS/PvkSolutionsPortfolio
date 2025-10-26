@@ -1,0 +1,124 @@
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <div class="section-header">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Let's work together on your next project</p>
+    </div>
+
+    <div class="contact-content">
+      <!-- Contact Info -->
+      <div class="contact-info-wrapper" *ngIf="contactInfo">
+        <div class="contact-info-card">
+          <h3 class="info-title">Contact Information</h3>
+          <p class="info-description">Feel free to reach out through any of these channels</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-details">
+                <div class="contact-label">Email</div>
+                <a [href]="'mailto:' + contactInfo.email" class="contact-value">
+                  {{ contactInfo.email }}
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div class="contact-details">
+                <div class="contact-label">Phone</div>
+                <a [href]="'tel:' + contactInfo.phone" class="contact-value">
+                  {{ contactInfo.phone }}
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-details">
+                <div class="contact-label">Location</div>
+                <div class="contact-value">{{ contactInfo.location }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="social-section">
+            <h4 class="social-title">Connect on Social</h4>
+            <div class="social-links">
+              <a 
+                *ngFor="let social of contactInfo.socialLinks" 
+                [href]="social.url" 
+                target="_blank"
+                [title]="social.platform"
+                class="social-link">
+                {{ social.icon }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [(ngModel)]="formData.name"
+              name="name"
+              placeholder="John Doe"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input 
+              type="email" 
+              class="form-input"
+              [(ngModel)]="formData.email"
+              name="email"
+              placeholder="john@example.com"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Subject *</label>
+            <input 
+              type="text" 
+              class="form-input"
+              [(ngModel)]="formData.subject"
+              name="subject"
+              placeholder="Project Inquiry"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message *</label>
+            <textarea 
+              class="form-textarea"
+              [(ngModel)]="formData.message"
+              name="message"
+              rows="5"
+              placeholder="Tell me about your project..."
+              required></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="submit-btn"
+            [disabled]="formSubmitted">
+            <span *ngIf="!formSubmitted">Send Message</span>
+            <span *ngIf="formSubmitted">Sending...</span>
+          </button>
+
+          <div class="success-message" *ngIf="formSuccess">
+            ✅ Message sent successfully! I'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

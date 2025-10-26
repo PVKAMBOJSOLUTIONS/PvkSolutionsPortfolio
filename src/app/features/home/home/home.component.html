@@ -1,0 +1,19 @@
+<div class="home-container">
+  <!-- <app-hero></app-hero> -->
+  
+  <!-- Quick Preview Sections (3-4 items each) -->
+  <section id="projects-preview">
+    <app-projects [limit]="3" [showViewAll]="true"></app-projects>
+  </section>
+  
+  <section id="skills-preview">
+    <app-skills-page></app-skills-page>
+  </section>
+  
+  <section id="hobbies-preview">
+    <app-hobbies [limit]="3" [showViewAll]="true"></app-hobbies>
+  </section>
+  
+  <app-about></app-about>
+  <app-contact></app-contact>
+</div>

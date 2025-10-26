@@ -1,0 +1,54 @@
+<section id="about" class="about-section">
+  <div class="about-container">
+    <div class="about-content">
+      <div class="about-image-wrapper">
+        <div class="about-image">
+          <div class="avatar" *ngIf="profile?.avatar; else defaultAvatar">
+            <img [src]="profile?.avatar" [alt]="profile?.name">
+          </div>
+          <ng-template #defaultAvatar>
+            <div class="avatar-placeholder">👨‍💻</div>
+          </ng-template>
+        </div>
+        <div class="decorative-shape shape-1"></div>
+        <div class="decorative-shape shape-2"></div>
+      </div>
+
+      <div class="about-text">
+        <div class="about-badge">
+          <span class="badge-icon">👋</span>
+          <span class="badge-text">About Me</span>
+        </div>
+        
+        <h2 class="about-title">Building Digital Experiences</h2>
+        
+        <div class="about-paragraphs">
+          <p *ngFor="let paragraph of aboutParagraphs" class="about-paragraph">
+            {{ paragraph }}
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+        </div>
+
+        <button class="download-cv-btn" *ngIf="profile?.resumeUrl">
+          <span class="btn-icon">📄</span>
+          <span>Download Resume</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

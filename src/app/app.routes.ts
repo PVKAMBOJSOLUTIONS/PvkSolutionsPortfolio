@@ -1,42 +1,41 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
+
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { HomeComponent } from './features/home/home/home.component';
+import { SkillsPageComponent } from './features/Skills/skills/skills.component';
+import { HobbiesComponent } from './features/hobbies/hobbies/hobbies.component';
+import { ExperienceComponent } from './features/experience/experience/experience.component';
+import { ProjectCardComponent } from './features/projects/project-card/project-card.component';
 
 export const routes: Routes = [
-  // Home route
   { 
     path: '', 
     component: HomeComponent,
-    title: 'Home - Portfolio'
+    title: 'Home - Full Stack Developer Portfolio'
   },
-  
-  // Other routes
   { 
     path: 'projects', 
-    component: ProjectsComponent,
-    title: 'Projects - Portfolio'
+    component: ProjectCardComponent,
+    title: 'Projects - My Work'
   },
   { 
-    path: 'about', 
-    component: AboutComponent,
-    title: 'About - Portfolio'
+    path: 'skills', 
+    component: SkillsPageComponent,
+    title: 'Skills - Technical Expertise'
   },
   { 
-    path: 'contact', 
-    component: ContactComponent,
-    title: 'Contact - Portfolio'
+    path: 'hobbies', 
+    component: HobbiesComponent,
+    title: 'Hobbies - Beyond Code'
   },
-  
-  // Admin routes
   { 
-    path: 'admin', 
-    loadChildren: () => import('./admin/admin.routes').then(m => m.adminRoutes)
+    path: 'experience', 
+    component: ExperienceComponent,
+    title: 'Experience - Professional Journey'
   },
-  
-  // 404 - Must be last!
   { 
     path: '**', 
     component: NotFoundComponent,
     title: '404 - Page Not Found'
   }
-]
+];

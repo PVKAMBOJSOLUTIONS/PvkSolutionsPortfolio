@@ -1,0 +1,43 @@
+.experience-page {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: #0f0f1e;
+}
+
+.page-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.page-title {
+  font-size: 3em;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.page-subtitle {
+  font-size: 1.3em;
+  opacity: 0.9;
+}
+
+.timeline-section {
+  padding: 80px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.2em;
+  }
+  
+  .page-subtitle {
+    font-size: 1.1em;
+  }
+  
+  .timeline-section {
+    padding: 40px 20px;
+  }
+}
