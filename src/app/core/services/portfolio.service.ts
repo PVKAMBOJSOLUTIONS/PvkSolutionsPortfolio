@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ApiService } from './api.service';
+import { PortfolioApiService } from './portfolio-api.service';
 import { 
   Project, 
   Skill, 
@@ -15,21 +15,25 @@ import {
   providedIn: 'root'
 })
 export class PortfolioService {
-  constructor(private apiService: ApiService) {}
+  // Flag to toggle between API and mock data
+  private useApi = false;
+
+  constructor(private portfolioApi: PortfolioApiService) {}
 
   // ============================================
   // PROJECTS
   // ============================================
   getProjects(): Observable<Project[]> {
-    // When API is ready, use:
-    // return this.apiService.get<Project[]>('/api/projects');
-    
-    // For now, return mock data:
+    if (this.useApi) {
+      return this.portfolioApi.getAllProjects();
+    }
     return of(this.getMockProjects());
   }
 
   getProjectById(id: number): Observable<Project> {
-    // return this.apiService.get<Project>(`/api/projects/${id}`);
+    if (this.useApi) {
+      return this.portfolioApi.getProjectById(id);
+    }
     const projects = this.getMockProjects();
     const project = projects.find(p => p.id === id);
     return of(project!);
@@ -39,7 +43,9 @@ export class PortfolioService {
   // SKILLS
   // ============================================
   getSkills(): Observable<SkillCategory[]> {
-    // return this.apiService.get<SkillCategory[]>('/api/skills');
+    if (this.useApi) {
+      return this.portfolioApi.getAllSkills();
+    }
     return of(this.getMockSkills());
   }
 
@@ -47,7 +53,9 @@ export class PortfolioService {
   // HOBBIES
   // ============================================
   getHobbies(): Observable<Hobby[]> {
-    // return this.apiService.get<Hobby[]>('/api/hobbies');
+    if (this.useApi) {
+      return this.portfolioApi.getAllHobbies();
+    }
     return of(this.getMockHobbies());
   }
 
@@ -55,7 +63,9 @@ export class PortfolioService {
   // PROFILE
   // ============================================
   getProfile(): Observable<Profile> {
-    // return this.apiService.get<Profile>('/api/profile');
+    if (this.useApi) {
+      return this.portfolioApi.getProfile();
+    }
     return of(this.getMockProfile());
   }
 
@@ -63,7 +73,9 @@ export class PortfolioService {
   // CONTACT INFO
   // ============================================
   getContactInfo(): Observable<ContactInfo> {
-    // return this.apiService.get<ContactInfo>('/api/contact');
+    if (this.useApi) {
+      return this.portfolioApi.getContactInfo();
+    }
     return of(this.getMockContactInfo());
   }
 
@@ -71,8 +83,22 @@ export class PortfolioService {
   // EXPERIENCE
   // ============================================
   getExperiences(): Observable<Experience[]> {
-    // return this.apiService.get<Experience[]>('/api/experiences');
+    if (this.useApi) {
+      return this.portfolioApi.getAllExperiences();
+    }
     return of(this.getMockExperiences());
+  }
+
+  /**
+   * Toggle between API and mock data
+   * Call this method when your backend is ready
+   */
+  enableApiMode(): void {
+    this.useApi = true;
+  }
+
+  disableApiMode(): void {
+    this.useApi = false;
   }
 
   // ============================================

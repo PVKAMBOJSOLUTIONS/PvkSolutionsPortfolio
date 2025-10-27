@@ -131,6 +131,17 @@
 }
 
 // Responsive
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 15px 30px;
+  }
+
+  .nav-links {
+    gap: 25px;
+    font-size: 0.9em;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-container {
     padding: 15px 20px;

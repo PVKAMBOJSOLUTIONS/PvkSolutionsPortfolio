@@ -1,10 +1,10 @@
 <div class="project-card">
   <div class="project-icon">{{ project.icon || '📁' }}</div>
   <div class="project-content">
-    <h3 class="project-title">{{ project.title }}</h3>
-    <p class="project-description">{{ project.description }}</p>
+    <h3 class="project-title">{{ project.title || 'Untitled Project' }}</h3>
+    <p class="project-description">{{ project.description || 'No description available.' }}</p>
     
-    <div class="project-tags">
+    <div class="project-tags" *ngIf="project.tags && project.tags.length > 0">
       <span 
         *ngFor="let tag of project.tags" 
         class="project-tag">
@@ -12,11 +12,12 @@
       </span>
     </div>
     
-    <div class="project-links">
+    <div class="project-links" *ngIf="(project.demoUrl || project.githubUrl)">
       <a 
         *ngIf="project.demoUrl" 
         [href]="project.demoUrl" 
         target="_blank"
+        rel="noopener noreferrer"
         class="project-link demo">
         🌐 Live Demo
       </a>
@@ -24,6 +25,7 @@
         *ngIf="project.githubUrl" 
         [href]="project.githubUrl" 
         target="_blank"
+        rel="noopener noreferrer"
         class="project-link github">
         💻 Code
       </a>

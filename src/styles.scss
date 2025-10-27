@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+* {
+  direction: ltr;
+  text-align: left;
+}
+
+html {
+  direction: ltr;
+  text-align: left;
+}
+
+body {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Ensure all text is properly visible and aligned */
+p, h1, h2, h3, h4, h5, h6, span, div, a, label {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+/* Prevent text from being cut off */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure readable text colors */
+body {
+  color: #1a202c;
+}
+
+/* Fix any overflow issues */
+* {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

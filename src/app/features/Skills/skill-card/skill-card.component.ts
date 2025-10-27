@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 interface Skill {
   icon: string;
   title: string;
-  projectCount: number;
-  yearsExperience: string;
+  projectCount?: number;
+  yearsExperience?: string;
   description: string;
   techStack: string[];
   gradient: string;
@@ -19,60 +19,70 @@ interface Skill {
   styleUrls: ['./skill-card.component.scss']
 })
 export class SkillsShowcaseComponent {
+  
+  // Format large numbers (e.g., 1000 -> 1K)
+  formatNumber(num?: number): string {
+    if (!num) return '0';
+    if (num >= 1000) {
+      return (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1) + 'K';
+    }
+    return num.toString();
+  }
+  // You can customize these skills with your own data
   skills: Skill[] = [
     {
-      icon: '🤖',
-      title: 'AI/ML',
-      projectCount: 8,
-      yearsExperience: '3+',
-      description: 'Specialized in building intelligent systems and data-driven solutions.',
-      techStack: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'NLP', 'Computer Vision'],
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-    },
-    {
-      icon: '📊',
-      title: 'Data Science',
-      projectCount: 12,
-      yearsExperience: '4+',
-      description: 'Expert in extracting insights from complex datasets and building predictive models.',
-      techStack: ['Python', 'R', 'SQL', 'Tableau', 'Power BI', 'Statistics'],
+      icon: '🎨',
+      title: 'Frontend Development',
+      projectCount: 25,
+      yearsExperience: '5+',
+      description: 'Creating beautiful and responsive user interfaces with modern frameworks.',
+      techStack: ['Angular', 'React', 'TypeScript', 'TailwindCSS', 'SASS'],
       gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
-      icon: '⚡',
-      title: 'DevOps',
-      projectCount: 10,
-      yearsExperience: '3+',
-      description: 'Streamlining development workflows and automating deployment processes.',
-      techStack: ['Docker', 'Kubernetes', 'Jenkins', 'Git', 'Terraform', 'Monitoring'],
+      icon: '⚙️',
+      title: 'Backend Development',
+      projectCount: 20,
+      yearsExperience: '4+',
+      description: 'Building robust server-side applications and RESTful APIs.',
+      techStack: ['.NET Core', 'C#', 'ASP.NET', 'Entity Framework', 'SQL Server'],
       gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     },
     {
       icon: '💻',
-      title: 'Web Development',
-      projectCount: 15,
+      title: 'Full Stack Development',
+      projectCount: 30,
       yearsExperience: '5+',
-      description: 'Building modern, responsive web applications with cutting-edge technologies.',
-      techStack: ['Angular', 'React', 'TypeScript', 'Node.js', 'MongoDB', 'REST APIs'],
+      description: 'End-to-end development of web applications from concept to deployment.',
+      techStack: ['Angular', '.NET Core', 'TypeScript', 'SQL Server', 'Azure'],
       gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
     },
     {
-      icon: '📱',
-      title: 'Mobile Dev',
-      projectCount: 9,
-      yearsExperience: '3+',
-      description: 'Creating seamless mobile experiences across iOS and Android platforms.',
-      techStack: ['Flutter', 'React Native', 'Swift', 'Kotlin', 'Firebase', 'App Store'],
+      icon: '🗄️',
+      title: 'Database Management',
+      projectCount: 15,
+      yearsExperience: '4+',
+      description: 'Designing and optimizing database schemas for performance and scalability.',
+      techStack: ['SQL Server', 'PostgreSQL', 'Entity Framework', 'Azure SQL'],
       gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
     },
     {
       icon: '☁️',
-      title: 'Cloud Architecture',
-      projectCount: 11,
-      yearsExperience: '4+',
-      description: 'Designing scalable and resilient cloud infrastructure solutions.',
-      techStack: ['AWS', 'Azure', 'GCP', 'Lambda', 'S3', 'CloudFormation'],
+      title: 'Cloud & DevOps',
+      projectCount: 12,
+      yearsExperience: '3+',
+      description: 'Deploying applications to cloud platforms and implementing CI/CD pipelines.',
+      techStack: ['Azure', 'Docker', 'Git', 'Azure DevOps', 'PowerShell'],
       gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+    },
+    {
+      icon: '🔧',
+      title: 'Problem Solving',
+      projectCount: 40,
+      yearsExperience: '6+',
+      description: 'Solving complex technical challenges and optimizing application performance.',
+      techStack: ['Algorithms', 'Data Structures', 'Architecture', 'Debugging'],
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
     }
   ];
 }

@@ -263,3 +263,38 @@
     font-size: 2em;
   }
 }
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 40px 0;
+  }
+
+  .about-container {
+    padding: 0 15px;
+  }
+
+  .avatar,
+  .avatar-placeholder {
+    width: 250px;
+    height: 250px;
+    font-size: 6em;
+  }
+
+  .about-title {
+    font-size: 1.75em;
+  }
+
+  .about-paragraph {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+
+  .stat-number {
+    font-size: 1.8em;
+  }
+
+  .download-cv-btn {
+    padding: 12px 28px;
+    font-size: 0.95em;
+  }
+}
