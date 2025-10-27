@@ -5,7 +5,7 @@ import { HomeComponent } from './features/home/home/home.component';
 import { SkillsPageComponent } from './features/Skills/skills/skills.component';
 import { HobbiesComponent } from './features/hobbies/hobbies/hobbies.component';
 import { ExperienceComponent } from './features/experience/experience/experience.component';
-import { ProjectCardComponent } from './features/projects/project-card/project-card.component';
+import { ProjectComponent } from './features/projects/project/project.component';
 
 export const routes: Routes = [
   { 
@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   { 
     path: 'projects', 
-    component: ProjectCardComponent,
+    component: ProjectComponent,
     title: 'Projects - My Work'
   },
   { 

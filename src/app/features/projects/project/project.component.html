@@ -1,7 +1,7 @@
 <section id="projects" class="projects-page">
   <div class="projects-container">
     <h1 class="page-title">My Projects</h1>
-    <p class="subtitle">A showcase of the apps and tools I’ve built.</p>
+    <p class="subtitle">A showcase of the apps and tools I've built.</p>
 
     <!-- Loading State -->
     <div class="loading-state" *ngIf="loading">
@@ -15,6 +15,14 @@
         *ngFor="let project of displayedProjects" 
         [project]="project">
       </app-project-card>
+    </div>
+
+    <!-- View All Button (only show if limit is set and there are more projects) -->
+    <div class="view-all-container" *ngIf="showViewAll && limit > 0 && allProjects.length > displayedProjects.length">
+      <button class="view-all-btn" (click)="viewAllProjects()">
+        <span>View All Projects</span>
+        <span class="arrow">→</span>
+      </button>
     </div>
   </div>
 </section>
