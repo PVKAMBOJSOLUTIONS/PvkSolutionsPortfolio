@@ -1,4 +1,22 @@
 .main-content {
-  min-height: calc(100vh - 80px); // Adjust based on navbar height
+  min-height: calc(100vh - 80px);
+  background: var(--background-primary);
+  position: relative;
+  
   // This ensures footer stays at bottom even with less content
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      var(--primary-color) 20%, 
+      var(--highlight-color) 50%, 
+      var(--primary-color) 80%, 
+      transparent 100%
+    );
+  }
 }

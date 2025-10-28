@@ -57,5 +57,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-redesign the theme and css of my whole project and also set the margin padding and all things from design perspective.
-For color themes use these colors 86B0BD, D1D3D4, FFF0DD, E2A16F

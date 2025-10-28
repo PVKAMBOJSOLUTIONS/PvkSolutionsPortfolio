@@ -1,19 +1,32 @@
-<div class="home-container">
+<div class="home-container smooth-scroll">
   <!-- <app-hero></app-hero> -->
   
   <!-- Quick Preview Sections (3-4 items each) -->
-  <section id="projects-preview">
+  <section id="projects-preview" class="home-section section-transition section-fade-in">
     <app-projects [limit]="3" [showViewAll]="true"></app-projects>
   </section>
   
-  <section id="skills-preview">
+  <div class="section-divider"></div>
+  
+  <section id="skills-preview" class="home-section section-transition section-fade-in">
     <app-skills-card></app-skills-card>
   </section>
   
-  <section id="hobbies-preview">
+  <div class="section-divider"></div>
+  
+  <section id="hobbies-preview" class="home-section section-transition section-fade-in">
     <app-hobbies [limit]="3" [showViewAll]="true"></app-hobbies>
   </section>
   
-  <app-about></app-about>
-  <app-contact></app-contact>
+  <div class="section-divider"></div>
+  
+  <section class="home-section about-section-home section-transition section-fade-in">
+    <app-about></app-about>
+  </section>
+  
+  <div class="section-divider"></div>
+  
+  <section class="home-section contact-section-home section-transition section-fade-in">
+    <app-contact></app-contact>
+  </section>
 </div>
