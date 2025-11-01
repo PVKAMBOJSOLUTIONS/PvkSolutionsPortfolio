@@ -529,6 +529,12 @@
   font-weight: 500;
   animation: fadeIn 1s ease 2s both;
   z-index: 10;
+  pointer-events: none;
+  
+  span {
+    font-size: 0.85em;
+    white-space: nowrap;
+  }
 }
 
 .mouse {
@@ -1030,9 +1036,33 @@
   }
 }
 
+@media (max-width: 768px) {
+  .scroll-indicator {
+    bottom: 20px;
+    font-size: 0.75em;
+    
+    span {
+      font-size: 0.75em;
+    }
+    
+    .mouse {
+      width: 22px;
+      height: 35px;
+      
+      .wheel {
+        width: 3px;
+        height: 8px;
+        top: 6px;
+      }
+    }
+  }
+}
+
 @media (max-width: 480px) {
   .hero-section {
     padding: var(--spacing-2xl) var(--spacing-md);
+    min-height: 90vh;
+    padding-bottom: 80px;
   }
   
   .hero-title {
@@ -1074,6 +1104,27 @@
     svg {
       width: 20px;
       height: 20px;
+    }
+  }
+  
+  .scroll-indicator {
+    bottom: 15px;
+    font-size: 0.7em;
+    
+    span {
+      display: none;
+    }
+    
+    .mouse {
+      width: 20px;
+      height: 30px;
+      border-width: 1.5px;
+      
+      .wheel {
+        width: 2.5px;
+        height: 6px;
+        top: 5px;
+      }
     }
   }
   

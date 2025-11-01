@@ -1,35 +1,75 @@
-<div class="slide-grid">
-  <div class="slide-card" *ngFor="let skill of skills; let i = index">
-    <div class="slide-card-main" [style.background]="skill.gradient">
-      <div class="card-header">
-        <div class="icon">{{ skill.icon }}</div>
-        <h3>{{ skill.title }}</h3>
+<div class="skills-grid">
+  <div 
+    class="magnetic-card" 
+    *ngFor="let skill of skills; let i = index"
+    [class.visible]="visibleCards.has(i)"
+    [style.animation-delay]="i * 100 + 'ms'"
+    #skillCard>
+    
+    <!-- Card Glow Effect -->
+    <div class="card-glow" [style.background]="getGradient(getColor(i))"></div>
+    
+    <!-- Front Face -->
+    <div class="card-face card-front">
+      <div class="card-icon-wrapper" [style.background]="getGradient(getColor(i))">
+        <div class="icon-background"></div>
+        <span class="card-icon">{{ skill.icon }}</span>
       </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-number">{{ formatNumber(skill.projectCount) }}+</div>
-          <div class="stat-label">Projects Completed</div>
+      
+      <h3 class="card-title">{{ skill.title }}</h3>
+      
+      <div class="card-stats">
+        <div class="stat-item">
+          <div class="stat-value">{{ formatNumber(skill.projectCount) }}+</div>
+          <div class="stat-label">Projects</div>
         </div>
-        <div class="stat">
-          <div class="stat-number">{{ skill.yearsExperience }}</div>
-          <div class="stat-label">Years of Experience</div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-value">{{ skill.yearsExperience }}</div>
+          <div class="stat-label">Years</div>
         </div>
+      </div>
+      
+      <div class="hover-indicator">
+        <span class="indicator-text">Hover for details</span>
+        <span class="indicator-arrow">→</span>
       </div>
     </div>
-    <div class="slide-panel">
-      <div class="panel-header">
-        <div class="icon">{{ skill.icon }}</div>
-        <h3>{{ skill.title }}</h3>
+    
+    <!-- Back Face (Details) -->
+    <div class="card-face card-back">
+      <div class="card-back-header">
+        <div class="card-icon-wrapper-small" [style.background]="getGradient(getColor(i))">
+          <span class="card-icon-small">{{ skill.icon }}</span>
+        </div>
+        <h3 class="card-title-back">{{ skill.title }}</h3>
       </div>
-      <p>{{ skill.description }}</p>
-      <div class="tech-stack">
-        <div class="tech-header">Technologies:</div>
-        <div class="tech-tags-wrapper">
-          <span class="tech-tag" *ngFor="let tech of skill.techStack; let idx = index">
+      
+      <p class="card-description">{{ skill.description }}</p>
+      
+      <div class="tech-section">
+        <div class="tech-header">
+          <span class="tech-icon">⚡</span>
+          <span>Technologies</span>
+        </div>
+        <div class="tech-tags">
+          <span 
+            class="tech-tag" 
+            *ngFor="let tech of skill.techStack; let idx = index"
+            [style.animation-delay]="visibleCards.has(i) ? (idx * 50) + 'ms' : '0ms'">
             {{ tech }}
           </span>
         </div>
       </div>
+      
+      <div class="back-indicator">
+        <span class="indicator-arrow-back">←</span>
+        <span class="indicator-text-back">Hover to return</span>
+      </div>
     </div>
+    
+    <!-- Magnetic border effect -->
+    <div class="magnetic-border" [style.background]="getGradient(getColor(i))"></div>
   </div>
 </div>
+

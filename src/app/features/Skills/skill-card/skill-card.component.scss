@@ -1,135 +1,308 @@
-.slide-grid {
+.skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-xl);
-  padding: var(--spacing-4xl) var(--spacing-xl);
-  max-width: 1200px;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-5xl) var(--spacing-xl);
+  max-width: 1400px;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
-.slide-card {
+.magnetic-card {
+  position: relative;
+  height: 400px;
   background: var(--background-primary);
   border-radius: var(--radius-2xl);
-  overflow: hidden;
-  box-shadow: 0 8px 25px var(--shadow-light);
-  position: relative;
-  height: 300px;
-  transition: all var(--transition-normal);
   border: 1px solid var(--border-light);
+  box-shadow: 0 10px 40px var(--shadow-light);
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-2xl);
+    padding: 2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
 }
 
-.slide-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px var(--shadow-medium);
-  border-color: var(--primary-color);
+.magnetic-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: cardReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.slide-card-main {
-  padding: var(--spacing-2xl);
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.magnetic-card:hover {
+  box-shadow: 0 25px 80px var(--shadow-dark);
+  z-index: 10;
+  
+  &::before {
+    opacity: 1;
+  }
+  
+  .card-glow {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  
+  .magnetic-border {
+    opacity: 1;
+  }
+  
+  .card-front {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  
+  .card-back {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+// Glow Effect
+.card-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: var(--radius-2xl);
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+// Magnetic Border
+.magnetic-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-2xl);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+// Card Faces
+.card-face {
+  position: absolute;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: var(--background-primary);
-  transition: all var(--transition-normal);
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-}
-
-.card-header {
+  backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  padding: var(--spacing-2xl);
   display: flex;
   flex-direction: column;
 }
 
-.slide-card-main .icon {
-  font-size: 3.2em;
-  margin-bottom: var(--spacing-md);
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
-  animation: fadeInUp 0.6s ease-out;
-  color: var(--background-primary);
+.card-front {
+  transform: rotateY(0deg);
+  opacity: 1;
 }
 
-@keyframes fadeInUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+.card-back {
+  transform: rotateY(-180deg);
+  opacity: 0;
+  background: var(--background-primary);
+  overflow-y: auto;
 }
 
-.slide-card-main h3 {
-  font-size: 1.8em;
-  margin: 0 0 var(--spacing-sm) 0;
-  font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  letter-spacing: -0.3px;
-  color: var(--background-primary);
+// Scrollbar for back face
+.card-back::-webkit-scrollbar {
+  width: 6px;
 }
 
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--spacing-xl);
-  gap: var(--spacing-md);
-}
-
-.stat {
-  text-align: center;
-  flex: 1;
-  padding: var(--spacing-md) var(--spacing-sm);
-  background: rgba(255, 255, 255, 0.1);
+.card-back::-webkit-scrollbar-track {
+  background: var(--background-secondary);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all var(--transition-normal);
 }
 
-.stat:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+.card-back::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-lg);
 }
 
-.stat-number {
-  font-size: 2.2em;
+.card-back::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+}
+
+// Front Face Styles
+.card-icon-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--shadow-medium);
+  transition: transform 0.4s ease;
+  
+  .icon-background {
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    animation: rotateGlow 8s linear infinite;
+  }
+  
+  .card-icon {
+    font-size: 3.5em;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.magnetic-card:hover .card-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.card-title {
+  font-size: 1.8em;
   font-weight: 800;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1.2;
-  color: var(--background-primary);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  display: block;
+}
+
+// Stats
+.card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--background-secondary);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(134, 176, 189, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+}
+
+.magnetic-card:hover .stat-item::before {
+  left: 100%;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
   margin-bottom: var(--spacing-xs);
 }
 
 .stat-label {
-  font-size: 0.8em;
+  font-size: 0.85em;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  opacity: 0.9;
-  line-height: 1.2;
 }
 
-.slide-panel {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
-  background: var(--background-primary);
-  padding: var(--spacing-2xl);
-  transition: left var(--transition-slow);
-  overflow-y: auto;
-  border-radius: var(--radius-2xl);
+.stat-divider {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, var(--border-light), transparent);
 }
 
-.slide-card:hover .slide-panel {
-  left: 0;
+// Hover Indicator
+.hover-indicator {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--background-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  
+  .indicator-text {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  
+  .indicator-arrow {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+  }
 }
 
-.panel-header {
+.magnetic-card:hover .hover-indicator {
+  background: var(--accent-light);
+  border-color: var(--primary-color);
+  
+  .indicator-arrow {
+    transform: translateX(5px);
+  }
+}
+
+// Back Face Styles
+.card-back-header {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
@@ -138,40 +311,67 @@
   border-bottom: 2px solid var(--border-light);
 }
 
-.panel-header .icon {
-  font-size: 2.2em;
-  filter: none;
-  color: var(--primary-color);
+.card-icon-wrapper-small {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px var(--shadow-medium);
+  
+  .card-icon-small {
+    font-size: 1.8em;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+  }
 }
 
-.slide-panel h3 {
-  color: var(--primary-color);
-  margin: 0;
+.card-title-back {
   font-size: 1.5em;
-  font-weight: 700;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  flex: 1;
 }
 
-.slide-panel p {
+.card-description {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 0.95em;
   margin-bottom: var(--spacing-xl);
-  font-size: 1em;
+  flex: 1;
 }
 
-.tech-stack {
-  margin-top: var(--spacing-xl);
+// Tech Section
+.tech-section {
+  margin-bottom: var(--spacing-lg);
 }
 
 .tech-header {
-  font-weight: 700;
-  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 0.95em;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  
+  .tech-icon {
+    font-size: 1.2em;
+    filter: grayscale(0);
+  }
 }
 
-.tech-tags-wrapper {
+.tech-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
@@ -184,90 +384,233 @@
   border-radius: var(--radius-full);
   font-size: 0.85em;
   font-weight: 600;
-  transition: all var(--transition-normal);
+  transition: all 0.3s ease;
   box-shadow: 0 2px 8px var(--shadow-light);
-  display: inline-block;
-  border: 1px solid transparent;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUpTag 0.5s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+  }
+}
+
+@keyframes fadeInUpTag {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .tech-tag:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 12px var(--shadow-medium);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px var(--shadow-medium);
   background: linear-gradient(135deg, var(--highlight-color) 0%, var(--highlight-dark) 100%);
-  border-color: var(--highlight-color);
+  
+  &::before {
+    width: 150%;
+    height: 150%;
+  }
+}
+
+// Back Indicator
+.back-indicator {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--background-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  
+  .indicator-text-back {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  
+  .indicator-arrow-back {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+  }
+}
+
+.magnetic-card:hover .back-indicator {
+  background: var(--accent-light);
+  border-color: var(--primary-color);
+  
+  .indicator-arrow-back {
+    transform: translateX(-5px);
+  }
 }
 
 /* Responsive Design */
+@media (max-width: 968px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    padding: var(--spacing-4xl) var(--spacing-lg);
+  }
+  
+  .magnetic-card {
+    height: 380px;
+  }
+}
+
 @media (max-width: 768px) {
-  .slide-grid {
+  .skills-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-2xl) var(--spacing-md);
+    gap: var(--spacing-xl);
+    padding: var(--spacing-3xl) var(--spacing-md);
   }
-
-  .slide-card {
-    height: 280px;
+  
+  .magnetic-card {
+    height: 360px;
   }
-
-  .slide-card-main {
+  
+  .card-face {
     padding: var(--spacing-xl);
   }
-
-  .slide-card-main h3 {
+  
+  .card-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--spacing-lg);
+    
+    .card-icon {
+      font-size: 2.8em;
+    }
+  }
+  
+  .card-title {
     font-size: 1.5em;
   }
-
-  .slide-card-main .icon {
-    font-size: 2.8em;
+  
+  .stat-value {
+    font-size: 1.6em;
   }
-
-  .stat-number {
-    font-size: 1.8em;
+  
+  .card-title-back {
+    font-size: 1.3em;
   }
-
-  .stat {
-    padding: var(--spacing-sm) var(--spacing-xs);
+  
+  .card-description {
+    font-size: 0.9em;
   }
-
-  .stat-label {
-    font-size: 0.75em;
-    letter-spacing: 0.3px;
-  }
-
-  .panel-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .panel-header .icon {
-    font-size: 1.8em;
-  }
-
+  
   .tech-tag {
     font-size: 0.8em;
     padding: var(--spacing-xs) var(--spacing-sm);
   }
+}
 
-  .tech-header {
-    font-size: 0.9em;
+@media (max-width: 480px) {
+  .skills-grid {
+    padding: var(--spacing-2xl) var(--spacing-sm);
+    gap: var(--spacing-lg);
+  }
+  
+  .magnetic-card {
+    height: 340px;
+  }
+  
+  .card-face {
+    padding: var(--spacing-lg);
+  }
+  
+  .card-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    
+    .card-icon {
+      font-size: 2.5em;
+    }
+  }
+  
+  .card-title {
+    font-size: 1.3em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .card-stats {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .stat-item {
+    padding: var(--spacing-md);
+  }
+  
+  .stat-value {
+    font-size: 1.4em;
+  }
+  
+  .stat-label {
+    font-size: 0.75em;
+  }
+  
+  .card-title-back {
+    font-size: 1.2em;
+  }
+  
+  .card-icon-wrapper-small {
+    width: 45px;
+    height: 45px;
+    
+    .card-icon-small {
+      font-size: 1.5em;
+    }
+  }
+  
+  .card-description {
+    font-size: 0.85em;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .tech-tag {
+    font-size: 0.75em;
+    padding: 4px var(--spacing-xs);
+  }
+  
+  .hover-indicator,
+  .back-indicator {
+    padding: var(--spacing-sm);
+    
+    .indicator-text,
+    .indicator-text-back {
+      font-size: 0.75em;
+    }
   }
 }
 
-/* Scrollbar styling for slide panel */
-.slide-panel::-webkit-scrollbar {
-  width: 6px;
-}
-
-.slide-panel::-webkit-scrollbar-track {
-  background: var(--background-secondary);
-  border-radius: var(--radius-lg);
-}
-
-.slide-panel::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  border-radius: var(--radius-lg);
-}
-
-.slide-panel::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+// Disable magnetic effect on touch devices
+@media (hover: none) and (pointer: coarse) {
+  .magnetic-card {
+    transform: none !important;
+  }
+  
+  .magnetic-card:hover .card-front {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  
+  .magnetic-card:hover .card-back {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
