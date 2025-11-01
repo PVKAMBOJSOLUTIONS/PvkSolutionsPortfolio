@@ -55,7 +55,8 @@
   }
 }
 
-.magnetic-card:hover {
+.magnetic-card:hover,
+.magnetic-card.hovered {
   box-shadow: 0 25px 80px var(--shadow-dark);
   z-index: 10;
   
@@ -82,8 +83,10 @@
     transform: rotateY(0deg);
     opacity: 1;
     pointer-events: auto;
+    z-index: 2;
   }
 }
+
 
 // Glow Effect
 .card-glow {
@@ -127,7 +130,7 @@
 
 .card-back {
   transform: rotateY(-180deg);
-  opacity: 0;
+    opacity: 0; 
   background: var(--background-primary);
   overflow-y: auto;
   overflow-x: hidden;
@@ -136,19 +139,23 @@
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
   touch-action: pan-y;
+  position: relative;
+  z-index: 2;
+  cursor: auto;
   
-  // Prevent magnetic effect from interfering with scroll
+  // Ensure scrolling works properly
   & * {
     pointer-events: auto;
   }
   
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
   
   &::-webkit-scrollbar-track {
     background: var(--background-secondary);
     border-radius: var(--radius-lg);
+    margin: var(--spacing-sm) 0;
   }
   
   &::-webkit-scrollbar-thumb {
@@ -491,15 +498,15 @@
     gap: var(--spacing-xl);
     padding: var(--spacing-3xl) var(--spacing-md);
   }
-  
+
   .magnetic-card {
     height: 360px;
   }
-  
+
   .card-face {
     padding: var(--spacing-xl);
   }
-  
+
   .card-icon-wrapper {
     width: 80px;
     height: 80px;
@@ -513,7 +520,7 @@
   .card-title {
     font-size: 1.5em;
   }
-  
+
   .stat-value {
     font-size: 1.6em;
   }
@@ -572,7 +579,7 @@
   .stat-value {
     font-size: 1.4em;
   }
-  
+
   .stat-label {
     font-size: 0.75em;
   }
@@ -594,7 +601,7 @@
     font-size: 0.85em;
     margin-bottom: var(--spacing-lg);
   }
-  
+
   .tech-tag {
     font-size: 0.75em;
     padding: 4px var(--spacing-xs);

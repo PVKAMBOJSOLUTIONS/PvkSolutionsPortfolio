@@ -37,7 +37,9 @@
     </div>
     
     <!-- Back Face (Details) -->
-    <div class="card-face card-back">
+    <div class="card-face card-back" 
+         (wheel)="onCardBackWheel($event, i)"
+         (mousemove)="onCardBackMouseMove($event, i)">
       <div class="card-back-header">
         <div class="card-icon-wrapper-small" [style.background]="getGradient(getColor(i, skill))">
           <span class="card-icon-small">{{ skill.icon }}</span>
