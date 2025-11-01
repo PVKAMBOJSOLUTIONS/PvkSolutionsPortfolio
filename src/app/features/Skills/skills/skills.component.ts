@@ -24,8 +24,11 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       background: var(--background-primary);
     }
     .page-hero {
-      text-align: center;
+      text-align: left;
       padding: var(--spacing-5xl) var(--spacing-lg) var(--spacing-4xl);
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
     }
     .page-title {
       font-size: 3.5em;
@@ -33,15 +36,15 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       font-weight: 900;
       position: relative;
       z-index: 2;
+      padding-top: 20px;
       animation: fadeInDown 0.6s ease-out;
       color: var(--text-primary);
     }
     .page-title::before {
       content: '';
       position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      left: 0;
       width: 40px;
       height: 4px;
       background: linear-gradient(90deg, var(--primary-color) 0%, var(--highlight-color) 100%);
@@ -52,10 +55,11 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       opacity: 0.95;
       font-weight: 400;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto var(--spacing-md) auto;
       line-height: 1.6;
       position: relative;
       z-index: 2;
+      text-align: center;
       animation: fadeInUp 0.6s ease-out 0.2s both;
       color: var(--text-muted);
     }
@@ -64,7 +68,7 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       height: 4px;
       background: linear-gradient(90deg, var(--primary-color) 0%, var(--highlight-color) 100%);
       border-radius: var(--radius-full);
-      margin: var(--spacing-md) auto 0;
+      margin: 0 auto;
       animation: expandWidth 0.8s ease-out 0.4s both;
     }
     @keyframes fadeInDown {
@@ -101,6 +105,7 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       }
       .page-title {
         font-size: 2.8em;
+        padding-top: 16px;
       }
       .page-title::before {
         width: 30px;
@@ -120,6 +125,7 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       }
       .page-title {
         font-size: 2.2em;
+        padding-top: 14px;
       }
       .page-title::before {
         width: 25px;

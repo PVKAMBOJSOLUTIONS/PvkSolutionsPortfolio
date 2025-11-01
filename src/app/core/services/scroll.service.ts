@@ -1,63 +1,39 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScrollService {
   
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  /**
-   * Smoothly scroll to the top of the page
-   */
   scrollToTop(): void {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
-
-  /**
-   * Smoothly scroll to a specific element
-   * @param elementId - The ID of the element to scroll to
-   * @param offset - Optional offset from the top (default: 80px for navbar)
-   */
-  scrollToElement(elementId: string, offset: number = 80): void {
-    const element = document.getElementById(elementId);
-    if (element) {
-      const elementPosition = element.offsetTop - offset;
+    // Check if we're running in the browser
+    if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({
-        top: elementPosition,
-        left: 0,
+        top: 0,
         behavior: 'smooth'
       });
     }
   }
 
-  /**
-   * Smoothly scroll to a specific position
-   * @param position - The position to scroll to
-   */
-  scrollToPosition(position: number): void {
-    window.scrollTo({
-      top: position,
-      left: 0,
-      behavior: 'smooth'
-    });
+  scrollToSection(sectionId: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
   }
 
-  /**
-   * Get current scroll position
-   */
-  getCurrentScrollPosition(): number {
-    return window.pageYOffset || document.documentElement.scrollTop;
-  }
-
-  /**
-   * Check if user is at the top of the page
-   */
-  isAtTop(): boolean {
-    return this.getCurrentScrollPosition() === 0;
+  getScrollPosition(): number {
+    if (isPlatformBrowser(this.platformId)) {
+      return window.pageYOffset || document.documentElement.scrollTop;
+    }
+    return 0;
   }
 }

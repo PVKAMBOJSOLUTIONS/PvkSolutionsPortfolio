@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
-import { HomeComponent } from './features/home/home/home.component';
+import { HomeComponent } from './features/home/home.component';
 import { SkillsPageComponent } from './features/Skills/skills/skills.component';
 import { HobbiesComponent } from './features/hobbies/hobbies/hobbies.component';
 import { ExperienceComponent } from './features/experience/experience/experience.component';
 import { ProjectComponent } from './features/projects/project/project.component';
+import { ContactComponent } from './features/contact/contact.component';
 
 export const routes: Routes = [
   { 
@@ -32,6 +33,11 @@ export const routes: Routes = [
     path: 'experience', 
     component: ExperienceComponent,
     title: 'Experience - Professional Journey'
+  },
+  { 
+    path: 'contact', 
+    component: ContactComponent,
+    title: 'Contact Me!'
   },
   { 
     path: '**', 
