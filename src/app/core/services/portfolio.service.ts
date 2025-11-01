@@ -8,7 +8,11 @@ import {
   Hobby, 
   Profile, 
   ContactInfo,
-  Experience 
+  Experience,
+  PageContent,
+  PageSection,
+  SkillShowcase,
+  HomeStat
 } from '../models';
 
 @Injectable({
@@ -87,6 +91,59 @@ export class PortfolioService {
       return this.portfolioApi.getAllExperiences();
     }
     return of(this.getMockExperiences());
+  }
+
+  // ============================================
+  // PAGE CONTENT
+  // ============================================
+  getPageContent(pageName: string): Observable<PageContent> {
+    if (this.useApi) {
+      return this.portfolioApi.getPageContent(pageName);
+    }
+    return of(this.getMockPageContent(pageName));
+  }
+
+  getAllPageContent(): Observable<PageContent[]> {
+    if (this.useApi) {
+      return this.portfolioApi.getAllPageContent();
+    }
+    return of([]);
+  }
+
+  // ============================================
+  // SKILL SHOWCASES
+  // ============================================
+  getSkillShowcases(): Observable<SkillShowcase[]> {
+    if (this.useApi) {
+      return this.portfolioApi.getAllSkillShowcases();
+    }
+    return of(this.getMockSkillShowcases());
+  }
+
+  getSkillShowcaseById(id: number): Observable<SkillShowcase> {
+    if (this.useApi) {
+      return this.portfolioApi.getSkillShowcaseById(id);
+    }
+    const showcases = this.getMockSkillShowcases();
+    return of(showcases.find(s => s.id === id)!);
+  }
+
+  // ============================================
+  // HOME STATS
+  // ============================================
+  getHomeStats(): Observable<HomeStat[]> {
+    if (this.useApi) {
+      return this.portfolioApi.getAllHomeStats();
+    }
+    return of(this.getMockHomeStats());
+  }
+
+  getHomeStatById(id: number): Observable<HomeStat> {
+    if (this.useApi) {
+      return this.portfolioApi.getHomeStatById(id);
+    }
+    const stats = this.getMockHomeStats();
+    return of(stats.find(s => s.id === id)!);
   }
 
   /**
@@ -273,7 +330,7 @@ export class PortfolioService {
   private getMockProfile(): Profile {
     return {
       id: 1,
-      name: 'Your Name',
+      name: 'Pratham Kamboj',
       title: 'Full Stack .NET Developer',
       tagline: 'Building scalable web applications with Angular & .NET Core',
       bio: 'Passionate about creating clean, efficient code and delivering exceptional user experiences. Specialized in enterprise-level applications with modern technology stacks.',
@@ -292,6 +349,205 @@ export class PortfolioService {
         { platform: 'Twitter', url: 'https://twitter.com/yourusername', icon: '🐦' },
         { platform: 'Email', url: 'mailto:your.email@example.com', icon: '✉️' }
       ]
+    };
+  }
+
+  private getMockSkillShowcases(): SkillShowcase[] {
+    return [
+      {
+        id: 1,
+        icon: '🎨',
+        title: 'Frontend Development',
+        projectCount: 25,
+        yearsExperience: '5+',
+        description: 'Creating beautiful and responsive user interfaces with modern frameworks. Specialized in building scalable single-page applications with focus on user experience and performance optimization.',
+        techStack: ['Angular', 'React', 'TypeScript', 'TailwindCSS', 'SASS'],
+        order: 1,
+        isVisible: true
+      },
+      {
+        id: 2,
+        icon: '⚙️',
+        title: 'Backend Development',
+        projectCount: 20,
+        yearsExperience: '4+',
+        description: 'Building robust server-side applications and RESTful APIs. Expertise in designing scalable architectures and implementing secure authentication systems.',
+        techStack: ['.NET Core', 'C#', 'ASP.NET', 'Entity Framework', 'SQL Server'],
+        order: 2,
+        isVisible: true
+      },
+      {
+        id: 3,
+        icon: '💻',
+        title: 'Full Stack Development',
+        projectCount: 30,
+        yearsExperience: '5+',
+        description: 'End-to-end development of web applications from concept to deployment. Proven track record of delivering complete solutions on time and within budget.',
+        techStack: ['Angular', '.NET Core', 'TypeScript', 'SQL Server', 'Azure'],
+        order: 3,
+        isVisible: true
+      },
+      {
+        id: 4,
+        icon: '🗄️',
+        title: 'Database Management',
+        projectCount: 15,
+        yearsExperience: '4+',
+        description: 'Designing and optimizing database schemas for performance and scalability. Expert in query optimization and data modeling best practices.',
+        techStack: ['SQL Server', 'PostgreSQL', 'Entity Framework', 'Azure SQL'],
+        order: 4,
+        isVisible: true
+      },
+      {
+        id: 5,
+        icon: '☁️',
+        title: 'Cloud & DevOps',
+        projectCount: 12,
+        yearsExperience: '3+',
+        description: 'Deploying applications to cloud platforms and implementing CI/CD pipelines. Skilled in containerization and infrastructure as code.',
+        techStack: ['Azure', 'Docker', 'Git', 'Azure DevOps', 'PowerShell'],
+        order: 5,
+        isVisible: true
+      },
+      {
+        id: 6,
+        icon: '🔧',
+        title: 'Problem Solving',
+        projectCount: 40,
+        yearsExperience: '6+',
+        description: 'Solving complex technical challenges and optimizing application performance. Strong analytical skills and systematic approach to debugging.',
+        techStack: ['Algorithms', 'Data Structures', 'Architecture', 'Debugging'],
+        order: 6,
+        isVisible: true
+      }
+    ];
+  }
+
+  private getMockHomeStats(): HomeStat[] {
+    return [
+      {
+        id: 1,
+        number: 50,
+        label: 'Projects Completed',
+        suffix: '+',
+        icon: '✨',
+        order: 1,
+        isVisible: true
+      },
+      {
+        id: 2,
+        number: 5,
+        label: 'Years Experience',
+        suffix: '+',
+        icon: '⭐',
+        order: 2,
+        isVisible: true
+      },
+      {
+        id: 3,
+        number: 100,
+        label: 'Happy Clients',
+        suffix: '+',
+        icon: '🎉',
+        order: 3,
+        isVisible: true
+      },
+      {
+        id: 4,
+        number: 20,
+        label: 'Technologies',
+        suffix: '+',
+        icon: '🚀',
+        order: 4,
+        isVisible: true
+      }
+    ];
+  }
+
+  private getMockPageContent(pageName: string): PageContent {
+    const content: Record<string, PageContent> = {
+      home: {
+        id: 1,
+        pageName: 'home',
+        heroTitle: 'Your Name',
+        heroSubtitle: 'Full Stack Developer',
+        heroDescription: 'Crafting elegant solutions to complex problems. Passionate about building scalable web applications and delivering exceptional user experiences.',
+        typewriterWords: ['Full Stack Developer', 'Problem Solver', 'Tech Enthusiast', 'Creative Thinker'],
+        sections: [
+          {
+            id: 1,
+            pageName: 'home',
+            sectionName: 'hero',
+            title: 'Your Name',
+            subtitle: 'Full Stack Developer',
+            description: 'Crafting elegant solutions to complex problems.',
+            order: 1,
+            isVisible: true
+          },
+          {
+            id: 2,
+            pageName: 'home',
+            sectionName: 'stats',
+            title: 'My Achievements',
+            subtitle: 'Numbers that speak',
+            order: 2,
+            isVisible: true
+          },
+          {
+            id: 3,
+            pageName: 'home',
+            sectionName: 'skills',
+            title: 'Core Technologies',
+            subtitle: 'Tools and technologies I work with',
+            order: 3,
+            isVisible: true
+          },
+          {
+            id: 4,
+            pageName: 'home',
+            sectionName: 'cta',
+            title: 'Let\'s Build Something Amazing Together',
+            subtitle: 'Have a project in mind?',
+            description: 'Let\'s discuss how we can work together to bring your ideas to life.',
+            order: 4,
+            isVisible: true
+          }
+        ]
+      },
+      projects: {
+        id: 2,
+        pageName: 'projects',
+        heroTitle: 'My Projects',
+        heroSubtitle: 'A showcase of the apps and tools I\'ve built.',
+        sections: []
+      },
+      skills: {
+        id: 3,
+        pageName: 'skills',
+        heroTitle: 'Technical Skills',
+        heroSubtitle: 'Technologies and tools I excel at',
+        sections: []
+      },
+      experience: {
+        id: 4,
+        pageName: 'experience',
+        heroTitle: 'Professional Journey',
+        heroSubtitle: 'My career path and experiences',
+        sections: []
+      },
+      contact: {
+        id: 5,
+        pageName: 'contact',
+        heroTitle: 'Get In Touch',
+        heroSubtitle: 'Let\'s discuss your next project',
+        sections: []
+      }
+    };
+
+    return content[pageName] || {
+      id: 0,
+      pageName,
+      sections: []
     };
   }
 

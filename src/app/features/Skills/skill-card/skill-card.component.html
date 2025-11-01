@@ -7,11 +7,11 @@
     #skillCard>
     
     <!-- Card Glow Effect -->
-    <div class="card-glow" [style.background]="getGradient(getColor(i))"></div>
+    <div class="card-glow" [style.background]="getGradient(getColor(i, skill))"></div>
     
     <!-- Front Face -->
     <div class="card-face card-front">
-      <div class="card-icon-wrapper" [style.background]="getGradient(getColor(i))">
+      <div class="card-icon-wrapper" [style.background]="getGradient(getColor(i, skill))">
         <div class="icon-background"></div>
         <span class="card-icon">{{ skill.icon }}</span>
       </div>
@@ -39,7 +39,7 @@
     <!-- Back Face (Details) -->
     <div class="card-face card-back">
       <div class="card-back-header">
-        <div class="card-icon-wrapper-small" [style.background]="getGradient(getColor(i))">
+        <div class="card-icon-wrapper-small" [style.background]="getGradient(getColor(i, skill))">
           <span class="card-icon-small">{{ skill.icon }}</span>
         </div>
         <h3 class="card-title-back">{{ skill.title }}</h3>
@@ -69,7 +69,7 @@
     </div>
     
     <!-- Magnetic border effect -->
-    <div class="magnetic-border" [style.background]="getGradient(getColor(i))"></div>
+    <div class="magnetic-border" [style.background]="getGradient(getColor(i, skill))"></div>
   </div>
 </div>
 

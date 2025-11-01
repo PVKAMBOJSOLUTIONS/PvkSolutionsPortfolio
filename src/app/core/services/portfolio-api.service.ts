@@ -9,12 +9,16 @@ import {
   Hobby, 
   Profile, 
   ContactInfo, 
-  Experience 
+  Experience,
+  PageContent,
+  SkillShowcase,
+  HomeStat
 } from '../models';
 
 /**
  * Portfolio API Service
- * Handles all API calls related to portfolio data
+ * Handles all READ-ONLY API calls related to portfolio data
+ * All CREATE, UPDATE, DELETE operations are handled through admin console
  */
 @Injectable({
   providedIn: 'root'
@@ -26,7 +30,7 @@ export class PortfolioApiService extends BaseApiService {
   }
 
   // ============================================
-  // PROJECT ENDPOINTS
+  // PROJECT ENDPOINTS (READ ONLY)
   // ============================================
 
   /**
@@ -43,29 +47,8 @@ export class PortfolioApiService extends BaseApiService {
     return this.get<Project>(`/projects/${id}`);
   }
 
-  /**
-   * Create a new project
-   */
-  createProject(project: Project): Observable<Project> {
-    return this.post<Project>('/projects', project);
-  }
-
-  /**
-   * Update an existing project
-   */
-  updateProject(id: number, project: Partial<Project>): Observable<Project> {
-    return this.put<Project>(`/projects/${id}`, project);
-  }
-
-  /**
-   * Delete a project
-   */
-  deleteProject(id: number): Observable<void> {
-    return this.delete<void>(`/projects/${id}`);
-  }
-
   // ============================================
-  // SKILL ENDPOINTS
+  // SKILL ENDPOINTS (READ ONLY)
   // ============================================
 
   /**
@@ -82,15 +65,8 @@ export class PortfolioApiService extends BaseApiService {
     return this.get<Skill[]>('/skills', this.buildParams({ category }));
   }
 
-  /**
-   * Create or update skills
-   */
-  upsertSkills(skills: SkillCategory[]): Observable<SkillCategory[]> {
-    return this.post<SkillCategory[]>('/skills', skills);
-  }
-
   // ============================================
-  // HOBBY ENDPOINTS
+  // HOBBY ENDPOINTS (READ ONLY)
   // ============================================
 
   /**
@@ -107,15 +83,8 @@ export class PortfolioApiService extends BaseApiService {
     return this.get<Hobby>(`/hobbies/${id}`);
   }
 
-  /**
-   * Create a new hobby
-   */
-  createHobby(hobby: Hobby): Observable<Hobby> {
-    return this.post<Hobby>('/hobbies', hobby);
-  }
-
   // ============================================
-  // PROFILE ENDPOINTS
+  // PROFILE ENDPOINTS (READ ONLY)
   // ============================================
 
   /**
@@ -123,13 +92,6 @@ export class PortfolioApiService extends BaseApiService {
    */
   getProfile(): Observable<Profile> {
     return this.get<Profile>('/profile');
-  }
-
-  /**
-   * Update profile information
-   */
-  updateProfile(profile: Partial<Profile>): Observable<Profile> {
-    return this.put<Profile>('/profile', profile);
   }
 
   // ============================================
@@ -144,14 +106,7 @@ export class PortfolioApiService extends BaseApiService {
   }
 
   /**
-   * Update contact information
-   */
-  updateContactInfo(contactInfo: Partial<ContactInfo>): Observable<ContactInfo> {
-    return this.put<ContactInfo>('/contact', contactInfo);
-  }
-
-  /**
-   * Send contact message
+   * Send contact message (users can send messages)
    */
   sendMessage(message: {
     name: string;
@@ -163,7 +118,7 @@ export class PortfolioApiService extends BaseApiService {
   }
 
   // ============================================
-  // EXPERIENCE ENDPOINTS
+  // EXPERIENCE ENDPOINTS (READ ONLY)
   // ============================================
 
   /**
@@ -180,25 +135,57 @@ export class PortfolioApiService extends BaseApiService {
     return this.get<Experience>(`/experiences/${id}`);
   }
 
+  // ============================================
+  // PAGE CONTENT ENDPOINTS (READ ONLY)
+  // ============================================
+
   /**
-   * Create a new experience
+   * Get page content by page name
    */
-  createExperience(experience: Experience): Observable<Experience> {
-    return this.post<Experience>('/experiences', experience);
+  getPageContent(pageName: string): Observable<PageContent> {
+    return this.get<PageContent>(`/page-content/${pageName}`);
   }
 
   /**
-   * Update an existing experience
+   * Get all page content
    */
-  updateExperience(id: number, experience: Partial<Experience>): Observable<Experience> {
-    return this.put<Experience>(`/experiences/${id}`, experience);
+  getAllPageContent(): Observable<PageContent[]> {
+    return this.get<PageContent[]>('/page-content');
+  }
+
+  // ============================================
+  // SKILL SHOWCASE ENDPOINTS (READ ONLY)
+  // ============================================
+
+  /**
+   * Get all skill showcases
+   */
+  getAllSkillShowcases(): Observable<SkillShowcase[]> {
+    return this.get<SkillShowcase[]>('/skill-showcases');
   }
 
   /**
-   * Delete an experience
+   * Get skill showcase by ID
    */
-  deleteExperience(id: number): Observable<void> {
-    return this.delete<void>(`/experiences/${id}`);
+  getSkillShowcaseById(id: number): Observable<SkillShowcase> {
+    return this.get<SkillShowcase>(`/skill-showcases/${id}`);
+  }
+
+  // ============================================
+  // HOME STATS ENDPOINTS (READ ONLY)
+  // ============================================
+
+  /**
+   * Get all home stats
+   */
+  getAllHomeStats(): Observable<HomeStat[]> {
+    return this.get<HomeStat[]>('/home-stats');
+  }
+
+  /**
+   * Get home stat by ID
+   */
+  getHomeStatById(id: number): Observable<HomeStat> {
+    return this.get<HomeStat>(`/home-stats/${id}`);
   }
 }
-

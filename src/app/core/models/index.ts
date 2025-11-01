@@ -4,3 +4,4 @@ export * from './hobby.model';
 export * from './profile.model';
 export * from './contact.model';
 export * from './experience.model';
+export * from './page-content.model';

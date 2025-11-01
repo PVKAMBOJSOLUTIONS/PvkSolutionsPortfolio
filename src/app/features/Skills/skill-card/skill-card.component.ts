@@ -1,15 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList, PLATFORM_ID, Inject, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-
-interface Skill {
-  icon: string;
-  title: string;
-  projectCount?: number;
-  yearsExperience?: string;
-  description: string;
-  techStack: string[];
-  color?: string;
-}
+import { PortfolioService } from '../../../core/services/portfolio.service';
+import { SkillShowcase } from '../../../core/models';
 
 @Component({
   selector: 'app-skills-card',
@@ -22,8 +14,13 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit {
   @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;
   
   visibleCards: Set<number> = new Set();
+  skills: SkillShowcase[] = [];
+  loading = true;
   
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
   
   // Format large numbers (e.g., 1000 -> 1K)
   formatNumber(num?: number): string {
@@ -34,7 +31,11 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit {
     return num.toString();
   }
   
-  getColor(index: number): string {
+  getColor(index: number, skill?: SkillShowcase): string {
+    // Use color from skill if available, otherwise use index-based color
+    if (skill?.color) {
+      return skill.color;
+    }
     const colors = ['blue', 'purple', 'orange', 'green', 'pink', 'cyan'];
     return colors[index % colors.length];
   }
@@ -51,7 +52,22 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit {
     return gradients[color] || gradients['blue'];
   }
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Load skill showcases from API
+    this.portfolioService.getSkillShowcases().subscribe({
+      next: (showcases) => {
+        this.skills = showcases
+          .filter(s => s.isVisible)
+          .sort((a, b) => a.order - b.order);
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error loading skill showcases:', error);
+        this.loading = false;
+        // Keep default skills as fallback
+      }
+    });
+  }
   
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -116,55 +132,4 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit {
     });
   }
   
-  // You can customize these skills with your own data
-  skills: Skill[] = [
-    {
-      icon: '🎨',
-      title: 'Frontend Development',
-      projectCount: 25,
-      yearsExperience: '5+',
-      description: 'Creating beautiful and responsive user interfaces with modern frameworks. Specialized in building scalable single-page applications with focus on user experience and performance optimization.',
-      techStack: ['Angular', 'React', 'TypeScript', 'TailwindCSS', 'SASS']
-    },
-    {
-      icon: '⚙️',
-      title: 'Backend Development',
-      projectCount: 20,
-      yearsExperience: '4+',
-      description: 'Building robust server-side applications and RESTful APIs. Expertise in designing scalable architectures and implementing secure authentication systems.',
-      techStack: ['.NET Core', 'C#', 'ASP.NET', 'Entity Framework', 'SQL Server']
-    },
-    {
-      icon: '💻',
-      title: 'Full Stack Development',
-      projectCount: 30,
-      yearsExperience: '5+',
-      description: 'End-to-end development of web applications from concept to deployment. Proven track record of delivering complete solutions on time and within budget.',
-      techStack: ['Angular', '.NET Core', 'TypeScript', 'SQL Server', 'Azure']
-    },
-    {
-      icon: '🗄️',
-      title: 'Database Management',
-      projectCount: 15,
-      yearsExperience: '4+',
-      description: 'Designing and optimizing database schemas for performance and scalability. Expert in query optimization and data modeling best practices.',
-      techStack: ['SQL Server', 'PostgreSQL', 'Entity Framework', 'Azure SQL']
-    },
-    {
-      icon: '☁️',
-      title: 'Cloud & DevOps',
-      projectCount: 12,
-      yearsExperience: '3+',
-      description: 'Deploying applications to cloud platforms and implementing CI/CD pipelines. Skilled in containerization and infrastructure as code.',
-      techStack: ['Azure', 'Docker', 'Git', 'Azure DevOps', 'PowerShell']
-    },
-    {
-      icon: '🔧',
-      title: 'Problem Solving',
-      projectCount: 40,
-      yearsExperience: '6+',
-      description: 'Solving complex technical challenges and optimizing application performance. Strong analytical skills and systematic approach to debugging.',
-      techStack: ['Algorithms', 'Data Structures', 'Architecture', 'Debugging']
-    }
-  ];
 }

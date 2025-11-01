@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { PortfolioService } from '../../core/services/portfolio.service';
+import { PageContent, HomeStat } from '../../core/models';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     'Creative Thinker'
   ];
 
+  pageContent: PageContent | null = null;
   particles = Array(15).fill(0);
   skills = [
     { name: 'Angular', icon: '🅰️', level: 90 },
@@ -31,24 +34,53 @@ export class HomeComponent implements OnInit, AfterViewInit {
     { name: 'React', icon: '⚛️', level: 70 }
   ];
 
-  stats = [
-    { number: 50, label: 'Projects Completed', suffix: '+' },
-    { number: 5, label: 'Years Experience', suffix: '+' },
-    { number: 100, label: 'Happy Clients', suffix: '+' },
-    { number: 20, label: 'Technologies', suffix: '+' }
-  ];
+  stats: HomeStat[] = [];
 
   @ViewChildren('animateSection') sections!: QueryList<ElementRef>;
 
   constructor(
     private router: Router,
+    private portfolioService: PortfolioService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.startTypingAnimation();
-    }
+    // Load page content
+    this.portfolioService.getPageContent('home').subscribe({
+      next: (content) => {
+        this.pageContent = content;
+        if (content.heroTitle) this.fullText = content.heroTitle;
+        if (content.typewriterWords && content.typewriterWords.length > 0) {
+          this.words = content.typewriterWords;
+        }
+        if (isPlatformBrowser(this.platformId)) {
+          this.startTypingAnimation();
+        }
+      },
+      error: (error) => {
+        console.error('Error loading page content:', error);
+        if (isPlatformBrowser(this.platformId)) {
+          this.startTypingAnimation();
+        }
+      }
+    });
+
+    // Load home stats
+    this.portfolioService.getHomeStats().subscribe({
+      next: (stats) => {
+        this.stats = stats.filter(s => s.isVisible).sort((a, b) => a.order - b.order);
+      },
+      error: (error) => {
+        console.error('Error loading home stats:', error);
+        // Fallback to default stats
+        this.stats = [
+          { id: 1, number: 50, label: 'Projects Completed', suffix: '+', icon: '✨', order: 1, isVisible: true },
+          { id: 2, number: 5, label: 'Years Experience', suffix: '+', icon: '⭐', order: 2, isVisible: true },
+          { id: 3, number: 100, label: 'Happy Clients', suffix: '+', icon: '🎉', order: 3, isVisible: true },
+          { id: 4, number: 20, label: 'Technologies', suffix: '+', icon: '🚀', order: 4, isVisible: true }
+        ];
+      }
+    });
   }
 
   ngAfterViewInit() {
