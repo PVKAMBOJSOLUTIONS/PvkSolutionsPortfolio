@@ -27,11 +27,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   pageContent: PageContent | null = null;
   particles = Array(15).fill(0);
   skills = [
-    { name: 'Angular', icon: '🅰️', level: 90 },
-    { name: 'TypeScript', icon: '📘', level: 85 },
-    { name: 'Node.js', icon: '🟢', level: 80 },
-    { name: 'MongoDB', icon: '🍃', level: 75 },
-    { name: 'React', icon: '⚛️', level: 70 }
+    { name: 'Angular', icon: '🅰️', description: 'Building dynamic single-page applications with reactive programming and component-based architecture' },
+    { name: '.NET Core', icon: '💻', description: 'Developing scalable enterprise APIs and microservices with modern .NET frameworks' },
+    { name: 'TypeScript', icon: '📘', description: 'Writing type-safe, maintainable code for large-scale web applications' },
+    { name: 'SQL Server', icon: '🗄️', description: 'Designing and optimizing relational databases for high-performance applications' },
+    { name: 'Azure Cloud', icon: '☁️', description: 'Deploying and managing cloud infrastructure with Azure services and DevOps practices' },
+    { name: 'Entity Framework', icon: '🔧', description: 'Working with ORM tools for efficient data access and database management' }
   ];
 
   stats: HomeStat[] = [];

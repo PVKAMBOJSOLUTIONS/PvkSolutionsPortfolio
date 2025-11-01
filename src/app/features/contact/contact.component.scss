@@ -644,84 +644,296 @@
   
   @media (max-width: 768px) {
     .contact-hero {
-      padding: var(--spacing-4xl) var(--spacing-lg) var(--spacing-3xl);
+      padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-2xl);
+    }
+    
+    .hero-badge {
+      padding: var(--spacing-xs) var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.95em;
+    }
+    
+    .badge-text {
+      font-size: 1em;
     }
     
     .hero-title {
-      font-size: 3em;
+      font-size: 2.5em;
+      margin-bottom: var(--spacing-sm);
     }
     
     .hero-subtitle {
-      font-size: 1.1em;
+      font-size: 1em;
+      margin-bottom: var(--spacing-md);
     }
     
     .contact-container {
-      padding: var(--spacing-4xl) var(--spacing-lg);
+      padding: var(--spacing-3xl) var(--spacing-lg);
+    }
+    
+    .contact-grid {
+      gap: var(--spacing-2xl);
     }
     
     .form-card {
-      padding: var(--spacing-2xl);
+      padding: var(--spacing-xl);
+      margin: 0;
+    }
+    
+    .form-header {
+      margin-bottom: var(--spacing-xl);
     }
     
     .form-title {
-      font-size: 1.8em;
+      font-size: 1.6em;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .form-description {
+      font-size: 0.95em;
+    }
+    
+    .contact-form {
+      gap: var(--spacing-lg);
+    }
+    
+    .form-group {
+      gap: var(--spacing-xs);
     }
     
     .info-card {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-lg);
+      margin: 0;
+    }
+    
+    .info-title {
+      font-size: 1.4em;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .info-description {
+      font-size: 0.95em;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .contact-methods {
+      gap: var(--spacing-sm);
+    }
+    
+    .contact-method {
+      padding: var(--spacing-md);
+      gap: var(--spacing-md);
     }
     
     .social-links {
       grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-sm);
     }
   }
   
   @media (max-width: 480px) {
     .contact-hero {
-      padding: var(--spacing-3xl) var(--spacing-md) var(--spacing-2xl);
+      padding: var(--spacing-2xl) var(--spacing-md) var(--spacing-xl);
+    }
+    
+    .blob-1 {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      right: -100px;
+    }
+    
+    .blob-2 {
+      width: 350px;
+      height: 350px;
+      bottom: -150px;
+      left: -150px;
+    }
+    
+    .hero-badge {
+      padding: 6px var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .badge-icon {
+      font-size: 1.1em;
+    }
+    
+    .badge-text {
+      font-size: 0.9em;
     }
     
     .hero-title {
-      font-size: 2.2em;
+      font-size: 2em;
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.2;
     }
     
     .hero-subtitle {
-      font-size: 1em;
+      font-size: 0.95em;
+      margin-bottom: var(--spacing-sm);
+      padding: 0 var(--spacing-sm);
+    }
+    
+    .title-underline {
+      width: 60px;
+      height: 3px;
     }
     
     .contact-container {
-      padding: var(--spacing-3xl) var(--spacing-md);
+      padding: var(--spacing-2xl) var(--spacing-md);
+    }
+    
+    .contact-grid {
+      gap: var(--spacing-xl);
     }
     
     .form-card {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-xl);
+    }
+    
+    .form-header {
+      margin-bottom: var(--spacing-lg);
     }
     
     .form-title {
-      font-size: 1.5em;
+      font-size: 1.4em;
+    }
+    
+    .form-description {
+      font-size: 0.9em;
+    }
+    
+    .contact-form {
+      gap: var(--spacing-md);
+    }
+    
+    .form-group {
+      gap: var(--spacing-xs);
+    }
+    
+    .form-label {
+      font-size: 0.95em;
+    }
+    
+    .label-icon {
+      font-size: 1.1em;
     }
     
     .form-input,
     .form-textarea {
       padding: var(--spacing-sm) var(--spacing-md);
+      font-size: 0.95em;
+      border-radius: var(--radius-md);
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+    }
+    
+    .form-error {
+      font-size: 0.85em;
+      margin-top: -4px;
     }
     
     .submit-btn {
-      padding: var(--spacing-md) var(--spacing-xl);
-      font-size: 1em;
+      padding: var(--spacing-md) var(--spacing-lg);
+      font-size: 0.95em;
+      border-radius: var(--radius-lg);
+    }
+    
+    .info-section {
+      gap: var(--spacing-lg);
+    }
+    
+    .info-card {
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-xl);
+    }
+    
+    .info-title {
+      font-size: 1.3em;
+    }
+    
+    .info-description {
+      font-size: 0.9em;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .contact-methods {
+      gap: var(--spacing-xs);
     }
     
     .contact-method {
-      padding: var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-md);
+      gap: var(--spacing-sm);
+      border-radius: var(--radius-md);
     }
     
     .method-icon {
-      font-size: 2em;
-      width: 50px;
-      height: 50px;
+      font-size: 1.8em;
+      width: 45px;
+      height: 45px;
+      border-radius: var(--radius-md);
+    }
+    
+    .method-content {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .method-title {
+      font-size: 0.8em;
+      margin-bottom: 2px;
     }
     
     .method-value {
+      font-size: 0.9em;
+      word-break: break-word;
+    }
+    
+    .method-arrow {
+      font-size: 1.2em;
+      flex-shrink: 0;
+    }
+    
+    .social-links {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-sm);
+    }
+    
+    .social-link {
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    .availability-status {
+      padding: var(--spacing-sm) var(--spacing-md);
+      margin-bottom: var(--spacing-md);
       font-size: 0.95em;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+    }
+    
+    .availability-text {
+      font-size: 0.9em;
+    }
+    
+    .alert {
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: 0.9em;
+    }
+    
+    .alert-icon {
+      font-size: 1.1em;
     }
   }

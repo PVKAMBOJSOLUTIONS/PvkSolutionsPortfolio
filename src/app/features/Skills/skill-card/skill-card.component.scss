@@ -75,11 +75,13 @@
   .card-front {
     transform: rotateY(180deg);
     opacity: 0;
+    pointer-events: none;
   }
   
   .card-back {
     transform: rotateY(0deg);
     opacity: 1;
+    pointer-events: auto;
   }
 }
 
@@ -128,26 +130,37 @@
   opacity: 0;
   background: var(--background-primary);
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--background-secondary);
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  touch-action: pan-y;
+  
+  // Prevent magnetic effect from interfering with scroll
+  & * {
+    pointer-events: auto;
+  }
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--background-secondary);
+    border-radius: var(--radius-lg);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: var(--radius-lg);
+    
+    &:hover {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    }
+  }
 }
 
-// Scrollbar for back face
-.card-back::-webkit-scrollbar {
-  width: 6px;
-}
-
-.card-back::-webkit-scrollbar-track {
-  background: var(--background-secondary);
-  border-radius: var(--radius-lg);
-}
-
-.card-back::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  border-radius: var(--radius-lg);
-}
-
-.card-back::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-}
 
 // Front Face Styles
 .card-icon-wrapper {

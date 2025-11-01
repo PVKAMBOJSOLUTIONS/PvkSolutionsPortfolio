@@ -1,15 +1,15 @@
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo" (click)="navigateTo('')">YourName</div>
+    <div class="logo" (click)="navigateTo('')">Pratham's Portfolio</div>
     
     <!-- Desktop Navigation -->
     <div class="nav-links desktop-nav">
-      <a (click)="navigateTo('')">Home</a>
-      <a (click)="navigateTo('projects')">Projects</a>
-      <a (click)="navigateTo('skills')">Skills</a>
-      <a (click)="navigateTo('hobbies')">Hobbies</a>
-      <a (click)="navigateTo('experience')">Experience</a>
-      <a (click)="navigateTo('contact')">Contact</a>
+      <a (click)="navigateTo('')" [class.active]="isActiveRoute('')">Home</a>
+      <a (click)="navigateTo('projects')" [class.active]="isActiveRoute('projects')">Projects</a>
+      <a (click)="navigateTo('skills')" [class.active]="isActiveRoute('skills')">Skills</a>
+      <a (click)="navigateTo('hobbies')" [class.active]="isActiveRoute('hobbies')">Hobbies</a>
+      <a (click)="navigateTo('experience')" [class.active]="isActiveRoute('experience')">Experience</a>
+      <a (click)="navigateTo('contact')" [class.active]="isActiveRoute('contact')">Contact</a>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -24,11 +24,11 @@
 
   <!-- Mobile Navigation -->
   <div class="mobile-nav" [class.active]="isMobileMenuOpen">
-    <a (click)="navigateTo('')">Home</a>
-    <a (click)="navigateTo('projects')">Projects</a>
-    <a (click)="navigateTo('skills')">Skills</a>
-    <a (click)="navigateTo('hobbies')">Hobbies</a>
-    <a (click)="navigateTo('experience')">Experience</a>
-    <a (click)="navigateTo('contact')">Contact</a>
+    <a (click)="navigateTo('')" [class.active]="isActiveRoute('')">Home</a>
+    <a (click)="navigateTo('projects')" [class.active]="isActiveRoute('projects')">Projects</a>
+    <a (click)="navigateTo('skills')" [class.active]="isActiveRoute('skills')">Skills</a>
+    <a (click)="navigateTo('hobbies')" [class.active]="isActiveRoute('hobbies')">Hobbies</a>
+    <a (click)="navigateTo('experience')" [class.active]="isActiveRoute('experience')">Experience</a>
+    <a (click)="navigateTo('contact')" [class.active]="isActiveRoute('contact')">Contact</a>
   </div>
 </nav>

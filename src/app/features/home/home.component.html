@@ -27,7 +27,7 @@
         </div>
         
         <h1 class="hero-title glowing-text fade-in-up delay-1">
-          Your Name
+          Pratham kamboj
         </h1>
         
         <div class="typewriter-container fade-in-up delay-2">
@@ -131,11 +131,8 @@
         <div class="skill-card tilt-card" *ngFor="let skill of skills">
           <div class="skill-icon">{{ skill.icon }}</div>
           <h3 class="skill-name">{{ skill.name }}</h3>
-          <div class="skill-bar">
-            <div class="skill-progress" [style.width.%]="skill.level">
-              <span class="skill-percentage">{{ skill.level }}%</span>
-            </div>
-          </div>
+          <p class="skill-description">{{ skill.description }}</p>
+          <div class="skill-badge">Proficient</div>
         </div>
       </div>
     </div>

@@ -247,7 +247,15 @@ export class PortfolioService {
           { id: 1, name: '.NET Core / .NET 6+', category: 'backend', proficiency: 95 },
           { id: 2, name: 'C#', category: 'backend', proficiency: 95 },
           { id: 3, name: 'ASP.NET Web API', category: 'backend', proficiency: 90 },
-          { id: 4, name: 'Entity Framework', category: 'backend', proficiency: 85 }
+          { id: 4, name: 'Entity Framework', category: 'backend', proficiency: 85 },
+          { id: 17, name: 'RESTful APIs', category: 'backend', proficiency: 90 },
+          { id: 18, name: 'Microservices', category: 'backend', proficiency: 80 },
+          { id: 19, name: 'SignalR', category: 'backend', proficiency: 75 },
+          { id: 20, name: 'LINQ', category: 'backend', proficiency: 90 },
+          { id: 31, name: 'WebSockets', category: 'backend', proficiency: 75 },
+          { id: 32, name: 'Authentication & Authorization', category: 'backend', proficiency: 88 },
+          { id: 33, name: 'Unit Testing (xUnit, NUnit)', category: 'backend', proficiency: 85 },
+          { id: 34, name: 'Dependency Injection', category: 'backend', proficiency: 92 }
         ]
       },
       {
@@ -258,7 +266,15 @@ export class PortfolioService {
           { id: 5, name: 'Angular', category: 'frontend', proficiency: 90 },
           { id: 6, name: 'TypeScript', category: 'frontend', proficiency: 90 },
           { id: 7, name: 'RxJS', category: 'frontend', proficiency: 80 },
-          { id: 8, name: 'HTML/CSS', category: 'frontend', proficiency: 90 }
+          { id: 8, name: 'HTML/CSS', category: 'frontend', proficiency: 90 },
+          { id: 21, name: 'SCSS/SASS', category: 'frontend', proficiency: 85 },
+          { id: 22, name: 'TailwindCSS', category: 'frontend', proficiency: 80 },
+          { id: 23, name: 'JavaScript', category: 'frontend', proficiency: 88 },
+          { id: 24, name: 'Responsive Design', category: 'frontend', proficiency: 92 },
+          { id: 35, name: 'Angular Material', category: 'frontend', proficiency: 85 },
+          { id: 36, name: 'State Management', category: 'frontend', proficiency: 82 },
+          { id: 37, name: 'Web Components', category: 'frontend', proficiency: 75 },
+          { id: 38, name: 'Progressive Web Apps (PWA)', category: 'frontend', proficiency: 78 }
         ]
       },
       {
@@ -269,7 +285,13 @@ export class PortfolioService {
           { id: 9, name: 'SQL Server', category: 'database', proficiency: 85 },
           { id: 10, name: 'PostgreSQL', category: 'database', proficiency: 75 },
           { id: 11, name: 'MongoDB', category: 'database', proficiency: 70 },
-          { id: 12, name: 'Redis', category: 'database', proficiency: 75 }
+          { id: 12, name: 'Redis', category: 'database', proficiency: 75 },
+          { id: 25, name: 'T-SQL', category: 'database', proficiency: 85 },
+          { id: 26, name: 'Database Design', category: 'database', proficiency: 80 },
+          { id: 27, name: 'Query Optimization', category: 'database', proficiency: 82 },
+          { id: 39, name: 'Entity Framework Core', category: 'database', proficiency: 88 },
+          { id: 40, name: 'Database Migrations', category: 'database', proficiency: 85 },
+          { id: 41, name: 'Indexing Strategies', category: 'database', proficiency: 78 }
         ]
       },
       {
@@ -280,7 +302,14 @@ export class PortfolioService {
           { id: 13, name: 'Azure', category: 'devops', proficiency: 80 },
           { id: 14, name: 'Docker', category: 'devops', proficiency: 75 },
           { id: 15, name: 'Git / GitHub', category: 'devops', proficiency: 90 },
-          { id: 16, name: 'CI/CD', category: 'devops', proficiency: 75 }
+          { id: 16, name: 'CI/CD', category: 'devops', proficiency: 75 },
+          { id: 28, name: 'Azure DevOps', category: 'devops', proficiency: 78 },
+          { id: 29, name: 'PowerShell', category: 'devops', proficiency: 70 },
+          { id: 30, name: 'Kubernetes', category: 'devops', proficiency: 65 },
+          { id: 42, name: 'Azure App Services', category: 'devops', proficiency: 82 },
+          { id: 43, name: 'Azure Functions', category: 'devops', proficiency: 75 },
+          { id: 44, name: 'Infrastructure as Code', category: 'devops', proficiency: 70 },
+          { id: 45, name: 'Monitoring & Logging', category: 'devops', proficiency: 78 }
         ]
       }
     ];
@@ -478,7 +507,7 @@ export class PortfolioService {
             id: 1,
             pageName: 'home',
             sectionName: 'hero',
-            title: 'Your Name',
+            title: 'Pratham Kamboj',
             subtitle: 'Full Stack Developer',
             description: 'Crafting elegant solutions to complex problems.',
             order: 1,

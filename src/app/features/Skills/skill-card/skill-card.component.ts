@@ -103,7 +103,26 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit {
     
     const cards = document.querySelectorAll('.magnetic-card');
     cards.forEach((card) => {
-      const rect = (card as HTMLElement).getBoundingClientRect();
+      const cardElement = card as HTMLElement;
+      const cardBack = cardElement.querySelector('.card-back') as HTMLElement;
+      
+      // Check if card-back is visible (opacity > 0.5) or hovered
+      const isBackVisible = cardBack && (
+        window.getComputedStyle(cardBack).opacity !== '0' ||
+        cardBack.matches(':hover') ||
+        cardElement.matches(':hover .card-back')
+      );
+      
+      // Disable magnetic effect when scrolling on back face
+      if (isBackVisible) {
+        // Only apply magnetic effect to the card container, not when interacting with scrollable content
+        const isOverScrollable = cardBack.contains(event.target as Node);
+        if (isOverScrollable) {
+          return; // Don't apply magnetic effect when hovering over scrollable content
+        }
+      }
+      
+      const rect = cardElement.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       
@@ -116,7 +135,7 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit {
       const translateX = ((x - centerX) / centerX) * 15;
       const translateY = ((y - centerY) / centerY) * 15;
       
-      (card as HTMLElement).style.transform = 
+      cardElement.style.transform = 
         `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${translateX}px, ${translateY}px, 0)`;
     });
   }
