@@ -11,23 +11,26 @@
         <div class="link-group">
           <h4>Quick Links</h4>
           <ul>
-            <li *ngFor="let link of quickLinks">
-              <a (click)="scrollToSection(link.sectionId)">{{ link.label }}</a>
-            </li>
+            @for (link of quickLinks; track link) {
+              <li>
+                <a (click)="scrollToSection(link.sectionId)">{{ link.label }}</a>
+              </li>
+            }
           </ul>
         </div>
 
         <div class="link-group">
           <h4>Connect</h4>
           <div class="social-links">
-            <a 
-              *ngFor="let social of socialLinks" 
-              [href]="social.url" 
-              target="_blank"
-              [title]="social.name"
-              class="social-link">
-              <span class="icon">{{ social.icon }}</span>
-            </a>
+            @for (social of socialLinks; track social) {
+              <a
+                [href]="social.url"
+                target="_blank"
+                [title]="social.name"
+                class="social-link">
+                <span class="icon">{{ social.icon }}</span>
+              </a>
+            }
           </div>
         </div>
       </div>

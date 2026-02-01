@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { HobbyCardComponent } from '../hobby-card/hobby-card.component';
 import { Hobby } from '../../../core/models';
@@ -9,7 +9,7 @@ import { SectionHeaderComponent } from '../../../shared/components/section-heade
 @Component({
   selector: 'app-hobbies',
   standalone: true,
-  imports: [CommonModule, HobbyCardComponent, SectionHeaderComponent],
+  imports: [HobbyCardComponent, SectionHeaderComponent],
   templateUrl: './hobbies.component.html',
   styleUrls: ['./hobbies.component.scss']
 })

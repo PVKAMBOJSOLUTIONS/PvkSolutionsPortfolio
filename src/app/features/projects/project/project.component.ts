@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { Project } from '../../../core/models';
 import { PortfolioService } from '../../../core/services/portfolio.service';
@@ -7,7 +7,7 @@ import { PortfolioService } from '../../../core/services/portfolio.service';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent],
+  imports: [ProjectCardComponent],
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })

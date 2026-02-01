@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Profile } from '../../core/models';
 import { PortfolioService } from '../../core/services/portfolio.service';
 
@@ -7,7 +7,7 @@ import { PortfolioService } from '../../core/services/portfolio.service';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })

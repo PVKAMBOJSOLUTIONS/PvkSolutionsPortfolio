@@ -3,12 +3,13 @@
     <div class="about-content">
       <div class="about-image-wrapper">
         <div class="about-image">
-          <div class="avatar" *ngIf="profile?.avatar; else defaultAvatar">
-            <img [src]="profile?.avatar" [alt]="profile?.name">
-          </div>
-          <ng-template #defaultAvatar>
+          @if (profile?.avatar) {
+            <div class="avatar">
+              <img [src]="profile?.avatar" [alt]="profile?.name">
+            </div>
+          } @else {
             <div class="avatar-placeholder">👨‍💻</div>
-          </ng-template>
+          }
         </div>
         <div class="decorative-shape shape-1"></div>
         <div class="decorative-shape shape-2"></div>
@@ -19,13 +20,15 @@
           <span class="badge-icon">👋</span>
           <span class="badge-text">About Me</span>
         </div>
-        
+
         <h2 class="about-title">Building Digital Experiences</h2>
-        
+
         <div class="about-paragraphs">
-          <p *ngFor="let paragraph of aboutParagraphs" class="about-paragraph">
-            {{ paragraph }}
-          </p>
+          @for (paragraph of aboutParagraphs; track paragraph) {
+            <p class="about-paragraph">
+              {{ paragraph }}
+            </p>
+          }
         </div>
 
         <!-- Stats -->
@@ -44,10 +47,12 @@
           </div>
         </div>
 
-        <button class="download-cv-btn" *ngIf="profile?.resumeUrl">
-          <span class="btn-icon">📄</span>
-          <span>Download Resume</span>
-        </button>
+        @if (profile?.resumeUrl) {
+          <button class="download-cv-btn">
+            <span class="btn-icon">📄</span>
+            <span>Download Resume</span>
+          </button>
+        }
       </div>
     </div>
   </div>

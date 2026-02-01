@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList, HostListener, PLATFORM_ID, Inject } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { PortfolioService } from '../../core/services/portfolio.service';
 import { PageContent, HomeStat } from '../../core/models';
@@ -7,7 +7,7 @@ import { PageContent, HomeStat } from '../../core/models';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

@@ -1,24 +1,28 @@
 <section id="hobbies" class="hobbies-section">
   <div class="hobbies-container">
-    <app-section-header 
-      *ngIf="limit === 0"
-      title="Beyond Code" 
-      subtitle="What I do when I'm not coding">
-    </app-section-header>
+    @if (limit === 0) {
+      <app-section-header
+        title="Beyond Code"
+        subtitle="What I do when I'm not coding">
+      </app-section-header>
+    }
 
     <div class="hobbies-grid">
-      <app-hobby-card 
-        *ngFor="let hobby of displayedHobbies" 
-        [hobby]="hobby">
-      </app-hobby-card>
+      @for (hobby of displayedHobbies; track hobby) {
+        <app-hobby-card
+          [hobby]="hobby">
+        </app-hobby-card>
+      }
     </div>
 
     <!-- View All Button -->
-    <div class="view-all-container" *ngIf="showViewAll && hobbies.length > limit">
-      <button class="view-all-btn" (click)="viewAllHobbies()">
-        <span>View All Hobbies</span>
-        <span class="arrow">→</span>
-      </button>
-    </div>
+    @if (showViewAll && hobbies.length > limit) {
+      <div class="view-all-container">
+        <button class="view-all-btn" (click)="viewAllHobbies()">
+          <span>View All Hobbies</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+    }
   </div>
 </section>

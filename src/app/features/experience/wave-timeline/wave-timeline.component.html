@@ -1,80 +1,83 @@
 <div class="timeline-wrapper" #timelineWrapper>
   <!-- Loading State -->
-  <div class="loading-state" *ngIf="loading">
-    <div class="spinner"></div>
-    <p>Loading experiences...</p>
-  </div>
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading experiences...</p>
+    </div>
+  }
 
   <!-- Timeline -->
-  <div class="timeline-container" *ngIf="!loading && experiences.length > 0">
-    <!-- Background Line -->
-    <div class="timeline-line timeline-line-bg"></div>
-    
-    <!-- Active Progress Line -->
-    <div 
-      class="timeline-line timeline-line-active"
-      [style.height.%]="scrollProgress * 100">
-    </div>
-    
-    <!-- Animated Dot -->
-    <div 
-      class="timeline-dot"
-      [style.top.%]="scrollProgress * 100">
-      <div class="dot-pulse"></div>
-      <div class="dot-inner"></div>
-    </div>
-
-    <!-- Timeline Items -->
-    <div class="timeline-items">
-      <div 
-        *ngFor="let exp of experiences; let i = index"
-        class="timeline-item"
-        [class.timeline-item-left]="i % 2 === 0"
-        [class.timeline-item-right]="i % 2 !== 0"
-        [class.visible]="visibleItems.has(i)">
-        
-        <!-- Node Circle -->
-        <div 
-          class="timeline-node"
-          [class.active]="activeNodes.has(i)"
-          [style.background]="getNodeBackground(getColor(i), activeNodes.has(i))">
-          <div *ngIf="activeNodes.has(i)" class="node-pulse"></div>
-        </div>
-
-        <!-- Content Card -->
-        <div class="timeline-card">
-          <div class="card-header">
-            <div class="card-icon" [style.background]="getGradient(getColor(i))">
-              <span class="icon-emoji">{{ exp.icon || '💼' }}</span>
+  @if (!loading && experiences.length > 0) {
+    <div class="timeline-container">
+      <!-- Background Line -->
+      <div class="timeline-line timeline-line-bg"></div>
+      <!-- Active Progress Line -->
+      <div
+        class="timeline-line timeline-line-active"
+        [style.height.%]="scrollProgress * 100">
+      </div>
+      <!-- Animated Dot -->
+      <div
+        class="timeline-dot"
+        [style.top.%]="scrollProgress * 100">
+        <div class="dot-pulse"></div>
+        <div class="dot-inner"></div>
+      </div>
+      <!-- Timeline Items -->
+      <div class="timeline-items">
+        @for (exp of experiences; track exp; let i = $index) {
+          <div
+            class="timeline-item"
+            [class.timeline-item-left]="i % 2 === 0"
+            [class.timeline-item-right]="i % 2 !== 0"
+            [class.visible]="visibleItems.has(i)">
+            <!-- Node Circle -->
+            <div
+              class="timeline-node"
+              [class.active]="activeNodes.has(i)"
+              [style.background]="getNodeBackground(getColor(i), activeNodes.has(i))">
+              @if (activeNodes.has(i)) {
+                <div class="node-pulse"></div>
+              }
             </div>
-            <div class="card-title-section">
-              <h3 class="card-title">{{ exp.title }}</h3>
-              <p class="card-company">{{ exp.company }}</p>
+            <!-- Content Card -->
+            <div class="timeline-card">
+              <div class="card-header">
+                <div class="card-icon" [style.background]="getGradient(getColor(i))">
+                  <span class="icon-emoji">{{ exp.icon || '💼' }}</span>
+                </div>
+                <div class="card-title-section">
+                  <h3 class="card-title">{{ exp.title }}</h3>
+                  <p class="card-company">{{ exp.company }}</p>
+                </div>
+                <span class="card-period" [style.background]="getPeriodBg(getColor(i))">
+                  {{ getPeriod(exp) }}
+                </span>
+              </div>
+              <p class="card-description">{{ exp.description }}</p>
+              <div class="card-skills">
+                @for (tag of exp.tags; track tag; let idx = $index) {
+                  <span
+                    class="skill-tag"
+                    [style.animation-delay]="visibleItems.has(i) ? (idx * 100) + 'ms' : '0ms'">
+                    {{ tag }}
+                  </span>
+                }
+              </div>
             </div>
-            <span class="card-period" [style.background]="getPeriodBg(getColor(i))">
-              {{ getPeriod(exp) }}
-            </span>
           </div>
-          
-          <p class="card-description">{{ exp.description }}</p>
-          
-          <div class="card-skills">
-            <span 
-              *ngFor="let tag of exp.tags; let idx = index"
-              class="skill-tag"
-              [style.animation-delay]="visibleItems.has(i) ? (idx * 100) + 'ms' : '0ms'">
-              {{ tag }}
-            </span>
-          </div>
-        </div>
+        }
       </div>
     </div>
-  </div>
+  }
 
   <!-- Empty State -->
-  <div class="empty-state" *ngIf="!loading && experiences.length === 0">
-    <div class="empty-icon">📋</div>
-    <h3>No Experience Yet</h3>
-    <p>Experience timeline will appear here soon!</p>
-  </div>
+  @if (!loading && experiences.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <h3>No Experience Yet</h3>
+      <p>Experience timeline will appear here soon!</p>
+    </div>
+  }
 </div>

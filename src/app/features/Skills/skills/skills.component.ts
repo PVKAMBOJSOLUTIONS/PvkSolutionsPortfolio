@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
 
 
 @Component({
   selector: 'app-skills-page',
   standalone: true,
-  imports: [CommonModule, SkillsShowcaseComponent],
+  imports: [SkillsShowcaseComponent],
   template: `
     <div class="page-container">
       <div class="page-hero">

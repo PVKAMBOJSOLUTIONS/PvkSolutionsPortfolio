@@ -3,21 +3,23 @@
   <section class="hero-section">
     <!-- Animated Gradient Background -->
     <div class="animated-bg"></div>
-    
+
     <!-- Morphing Blobs -->
     <div class="blob-container">
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
       <div class="blob blob-3"></div>
     </div>
-    
+
     <!-- Floating Particles -->
     <div class="particles">
-      <div class="particle" *ngFor="let particle of particles; let i = index" 
-           [style.left.%]="(i * 7) + 5"
-           [style.animation-delay.s]="i * 0.5"></div>
+      @for (particle of particles; track particle; let i = $index) {
+        <div class="particle"
+          [style.left.%]="(i * 7) + 5"
+        [style.animation-delay.s]="i * 0.5"></div>
+      }
     </div>
-    
+
     <!-- Hero Content -->
     <div class="hero-content">
       <div class="hero-text">
@@ -25,22 +27,22 @@
           <span class="wave">👋</span>
           <span>Hello, I'm</span>
         </div>
-        
+
         <h1 class="hero-title glowing-text fade-in-up delay-1">
           Pratham kamboj
         </h1>
-        
+
         <div class="typewriter-container fade-in-up delay-2">
           <h2 class="typewriter-text">
             {{ typedText }}<span class="cursor">|</span>
           </h2>
         </div>
-        
+
         <p class="hero-description fade-in-up delay-3">
-          Crafting elegant solutions to complex problems. Passionate about building 
+          Crafting elegant solutions to complex problems. Passionate about building
           scalable web applications and delivering exceptional user experiences.
         </p>
-        
+
         <div class="hero-buttons fade-in-up delay-4">
           <button class="btn btn-primary pulse" (click)="navigateTo('projects')">
             <span>View My Work</span>
@@ -51,7 +53,7 @@
             <span class="icon">📄</span>
           </button>
         </div>
-        
+
         <div class="social-links fade-in-up delay-5">
           <a href="https://github.com" target="_blank" class="social-icon bounce">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -75,7 +77,7 @@
           </a>
         </div>
       </div>
-      
+
       <!-- Animated Profile Card -->
       <div class="hero-image fade-in-right">
         <div class="tilt-card profile-card">
@@ -91,7 +93,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Scroll Indicator -->
     <div class="scroll-indicator">
       <div class="mouse">
@@ -105,12 +107,14 @@
   <section class="stats-section" #animateSection>
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-card" *ngFor="let stat of stats; let i = index">
-          <div class="stat-icon">✨</div>
-          <div class="stat-number">0</div>
-          <div class="stat-suffix">{{ stat.suffix }}</div>
-          <div class="stat-label">{{ stat.label }}</div>
-        </div>
+        @for (stat of stats; track stat; let i = $index) {
+          <div class="stat-card">
+            <div class="stat-icon">✨</div>
+            <div class="stat-number">0</div>
+            <div class="stat-suffix">{{ stat.suffix }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        }
       </div>
     </div>
   </section>
@@ -126,14 +130,16 @@
         </h2>
         <p class="section-subtitle">Tools and technologies I work with</p>
       </div>
-      
+
       <div class="skills-grid">
-        <div class="skill-card tilt-card" *ngFor="let skill of skills">
-          <div class="skill-icon">{{ skill.icon }}</div>
-          <h3 class="skill-name">{{ skill.name }}</h3>
-          <p class="skill-description">{{ skill.description }}</p>
-          <div class="skill-badge">Proficient</div>
-        </div>
+        @for (skill of skills; track skill) {
+          <div class="skill-card tilt-card">
+            <div class="skill-icon">{{ skill.icon }}</div>
+            <h3 class="skill-name">{{ skill.name }}</h3>
+            <p class="skill-description">{{ skill.description }}</p>
+            <div class="skill-badge">Proficient</div>
+          </div>
+        }
       </div>
     </div>
   </section>

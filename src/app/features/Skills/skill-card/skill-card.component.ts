@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList, PLATFORM_ID, Inject, HostListener } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { PortfolioService } from '../../../core/services/portfolio.service';
 import { SkillShowcase } from '../../../core/models';
 
 @Component({
   selector: 'app-skills-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './skill-card.component.html',
   styleUrls: ['./skill-card.component.scss']
 })

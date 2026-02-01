@@ -1,12 +1,12 @@
 import { Component, HostListener, OnInit, ElementRef, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Experience } from '../../../core/models';
 import { PortfolioService } from '../../../core/services/portfolio.service';
 
 @Component({
   selector: 'app-wave-timeline',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './wave-timeline.component.html',
   styleUrls: ['./wave-timeline.component.scss']
 })

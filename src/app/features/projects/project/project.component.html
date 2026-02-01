@@ -8,25 +8,32 @@
   <div class="projects-container">
 
     <!-- Loading State -->
-    <div class="loading-state" *ngIf="loading">
-      <div class="spinner"></div>
-      <p>Loading projects...</p>
-    </div>
+    @if (loading) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading projects...</p>
+      </div>
+    }
 
     <!-- Projects Grid -->
-    <div class="projects-grid" *ngIf="!loading">
-      <app-project-card 
-        *ngFor="let project of displayedProjects" 
-        [project]="project">
-      </app-project-card>
-    </div>
+    @if (!loading) {
+      <div class="projects-grid">
+        @for (project of displayedProjects; track project) {
+          <app-project-card
+            [project]="project">
+          </app-project-card>
+        }
+      </div>
+    }
 
     <!-- View All Button (only show if limit is set and there are more projects) -->
-    <div class="view-all-container" *ngIf="showViewAll && limit > 0 && allProjects.length > displayedProjects.length">
-      <button class="view-all-btn" (click)="viewAllProjects()">
-        <span>View All Projects</span>
-        <span class="arrow">→</span>
-      </button>
-    </div>
+    @if (showViewAll && limit > 0 && allProjects.length > displayedProjects.length) {
+      <div class="view-all-container">
+        <button class="view-all-btn" (click)="viewAllProjects()">
+          <span>View All Projects</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+    }
   </div>
 </section>
