@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine, isMainModule } from '@angular/ssr/node';
+import { render } from '@netlify/angular-runtime/common-engine.js';
 import express from 'express';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,6 +12,10 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 
 const app = express();
 const commonEngine = new CommonEngine();
+
+export async function netlifyCommonEngineHandler(): Promise<Response> {
+  return render(commonEngine);
+}
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -28,7 +33,7 @@ const commonEngine = new CommonEngine();
  * Serve static files from /browser
  */
 app.get(
-  '**',
+  '/{*splat}',
   express.static(browserDistFolder, {
     maxAge: '1y',
     index: 'index.html'
@@ -38,7 +43,7 @@ app.get(
 /**
  * Handle all other requests by rendering the Angular application.
  */
-app.get('**', (req, res, next) => {
+app.get('/{*splat}', (req, res, next) => {
   const { protocol, originalUrl, baseUrl, headers } = req;
 
   commonEngine

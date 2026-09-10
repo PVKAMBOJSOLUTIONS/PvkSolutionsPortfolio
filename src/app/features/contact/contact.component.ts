@@ -20,41 +20,40 @@ interface ContactMethod {
 export class ContactComponent implements OnInit {
   contactForm!: FormGroup;
   isSubmitting = false;
-  submitSuccess = false;
   submitError = false;
+
+  // Form messages are bundled into a mailto draft addressed to this email
+  readonly recipientEmail = 'prathamkamboj002@gmail.com';
 
   contactMethods: ContactMethod[] = [
     {
       icon: '📧',
       title: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com'
+      value: 'prathamkamboj002@gmail.com',
+      link: 'mailto:prathamkamboj002@gmail.com'
     },
     {
       icon: '📱',
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: '+91 90450 88352',
+      link: 'tel:+919045088352'
     },
     {
       icon: '📍',
       title: 'Location',
-      value: 'Your City, Country',
+      value: 'Mohali, India',
       link: '#'
     },
     {
       icon: '💼',
       title: 'LinkedIn',
-      value: 'linkedin.com/in/yourprofile',
-      link: 'https://linkedin.com/in/yourprofile'
+      value: 'linkedin.com/in/pratham-kamboj',
+      link: 'https://linkedin.com/in/pratham-kamboj'
     }
   ];
 
   socialLinks = [
-    { icon: 'github', url: 'https://github.com/yourusername', label: 'GitHub' },
-    { icon: 'linkedin', url: 'https://linkedin.com/in/yourprofile', label: 'LinkedIn' },
-    { icon: 'twitter', url: 'https://twitter.com/yourusername', label: 'Twitter' },
-    { icon: 'instagram', url: 'https://instagram.com/yourusername', label: 'Instagram' }
+    { icon: 'linkedin', url: 'https://linkedin.com/in/pratham-kamboj', label: 'LinkedIn' }
   ];
 
   constructor(
@@ -78,40 +77,38 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.contactForm.valid) {
-      this.isSubmitting = true;
-      this.submitSuccess = false;
-      this.submitError = false;
-
-      // Simulate API call
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.submitSuccess = true;
-        this.contactForm.reset();
-
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          this.submitSuccess = false;
-        }, 5000);
-      }, 2000);
-
-      // In production, replace with actual API call:
-      // this.contactService.sendMessage(this.contactForm.value).subscribe(
-      //   response => {
-      //     this.isSubmitting = false;
-      //     this.submitSuccess = true;
-      //     this.contactForm.reset();
-      //   },
-      //   error => {
-      //     this.isSubmitting = false;
-      //     this.submitError = true;
-      //   }
-      // );
-    } else {
+    if (!this.contactForm.valid) {
       Object.keys(this.contactForm.controls).forEach(key => {
         this.contactForm.get(key)?.markAsTouched();
       });
+      return;
     }
+
+    this.isSubmitting = true;
+    this.submitError = false;
+
+    const { name, email, subject, message } = this.contactForm.value;
+
+    // Bundle the form fields into an email draft addressed to the recipient
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      '',
+      message
+    ].join('\n');
+
+    const mailtoUrl =
+      `mailto:${this.recipientEmail}` +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    if (isPlatformBrowser(this.platformId)) {
+      // Opens the visitor's default mail client with the draft pre-filled
+      window.location.href = mailtoUrl;
+    }
+
+    this.isSubmitting = false;
+    this.contactForm.reset();
   }
 
   hasError(field: string, error: string): boolean {

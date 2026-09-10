@@ -13,26 +13,26 @@ import { PageContent, HomeStat } from '../../core/models';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   typedText: string = '';
-  fullText: string = 'Full Stack Developer';
+  fullText: string = 'Software Engineer';
   typingSpeed: number = 100;
   currentWordIndex: number = 0;
   
   words: string[] = [
-    'Full Stack Developer',
-    'Problem Solver',
-    'Tech Enthusiast',
-    'Creative Thinker'
+    'Software Engineer',
+    '.NET Developer',
+    'Angular Developer',
+    '.NET MAUI Developer'
   ];
 
   pageContent: PageContent | null = null;
   particles = Array(15).fill(0);
   skills = [
-    { name: 'Angular', icon: '🅰️', description: 'Building dynamic single-page applications with reactive programming and component-based architecture' },
-    { name: '.NET Core', icon: '💻', description: 'Developing scalable enterprise APIs and microservices with modern .NET frameworks' },
-    { name: 'TypeScript', icon: '📘', description: 'Writing type-safe, maintainable code for large-scale web applications' },
-    { name: 'SQL Server', icon: '🗄️', description: 'Designing and optimizing relational databases for high-performance applications' },
-    { name: 'Azure Cloud', icon: '☁️', description: 'Deploying and managing cloud infrastructure with Azure services and DevOps practices' },
-    { name: 'Entity Framework', icon: '🔧', description: 'Working with ORM tools for efficient data access and database management' }
+    { name: '.NET Web API', icon: '⚙️', description: 'Engineered 20+ production API endpoints improving system reliability and scalability' },
+    { name: 'Angular', icon: '🅰️', description: 'Delivering responsive UI components that enhance user engagement and front-end performance' },
+    { name: '.NET MAUI', icon: '�', description: 'Building cross-platform mobile apps with custom handlers and native OS integrations' },
+    { name: 'SQL Server', icon: '🗄️', description: 'Optimizing stored procedures and migrating 50K+ records with 98%+ accuracy' },
+    { name: 'C#', icon: '💻', description: 'Writing clean, efficient code following Clean Architecture and FluentValidation principles' },
+    { name: 'CI/CD', icon: '�', description: 'Automating deployments with pipelines and Firebase App Distribution, cutting release time by 60%' }
   ];
 
   stats: HomeStat[] = [];
@@ -75,10 +75,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.error('Error loading home stats:', error);
         // Fallback to default stats
         this.stats = [
-          { id: 1, number: 50, label: 'Projects Completed', suffix: '+', icon: '✨', order: 1, isVisible: true },
-          { id: 2, number: 5, label: 'Years Experience', suffix: '+', icon: '⭐', order: 2, isVisible: true },
-          { id: 3, number: 100, label: 'Happy Clients', suffix: '+', icon: '🎉', order: 3, isVisible: true },
-          { id: 4, number: 20, label: 'Technologies', suffix: '+', icon: '🚀', order: 4, isVisible: true }
+          { id: 1, number: 2, label: 'Years Experience', suffix: '+', icon: '⭐', order: 1, isVisible: true },
+          { id: 2, number: 20, label: 'API Endpoints Built', suffix: '+', icon: '⚙️', order: 2, isVisible: true },
+          { id: 3, number: 90, label: 'Test Coverage', suffix: '%+', icon: '🧪', order: 3, isVisible: true },
+          { id: 4, number: 50, label: 'Records Migrated', suffix: 'K+', icon: '�️', order: 4, isVisible: true }
         ];
       }
     });
@@ -210,7 +210,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   downloadCV() {
-    // Implement CV download logic
-    console.log('Downloading CV...');
+    if (!isPlatformBrowser(this.platformId)) return;
+    const link = document.createElement('a');
+    link.href = 'assets/resume.pdf';
+    link.download = 'Pratham_Kamboj_Resume.pdf';
+    link.click();
   }
 }

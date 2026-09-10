@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,28 +11,27 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
+
+  constructor(private router: Router) {}
   
   // Social links (can be moved to service later)
   socialLinks = [
-    { name: 'GitHub', url: 'https://github.com/yourusername', icon: '💻' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername', icon: '💼' },
-    { name: 'Twitter', url: 'https://twitter.com/yourusername', icon: '🐦' },
-    { name: 'Email', url: 'mailto:your.email@example.com', icon: '✉️' }
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: '�' },
+    { name: 'Email', url: 'mailto:prathamkamboj002@gmail.com', icon: '✉️' }
   ];
 
-  // Quick links
+  // Quick links — routes matching app.routes.ts
   quickLinks = [
-    { label: 'About', sectionId: 'about' },
-    { label: 'Projects', sectionId: 'projects' },
-    { label: 'Skills', sectionId: 'skills' },
-    { label: 'Contact', sectionId: 'contact' }
+    { label: 'Home', route: '' },
+    { label: 'Projects', route: 'projects' },
+    { label: 'Skills', route: 'skills' },
+    { label: 'Hobbies', route: 'hobbies' },
+    { label: 'Experience', route: 'experience' },
+    { label: 'Contact', route: 'contact' }
   ];
 
-  scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  navigateTo(route: string): void {
+    this.router.navigate([route === '' ? '/' : `/${route}`]);
   }
 
   scrollToTop(): void {

@@ -203,17 +203,6 @@
       box-shadow: 0 0 12px rgba(134, 176, 189, 0.6);
       animation: glow-line 2s ease-in-out infinite;
     }
-    
-    &::after {
-      content: '●';
-      position: absolute;
-      left: var(--spacing-sm);
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--primary-color);
-      font-size: 0.6em;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
   }
 }
 

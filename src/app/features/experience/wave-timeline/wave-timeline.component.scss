@@ -71,10 +71,11 @@
 
 .timeline-line-active {
   background: linear-gradient(to bottom, var(--primary-color), var(--highlight-color), var(--primary-color));
-  transition: height 0.3s ease-out;
   z-index: 1;
   border-radius: var(--radius-full);
   box-shadow: 0 0 10px var(--shadow-light);
+  /* No transition: height is driven by rAF-throttled scroll updates */
+  will-change: height;
 }
 
 /* Animated Dot */
@@ -85,7 +86,8 @@
   width: 24px;
   height: 24px;
   z-index: 10;
-  transition: top 0.3s ease-out;
+  /* No transition: top is driven by rAF-throttled scroll updates */
+  will-change: top;
 }
 
 .dot-inner {

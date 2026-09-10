@@ -29,6 +29,7 @@
         @for (exp of experiences; track exp; let i = $index) {
           <div
             class="timeline-item"
+            [attr.data-index]="i"
             [class.timeline-item-left]="i % 2 === 0"
             [class.timeline-item-right]="i % 2 !== 0"
             [class.visible]="visibleItems.has(i)">

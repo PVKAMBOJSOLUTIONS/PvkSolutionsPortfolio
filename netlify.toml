@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist/pvk-solutions-portfolio/browser"
+
+[build.environment]
+  NODE_VERSION = "22.22.0"
+
+[[plugins]]
+  package = "@netlify/angular-runtime"
+
+# @netlify/angular-runtime (in devDependencies) is auto-detected and
+# serves SSR routes via a Netlify Function — no manual redirects needed.

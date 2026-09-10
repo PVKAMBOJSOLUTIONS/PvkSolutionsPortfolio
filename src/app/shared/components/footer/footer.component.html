@@ -3,8 +3,8 @@
     <!-- Footer Top Section -->
     <div class="footer-top">
       <div class="footer-brand">
-        <h3 class="brand-name">YourName</h3>
-        <p class="brand-tagline">Full Stack .NET Developer</p>
+        <h3 class="brand-name">Pratham Kamboj</h3>
+        <p class="brand-tagline">Software Engineer</p>
       </div>
 
       <div class="footer-links">
@@ -13,7 +13,7 @@
           <ul>
             @for (link of quickLinks; track link) {
               <li>
-                <a (click)="scrollToSection(link.sectionId)">{{ link.label }}</a>
+                <a (click)="navigateTo(link.route)">{{ link.label }}</a>
               </li>
             }
           </ul>
@@ -38,9 +38,6 @@
 
     <!-- Footer Bottom Section -->
     <div class="footer-bottom">
-      <p class="copyright">
-        &copy; {{ currentYear }} YourName. All rights reserved. Built with Angular & .NET
-      </p>
       <button class="scroll-top" (click)="scrollToTop()" title="Back to top">
         ↑
       </button>

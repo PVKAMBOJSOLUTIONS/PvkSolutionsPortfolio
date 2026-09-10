@@ -440,7 +440,6 @@
   border-radius: 50%;
   border: 3px solid var(--primary-color);
   animation: rotate 20s linear infinite;
-  animation: rotate 20s linear infinite;
   
   &::before {
     content: '';
@@ -477,41 +476,6 @@
   50% {
     transform: translateY(-20px);
   }
-}
-
-.profile-status {
-  position: absolute;
-  bottom: 30px;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  background: white;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-full);
-  box-shadow: 0 8px 25px var(--shadow-medium);
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.status-dot {
-  width: 12px;
-  height: 12px;
-  background: #10b981;
-  border-radius: 50%;
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
-  }
-}
-
-.status-text {
-  font-size: 0.95em;
 }
 
 // Scroll Indicator
@@ -954,6 +918,12 @@
   .profile-ring {
     width: 240px;
     height: 240px;
+    // Ring animation is desktop-only — keep it static on mobile
+    animation: none;
+
+    &::before {
+      animation: none;
+    }
   }
   
   .profile-image {
@@ -962,7 +932,7 @@
   }
   
   .stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: var(--spacing-lg);
   }
   

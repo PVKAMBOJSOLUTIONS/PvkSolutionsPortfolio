@@ -61,7 +61,6 @@
 /* ========== GLOBAL RESET & BASE STYLES ========== */
 * {
   direction: ltr;
-  text-align: left;
   box-sizing: border-box;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -72,8 +71,10 @@ html {
   text-align: left;
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Account for fixed navbar */
-  overscroll-behavior: none; /* Prevent overscroll bounce */
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  /* clip (not hidden) prevents horizontal scroll WITHOUT creating a
+     scroll container — keeps position:sticky and smooth scroll working */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -87,9 +88,8 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overscroll-behavior-y: none; /* Prevent vertical overscroll */
-  overscroll-behavior-x: none; /* Prevent horizontal overscroll */
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden; /* fallback for browsers without clip support */
+  overflow-x: clip; /* Prevent horizontal scroll without breaking scroll chaining */
   max-width: 100vw; /* Ensure body doesn't exceed viewport width */
 }
 

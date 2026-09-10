@@ -1,7 +1,7 @@
 export interface Skill {
   id: number;
   name: string;
-  category: 'backend' | 'frontend' | 'database' | 'devops';
+  category: string;
   proficiency: number; // 0-100
   icon?: string;
 }

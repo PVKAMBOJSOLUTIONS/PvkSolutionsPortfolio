@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86b0bd"/>
+      <stop offset="100%" stop-color="#e2a16f"/>
+    </linearGradient>
+    <linearGradient id="avatar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5d8a99"/>
+      <stop offset="100%" stop-color="#c98a58"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <!-- Decorative circles -->
+  <circle cx="60" cy="60" r="80" fill="#ffffff" opacity="0.08"/>
+  <circle cx="350" cy="340" r="100" fill="#ffffff" opacity="0.08"/>
+  <circle cx="340" cy="70" r="40" fill="#ffffff" opacity="0.1"/>
+  <!-- Avatar silhouette -->
+  <circle cx="200" cy="160" r="70" fill="url(#avatar)"/>
+  <path d="M 200 250 C 130 250 90 300 90 360 L 310 360 C 310 300 270 250 200 250 Z" fill="url(#avatar)"/>
+  <!-- Initials -->
+  <text x="200" y="385" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" fill="#ffffff" text-anchor="middle" opacity="0.9">PK</text>
+</svg>
