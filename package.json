@@ -38,7 +38,12 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.3.0",
-    "netlify-cli": "27.4.2",
+    "netlify-cli": "27.5.2",
     "typescript": "~5.9.3"
+  },
+  "overrides": {
+    "ipx": {
+      "sharp": "0.35.4"
+    }
   }
 }
