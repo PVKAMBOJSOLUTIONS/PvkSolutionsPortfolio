@@ -75,7 +75,7 @@
           <div class="card-glow"></div>
           <div class="profile-image-wrapper">
             <div class="profile-ring"></div>
-            <img src="assets/profile.svg" alt="Profile" class="profile-image">
+            <img src="assets/profile.jpg" alt="Pratham Kamboj" class="profile-image" width="280" height="280" decoding="async">
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
         @for (stat of stats; track stat; let i = $index) {
           <div class="stat-card">
             <div class="stat-icon">✨</div>
-            <div class="stat-number">0</div>
+            <div class="stat-number">{{ stat.number }}</div>
             <div class="stat-suffix">{{ stat.suffix }}</div>
             <div class="stat-label">{{ stat.label }}</div>
           </div>

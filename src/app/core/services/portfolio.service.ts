@@ -257,39 +257,27 @@ export class PortfolioService {
     return [
       { 
         id: 1, 
-        title: 'Reading Tech Blogs', 
-        description: 'Staying updated with the latest trends in software development and exploring new technologies.', 
-        icon: '📚' 
+        title: 'Sports', 
+        description: 'Playing badminton and basketball — always up for a good match.', 
+        icon: '🏸' 
       },
       { 
         id: 2, 
-        title: 'Gaming', 
-        description: 'Enjoying strategy games and exploring game mechanics and design patterns.', 
-        icon: '🎮' 
+        title: 'Travel & Adventure', 
+        description: 'Going on treks and long rides to explore new places and unwind.', 
+        icon: '🏍️' 
       },
       { 
         id: 3, 
-        title: 'Travel', 
-        description: 'Exploring new places, cultures, and cuisines around the world.', 
-        icon: '✈️' 
+        title: 'Gaming', 
+        description: 'Playing Valorant and other competitive titles, along with immersive story-mode games.', 
+        icon: '�' 
       },
       { 
         id: 4, 
-        title: 'Fitness', 
-        description: 'Regular workouts and maintaining a healthy lifestyle to stay productive.', 
-        icon: '🏃' 
-      },
-      { 
-        id: 5, 
-        title: 'Music', 
-        description: 'Listening to various genres while coding or relaxing after work.', 
-        icon: '🎵' 
-      },
-      { 
-        id: 6, 
-        title: 'Mentoring', 
-        description: 'Helping junior developers grow and sharing knowledge with the community.', 
-        icon: '🤝' 
+        title: 'Tech Exploration', 
+        description: 'Keeping up with new hardware technologies and exploring all things tech.', 
+        icon: '🖥️' 
       }
     ];
   }
@@ -301,6 +289,7 @@ export class PortfolioService {
       title: 'Software Engineer',
       tagline: 'Building scalable web & mobile applications with .NET, Angular & .NET MAUI',
       bio: 'Motivated software developer with a strong passion for learning and exploring emerging technologies. Committed to writing clean, efficient code and delivering reliable, user-focused software solutions.',
+      avatar: '/assets/profile.jpg',
       resumeUrl: '/assets/resume.pdf'
     };
   }
@@ -392,7 +381,7 @@ export class PortfolioService {
     return [
       {
         id: 1,
-        number: 2,
+        number: 3,
         label: 'Years Experience',
         suffix: '+',
         icon: '⭐',

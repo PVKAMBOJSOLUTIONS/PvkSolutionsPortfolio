@@ -132,6 +132,10 @@
   transition: all var(--transition-normal);
   border: 1px solid rgba(134, 176, 189, 0.2);
 
+  svg {
+    display: block;
+  }
+
   &:hover {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%);
     transform: translateY(-3px);

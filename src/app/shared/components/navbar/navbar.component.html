@@ -13,8 +13,10 @@
     </div>
 
     <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
-      <span class="menu-icon" [class.open]="isMobileMenuOpen">
+    <button #menuButton type="button" class="mobile-menu-btn" (click)="toggleMobileMenu()"
+      aria-controls="mobile-navigation" [attr.aria-expanded]="isMobileMenuOpen"
+      [attr.aria-label]="isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'">
+      <span class="menu-icon" [class.open]="isMobileMenuOpen" aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>
@@ -23,12 +25,16 @@
   </div>
 
   <!-- Mobile Navigation -->
-  <div class="mobile-nav" [class.active]="isMobileMenuOpen">
-    <a (click)="navigateTo('')" [class.active]="isActiveRoute('')">Home</a>
-    <a (click)="navigateTo('projects')" [class.active]="isActiveRoute('projects')">Projects</a>
-    <a (click)="navigateTo('skills')" [class.active]="isActiveRoute('skills')">Skills</a>
-    <a (click)="navigateTo('hobbies')" [class.active]="isActiveRoute('hobbies')">Hobbies</a>
-    <a (click)="navigateTo('experience')" [class.active]="isActiveRoute('experience')">Experience</a>
-    <a (click)="navigateTo('contact')" [class.active]="isActiveRoute('contact')">Contact</a>
+  <button type="button" class="mobile-menu-backdrop" [class.active]="isMobileMenuOpen"
+    [disabled]="!isMobileMenuOpen" tabindex="-1" aria-label="Close navigation menu"
+    [attr.aria-hidden]="!isMobileMenuOpen" (click)="closeMobileMenu(true)"></button>
+  <div id="mobile-navigation" class="mobile-nav" [class.active]="isMobileMenuOpen"
+    [attr.inert]="isMobileMenuOpen ? null : ''" [attr.aria-hidden]="!isMobileMenuOpen">
+    <a routerLink="/" (click)="closeMobileMenu()" [class.active]="isActiveRoute('')">Home</a>
+    <a routerLink="/projects" (click)="closeMobileMenu()" [class.active]="isActiveRoute('projects')">Projects</a>
+    <a routerLink="/skills" (click)="closeMobileMenu()" [class.active]="isActiveRoute('skills')">Skills</a>
+    <a routerLink="/hobbies" (click)="closeMobileMenu()" [class.active]="isActiveRoute('hobbies')">Hobbies</a>
+    <a routerLink="/experience" (click)="closeMobileMenu()" [class.active]="isActiveRoute('experience')">Experience</a>
+    <a routerLink="/contact" (click)="closeMobileMenu()" [class.active]="isActiveRoute('contact')">Contact</a>
   </div>
 </nav>

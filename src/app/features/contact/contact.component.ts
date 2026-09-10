@@ -42,7 +42,7 @@ export class ContactComponent implements OnInit {
       icon: '📍',
       title: 'Location',
       value: 'Mohali, India',
-      link: '#'
+      link: 'https://www.google.com/maps/search/?api=1&query=Mohali,+Punjab,+India'
     },
     {
       icon: '💼',

@@ -13,7 +13,7 @@ export class ScrollService {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: 'instant'
       });
     }
   }

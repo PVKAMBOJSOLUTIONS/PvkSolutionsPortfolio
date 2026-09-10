@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, DestroyRef, ElementRef, HostListener, NgZone, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -11,6 +12,10 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly zone = inject(NgZone);
+  @ViewChild('menuButton') private menuButton?: ElementRef<HTMLButtonElement>;
   isMobileMenuOpen = false;
   currentRoute: string = '';
 
@@ -22,10 +27,22 @@ export class NavbarComponent implements OnInit {
     
     // Subscribe to route changes
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        this.currentRoute = event.url === '/' ? '' : event.url.substring(1);
+      .pipe(filter(event => event instanceof NavigationEnd), takeUntilDestroyed(this.destroyRef))
+      .subscribe(event => {
+        this.currentRoute = event.urlAfterRedirects === '/' ? '' : event.urlAfterRedirects.substring(1);
+        this.closeMobileMenu();
       });
+
+    if (isPlatformBrowser(this.platformId)) {
+      const mobileViewport = window.matchMedia('(max-width: 768px)');
+      const onViewportChange = (event: MediaQueryListEvent) => {
+        if (!event.matches && this.isMobileMenuOpen) {
+          this.zone.run(() => this.closeMobileMenu());
+        }
+      };
+      this.zone.runOutsideAngular(() => mobileViewport.addEventListener('change', onViewportChange));
+      this.destroyRef.onDestroy(() => mobileViewport.removeEventListener('change', onViewportChange));
+    }
   }
 
   // Check if route is active
@@ -39,7 +56,7 @@ export class NavbarComponent implements OnInit {
   // Navigate to route
   navigateTo(route: string): void {
     this.router.navigate([route]);
-    this.isMobileMenuOpen = false;
+    this.closeMobileMenu();
   }
 
   // Scroll to section (only on home page)
@@ -52,7 +69,7 @@ export class NavbarComponent implements OnInit {
     } else {
       this.scrollToElement(sectionId);
     }
-    this.isMobileMenuOpen = false;
+    this.closeMobileMenu();
   }
 
   private scrollToElement(sectionId: string): void {
@@ -64,5 +81,15 @@ export class NavbarComponent implements OnInit {
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  closeMobileMenu(restoreFocus = false): void {
+    this.isMobileMenuOpen = false;
+    if (restoreFocus) this.menuButton?.nativeElement.focus({ preventScroll: true });
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.isMobileMenuOpen) this.closeMobileMenu(true);
   }
 }
