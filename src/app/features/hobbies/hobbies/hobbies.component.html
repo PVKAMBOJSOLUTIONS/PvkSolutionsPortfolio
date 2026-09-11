@@ -1,11 +1,12 @@
 <section id="hobbies" class="hobbies-section">
+  @if (limit === 0) {
+    <div class="page-hero">
+      <h1 class="page-title">Beyond Code</h1>
+      <p class="page-subtitle">What I do when I'm not coding</p>
+      <div class="title-underline"></div>
+    </div>
+  }
   <div class="hobbies-container">
-    @if (limit === 0) {
-      <app-section-header
-        title="Beyond Code"
-        subtitle="What I do when I'm not coding">
-      </app-section-header>
-    }
 
     <div class="hobbies-grid">
       @for (hobby of displayedHobbies; track hobby) {

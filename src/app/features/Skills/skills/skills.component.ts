@@ -46,9 +46,10 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
       top: 0;
       left: 0;
       width: 40px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color) 0%, var(--highlight-color) 100%);
+      height: 6px;
+      background: var(--primary-color);
       border-radius: var(--radius-full);
+      box-shadow: var(--neu-raised-xs);
     }
     .page-subtitle {
       font-size: 1.3em;
@@ -65,9 +66,10 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
     }
     .title-underline {
       width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color) 0%, var(--highlight-color) 100%);
+      height: 6px;
+      background: var(--highlight-color);
       border-radius: var(--radius-full);
+      box-shadow: var(--neu-raised-xs);
       margin: 0 auto;
       animation: expandWidth 0.8s ease-out 0.4s both;
     }

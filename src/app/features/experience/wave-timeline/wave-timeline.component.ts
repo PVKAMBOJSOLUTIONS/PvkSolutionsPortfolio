@@ -69,28 +69,28 @@ export class WaveTimelineComponent implements OnInit, OnDestroy {
   }
 
   getGradient(color: string): string {
-    const gradients: { [key: string]: string } = {
-      blue: `linear-gradient(135deg, var(--primary-color), var(--primary-dark))`,
-      purple: `linear-gradient(135deg, var(--primary-color), var(--highlight-color))`,
-      orange: `linear-gradient(135deg, var(--highlight-color), var(--highlight-dark))`,
-      green: `linear-gradient(135deg, var(--primary-color), #10b981)`,
-      pink: `linear-gradient(135deg, var(--highlight-color), #ec4899)`
+    const colors: { [key: string]: string } = {
+      blue: 'var(--primary-color)',
+      purple: '#9A7CF5',
+      orange: '#FF9E7A',
+      green: '#6FCF97',
+      pink: 'var(--highlight-color)'
     };
-    return gradients[color] || gradients['blue'];
+    return colors[color] || colors['blue'];
   }
 
   getNodeBackground(color: string, isActive: boolean): string {
-    if (!isActive) return 'var(--border-light)';
+    if (!isActive) return 'var(--neu-dark)';
     return this.getGradient(color);
   }
 
   getPeriodBg(color: string): string {
     const backgrounds: { [key: string]: string } = {
-      blue: 'rgba(134, 176, 189, 0.15)',
-      purple: 'rgba(134, 176, 189, 0.15)',
-      orange: 'rgba(226, 161, 111, 0.15)',
-      green: 'rgba(134, 176, 189, 0.15)',
-      pink: 'rgba(226, 161, 111, 0.15)'
+      blue: 'rgba(124, 111, 240, 0.12)',
+      purple: 'rgba(154, 124, 245, 0.12)',
+      orange: 'rgba(255, 158, 122, 0.15)',
+      green: 'rgba(111, 207, 151, 0.15)',
+      pink: 'rgba(255, 143, 160, 0.15)'
     };
     return backgrounds[color] || backgrounds['blue'];
   }

@@ -42,15 +42,15 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit, OnDestroy
   }
   
   getGradient(color: string): string {
-    const gradients: { [key: string]: string } = {
-      blue: `linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 50%, var(--highlight-color) 100%)`,
-      purple: `linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%)`,
-      orange: `linear-gradient(135deg, var(--highlight-color) 0%, var(--highlight-dark) 100%)`,
-      green: `linear-gradient(135deg, var(--primary-color) 0%, #10b981 100%)`,
-      pink: `linear-gradient(135deg, var(--highlight-color) 0%, #ec4899 100%)`,
-      cyan: `linear-gradient(135deg, var(--primary-color) 0%, #06b6d4 100%)`
+    const colors: { [key: string]: string } = {
+      blue: 'var(--primary-color)',
+      purple: '#9A7CF5',
+      orange: '#FF9E7A',
+      green: '#6FCF97',
+      pink: 'var(--highlight-color)',
+      cyan: '#6EC6D8'
     };
-    return gradients[color] || gradients['blue'];
+    return colors[color] || colors['blue'];
   }
   
   ngOnInit(): void {

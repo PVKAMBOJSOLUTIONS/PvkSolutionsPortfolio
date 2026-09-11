@@ -10,14 +10,10 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      var(--primary-color) 20%, 
-      var(--highlight-color) 50%, 
-      var(--primary-color) 80%, 
-      transparent 100%
-    );
+    height: 2px;
+    background: var(--neu-dark);
+    box-shadow: 0 1px 0 var(--neu-light);
+    opacity: 0.6;
   }
 }
 
@@ -52,18 +48,18 @@
   width: 420px;
   height: 420px;
   border-radius: var(--radius-2xl);
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%);
+  background: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 70px var(--shadow-medium);
+  box-shadow: 14px 14px 32px var(--neu-dark), -14px -14px 32px var(--neu-light);
   animation: float 6s ease-in-out infinite;
-  border: 3px solid var(--background-primary);
+  border: 8px solid var(--background-primary);
 
   img {
     width: 100%;
     height: 100%;
-    border-radius: var(--radius-2xl);
+    border-radius: calc(var(--radius-2xl) - 8px);
     object-fit: cover;
     object-position: center 15%;
   }
@@ -71,15 +67,15 @@
 
 .avatar-placeholder {
   font-size: 10em;
-  color: var(--background-primary);
+  color: var(--neu-light);
 }
 
 .decorative-shape {
   position: absolute;
   border-radius: var(--radius-2xl);
-  background: linear-gradient(135deg, rgba(134, 176, 189, 0.08) 0%, rgba(226, 161, 111, 0.08) 100%);
+  background: var(--background-primary);
+  box-shadow: var(--neu-raised);
   z-index: 1;
-  border: 1px solid rgba(134, 176, 189, 0.1);
 }
 
 .shape-1 {
@@ -108,11 +104,12 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-lg);
-  background: rgba(134, 176, 189, 0.1);
-  border: 1px solid rgba(134, 176, 189, 0.3);
+  background: var(--background-primary);
+  border: none;
   border-radius: var(--radius-full);
+  box-shadow: var(--neu-raised-sm);
   margin-bottom: var(--spacing-xl);
-  font-weight: 600;
+  font-weight: 700;
 
   .badge-icon {
     font-size: 1.3em;
@@ -121,7 +118,7 @@
 
   .badge-text {
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95em;
   }
 }
@@ -160,26 +157,22 @@
 .stat-item {
   text-align: center;
   padding: var(--spacing-xl);
-  background: var(--background-secondary);
+  background: var(--background-primary);
   border-radius: var(--radius-xl);
   transition: all var(--transition-normal);
-  border: 1px solid var(--border-light);
+  box-shadow: var(--neu-raised-sm);
 
   &:hover {
-    background: var(--accent-light);
+    background: var(--accent-color);
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-light);
-    border-color: var(--primary-color);
+    box-shadow: var(--neu-raised);
   }
 }
 
 .stat-number {
   font-size: 2.8em;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary-color);
   margin-bottom: var(--spacing-xs);
 }
 
@@ -192,18 +185,19 @@
 // Button
 .download-cv-btn {
   padding: var(--spacing-md) var(--spacing-2xl);
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: var(--background-primary);
+  background: var(--primary-color);
+  color: var(--neu-light);
   border: none;
   border-radius: var(--radius-xl);
   font-size: 1.1em;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
   transition: all var(--transition-normal);
-  box-shadow: 0 8px 25px var(--shadow-medium);
+  box-shadow: 6px 6px 14px var(--neu-dark), -6px -6px 14px var(--neu-light),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.08);
   text-decoration: none;
 
   .btn-icon {
@@ -212,8 +206,13 @@
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px var(--shadow-dark);
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    box-shadow: var(--neu-raised);
+    background: var(--primary-dark);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--neu-pressed);
   }
 }
 

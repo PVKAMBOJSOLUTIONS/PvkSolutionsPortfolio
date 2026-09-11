@@ -1,8 +1,8 @@
 .hobby-card {
-  background: white;
-  border-radius: 16px;
+  background: var(--background-primary);
+  border-radius: var(--radius-2xl);
   padding: 35px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--neu-raised);
   transition: all 0.3s ease;
   text-align: center;
   height: 100%;
@@ -12,7 +12,7 @@
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 12px 12px 24px var(--neu-dark), -12px -12px 24px var(--neu-light);
 
     .hobby-icon {
       transform: scale(1.1) rotate(5deg);
@@ -24,17 +24,25 @@
   font-size: 4em;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-primary);
+  border-radius: var(--radius-full);
+  box-shadow: var(--neu-inset);
 }
 
 .hobby-title {
   font-size: 1.4em;
-  color: #1a202c;
+  color: var(--primary-color);
   margin-bottom: 12px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .hobby-description {
-  color: #718096;
+  color: var(--text-secondary);
   line-height: 1.7;
   font-size: 0.95em;
 }
@@ -46,6 +54,8 @@
 
   .hobby-icon {
     font-size: 3em;
+    width: 75px;
+    height: 75px;
   }
 
   .hobby-title {

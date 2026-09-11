@@ -43,17 +43,12 @@ export class ContactComponent implements OnInit {
       title: 'Location',
       value: 'Mohali, India',
       link: 'https://www.google.com/maps/search/?api=1&query=Mohali,+Punjab,+India'
-    },
-    {
-      icon: '💼',
-      title: 'LinkedIn',
-      value: 'linkedin.com/in/pratham-kamboj',
-      link: 'https://linkedin.com/in/pratham-kamboj'
     }
   ];
 
   socialLinks = [
-    { icon: 'linkedin', url: 'https://linkedin.com/in/pratham-kamboj', label: 'LinkedIn' }
+    { icon: 'linkedin', url: 'https://linkedin.com/in/pratham-kamboj', label: 'LinkedIn' },
+    { icon: 'instagram', url: 'https://instagram.com/pratham__kamboj', label: 'Instagram' }
   ];
 
   constructor(

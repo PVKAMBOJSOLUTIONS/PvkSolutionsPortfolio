@@ -34,10 +34,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   skills = [
     { name: '.NET Web API', icon: '⚙️', description: 'Engineered 20+ production API endpoints improving system reliability and scalability' },
     { name: 'Angular', icon: '🅰️', description: 'Delivering responsive UI components that enhance user engagement and front-end performance' },
-    { name: '.NET MAUI', icon: '�', description: 'Building cross-platform mobile apps with custom handlers and native OS integrations' },
+    { name: '.NET MAUI', icon: '📱', description: 'Building cross-platform mobile apps with custom handlers and native OS integrations' },
     { name: 'SQL Server', icon: '🗄️', description: 'Optimizing stored procedures and migrating 50K+ records with 98%+ accuracy' },
     { name: 'C#', icon: '💻', description: 'Writing clean, efficient code following Clean Architecture and FluentValidation principles' },
-    { name: 'CI/CD', icon: '�', description: 'Automating deployments with pipelines and Firebase App Distribution, cutting release time by 60%' }
+    { name: 'CI/CD', icon: '🚀', description: 'Automating deployments with pipelines and Firebase App Distribution, cutting release time by 60%' }
   ];
 
   stats: HomeStat[] = [];
@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           { id: 1, number: 3, label: 'Years Experience', suffix: '+', icon: '⭐', order: 1, isVisible: true },
           { id: 2, number: 20, label: 'API Endpoints Built', suffix: '+', icon: '⚙️', order: 2, isVisible: true },
           { id: 3, number: 90, label: 'Test Coverage', suffix: '%+', icon: '🧪', order: 3, isVisible: true },
-          { id: 4, number: 50, label: 'Records Migrated', suffix: 'K+', icon: '�️', order: 4, isVisible: true }
+          { id: 4, number: 50, label: 'Records Migrated', suffix: 'K+', icon: '🗃️', order: 4, isVisible: true }
         ];
       }
     });

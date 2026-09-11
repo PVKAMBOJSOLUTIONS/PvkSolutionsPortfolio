@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 50%, var(--highlight-color) 100%);
+  background: var(--background-primary);
   position: relative;
   overflow: hidden;
   padding: var(--spacing-2xl) var(--spacing-lg);
@@ -17,7 +17,7 @@
   animation: fadeInUp 0.6s ease-out;
 }
 
-// 404 Code Animation
+// 404 Code Animation — embossed into the surface
 .error-code {
   display: flex;
   justify-content: center;
@@ -25,8 +25,8 @@
   margin-bottom: var(--spacing-2xl);
   font-size: 8em;
   font-weight: 900;
-  color: var(--background-primary);
-  text-shadow: 0 10px 30px var(--shadow-dark);
+  color: #D3DBEA;
+  text-shadow: 6px 6px 12px var(--neu-dark), -6px -6px 12px var(--neu-light);
 
   span {
     animation: bounce 2s ease-in-out infinite;
@@ -48,15 +48,14 @@
 // Error Text
 .error-title {
   font-size: 3em;
-  color: var(--background-primary);
+  color: var(--primary-color);
   margin-bottom: var(--spacing-lg);
-  font-weight: 800;
-  text-shadow: 0 2px 10px var(--shadow-medium);
+  font-weight: 900;
 }
 
 .error-message {
   font-size: 1.3em;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-secondary);
   margin-bottom: var(--spacing-2xl);
   line-height: 1.7;
   font-weight: 400;
@@ -77,7 +76,7 @@
   border: none;
   border-radius: var(--radius-xl);
   font-size: 1.1em;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all var(--transition-normal);
   display: flex;
@@ -90,44 +89,53 @@
 }
 
 .btn-primary {
-  background: var(--background-primary);
-  color: var(--primary-color);
-  box-shadow: 0 10px 30px var(--shadow-dark);
+  background: var(--primary-color);
+  color: var(--neu-light);
+  box-shadow: 6px 6px 14px var(--neu-dark), -6px -6px 14px var(--neu-light),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.08);
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px var(--shadow-dark);
-    background: var(--accent-light);
+    background: var(--primary-dark);
+    box-shadow: var(--neu-raised);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--neu-pressed);
   }
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--background-primary);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: var(--background-primary);
+  color: var(--primary-color);
+  box-shadow: var(--neu-raised-sm);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: var(--accent-color);
     transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: var(--neu-raised);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--neu-pressed);
   }
 }
 
 // Helpful Links
 .helpful-links {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: var(--background-primary);
   border-radius: var(--radius-2xl);
   padding: var(--spacing-2xl);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--neu-raised);
 }
 
 .links-title {
-  color: var(--background-primary);
+  color: var(--text-primary);
   font-size: 1.2em;
   margin-bottom: var(--spacing-lg);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .links-grid {
@@ -138,30 +146,34 @@
 
 .quick-link {
   padding: var(--spacing-md) var(--spacing-lg);
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--background-primary);
   border-radius: var(--radius-lg);
   text-decoration: none;
-  color: var(--background-primary);
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
   transition: all var(--transition-normal);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-weight: 500;
+  box-shadow: var(--neu-raised-sm);
+  font-weight: 700;
 
   .link-icon {
     font-size: 1.5em;
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: var(--accent-color);
     transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: var(--neu-raised);
+  }
+
+  &:active {
+    box-shadow: var(--neu-pressed);
   }
 }
 
-// Floating Shapes
+// Floating Shapes — soft raised discs
 .floating-shapes {
   position: absolute;
   width: 100%;
@@ -174,9 +186,9 @@
 
 .shape {
   position: absolute;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--background-primary);
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--neu-raised);
 }
 
 .shape-1 {
@@ -192,6 +204,7 @@
   height: 200px;
   bottom: 20%;
   right: 10%;
+  border-radius: var(--radius-2xl);
   animation: float 8s ease-in-out infinite reverse;
 }
 
@@ -200,6 +213,7 @@
   height: 150px;
   top: 60%;
   left: 5%;
+  box-shadow: var(--neu-inset);
   animation: float 7s ease-in-out infinite;
 }
 

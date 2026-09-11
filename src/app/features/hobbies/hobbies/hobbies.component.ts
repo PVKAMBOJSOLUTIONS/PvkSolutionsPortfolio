@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { HobbyCardComponent } from '../hobby-card/hobby-card.component';
 import { Hobby } from '../../../core/models';
 import { PortfolioService } from '../../../core/services/portfolio.service';
-import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 
 @Component({
   selector: 'app-hobbies',
   standalone: true,
-  imports: [HobbyCardComponent, SectionHeaderComponent],
+  imports: [HobbyCardComponent],
   templateUrl: './hobbies.component.html',
   styleUrls: ['./hobbies.component.scss']
 })

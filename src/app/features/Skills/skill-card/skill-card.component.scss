@@ -9,10 +9,20 @@
   width: 50px;
   height: 50px;
   margin: 0 auto var(--spacing-lg);
-  border: 4px solid var(--border-light);
-  border-top-color: var(--primary-color);
   border-radius: var(--radius-full);
+  background: var(--background-primary);
+  box-shadow: var(--neu-raised-sm);
+  position: relative;
   animation: spin 1s linear infinite;
+}
+
+.spinner::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: var(--radius-full);
+  border: 4px solid transparent;
+  border-top-color: var(--primary-color);
 }
 
 @keyframes spin {
@@ -55,18 +65,16 @@
   display: flex;
   flex-direction: column;
   background: var(--background-primary);
-  border: 1px solid var(--border-light);
   border-radius: var(--radius-2xl);
   padding: var(--spacing-xl);
-  box-shadow: 0 10px 40px var(--shadow-light);
+  box-shadow: var(--neu-raised);
   overflow: hidden;
   opacity: 0;
   transform: translateY(30px);
   transition:
     opacity 0.6s ease,
     transform 0.6s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+    box-shadow 0.3s ease;
 }
 
 .skill-card.visible {
@@ -74,10 +82,9 @@
   transform: translateY(0);
 }
 
-// Hover: shadow/border only — no transform so it never fights the reveal transition
+// Hover: shadow only — no transform so it never fights the reveal transition
 .skill-card.visible:hover {
-  box-shadow: 0 20px 60px var(--shadow-dark);
-  border-color: var(--primary-color);
+  box-shadow: 12px 12px 24px var(--neu-dark), -12px -12px 24px var(--neu-light);
 }
 
 // Accent bar along the top edge
@@ -86,7 +93,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 6px;
   opacity: 0.9;
 }
 
@@ -106,7 +113,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px var(--shadow-medium);
+  box-shadow: var(--neu-raised-sm);
   transition: transform 0.3s ease;
 }
 
@@ -124,10 +131,7 @@
   font-weight: 800;
   margin: 0;
   line-height: 1.25;
-  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-color);
 }
 
 // ========== STATS ==========
@@ -146,19 +150,16 @@
   justify-content: center;
   gap: var(--spacing-xs);
   padding: var(--spacing-md);
-  background: var(--background-secondary);
-  border: 1px solid var(--border-light);
+  background: var(--background-primary);
   border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset-xs);
 }
 
 .stat-value {
   font-size: 1.5em;
   font-weight: 900;
   line-height: 1;
-  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-color);
 }
 
 .stat-label {
@@ -173,7 +174,8 @@
   width: 2px;
   align-self: center;
   height: 40px;
-  background: linear-gradient(180deg, transparent, var(--border-light), transparent);
+  background: var(--neu-dark);
+  box-shadow: 1px 0 0 var(--neu-light);
 }
 
 // ========== DESCRIPTION ==========
@@ -199,10 +201,7 @@
   font-size: 0.9em;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-color);
 }
 
 .tech-tags {
@@ -212,19 +211,20 @@
 }
 
 .tech-tag {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: var(--background-primary);
+  background: var(--background-primary);
+  color: var(--primary-color);
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--radius-full);
   font-size: 0.85em;
-  font-weight: 600;
-  box-shadow: 0 2px 8px var(--shadow-light);
+  font-weight: 700;
+  box-shadow: var(--neu-raised-xs);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .tech-tag:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px var(--shadow-medium);
+  background: var(--accent-color);
+  box-shadow: var(--neu-raised-sm);
 }
 
 // ========== RESPONSIVE ==========

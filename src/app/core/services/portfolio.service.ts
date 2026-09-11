@@ -188,7 +188,7 @@ export class PortfolioService {
         id: 3,
         title: 'Zoho → Monday.com Integration',
         description: 'Middleware system integrating Zoho and Monday.com using webhooks and multi-level API calls. Automated recruitment workflows, reducing HR effort by 30–40%, built with FluentValidation and Clean Architecture principles.',
-        icon: '�',
+        icon: '🔗',
         tags: ['.NET', 'Webhooks', 'REST APIs', 'FluentValidation'],
         status: 'published',
         createdAt: new Date('2023-07-01'),
@@ -238,7 +238,7 @@ export class PortfolioService {
       {
         category: 'technologies',
         displayName: 'Technologies & Tools',
-        icon: '�️',
+        icon: '🛠️',
         skills: [
           { id: 13, name: '.NET / .NET Core', category: 'technologies', proficiency: 92 },
           { id: 14, name: 'Microsoft SQL Server', category: 'technologies', proficiency: 88 },
@@ -271,7 +271,7 @@ export class PortfolioService {
         id: 3, 
         title: 'Gaming', 
         description: 'Playing Valorant and other competitive titles, along with immersive story-mode games.', 
-        icon: '�' 
+        icon: '🎮' 
       },
       { 
         id: 4, 
@@ -300,7 +300,8 @@ export class PortfolioService {
       phone: '+91 90450 88352',
       location: 'Mohali, India',
       socialLinks: [
-        { platform: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: '�' },
+        { platform: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: '💼' },
+        { platform: 'Instagram', url: 'https://instagram.com/pratham__kamboj', icon: '📸' },
         { platform: 'Email', url: 'mailto:prathamkamboj002@gmail.com', icon: '✉️' }
       ]
     };
@@ -332,7 +333,7 @@ export class PortfolioService {
       },
       {
         id: 3,
-        icon: '�',
+        icon: '📱',
         title: 'Cross-Platform Mobile',
         projectCount: 5,
         yearsExperience: '1+',
@@ -365,7 +366,7 @@ export class PortfolioService {
       },
       {
         id: 6,
-        icon: '�',
+        icon: '🚀',
         title: 'DevOps & Delivery',
         projectCount: 6,
         yearsExperience: '1+',
@@ -411,7 +412,7 @@ export class PortfolioService {
         number: 50,
         label: 'Records Migrated',
         suffix: 'K+',
-        icon: '�️',
+        icon: '🗃️',
         order: 4,
         isVisible: true
       }
@@ -520,7 +521,7 @@ export class PortfolioService {
       },
       {
         id: 2,
-        icon: '�',
+        icon: '💼',
         title: 'Software Engineer Intern',
         company: 'Covalience, Mohali',
         startDate: 'Jul 2023',
