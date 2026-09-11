@@ -20,7 +20,7 @@
         <!-- Header: icon + title -->
         <div class="card-header">
           <div class="card-icon-wrapper" [style.background]="getGradient(getColor(i, skill))">
-            <span class="card-icon">{{ skill.icon }}</span>
+            <app-icon class="card-icon" [name]="skill.icon"></app-icon>
           </div>
           <h3 class="card-title">{{ skill.title }}</h3>
         </div>
@@ -44,7 +44,7 @@
         <!-- Tech tags -->
         <div class="tech-section">
           <div class="tech-header">
-            <span class="tech-icon">⚡</span>
+            <app-icon name="bolt" class="tech-icon"></app-icon>
             <span>Technologies</span>
           </div>
           <div class="tech-tags">
@@ -61,7 +61,7 @@
 <!-- Empty State -->
 @if (!loading && skills.length === 0) {
   <div class="empty-state">
-    <div class="empty-icon">🛠️</div>
+    <div class="empty-icon"><app-icon name="tools"></app-icon></div>
     <h3>No Skills Yet</h3>
     <p>Skill showcases will appear here soon!</p>
   </div>

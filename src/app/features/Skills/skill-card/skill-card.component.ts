@@ -2,11 +2,12 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChildren, 
 import { isPlatformBrowser } from '@angular/common';
 import { PortfolioService } from '../../../core/services/portfolio.service';
 import { SkillShowcase } from '../../../core/models';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-skills-card',
   standalone: true,
-  imports: [],
+  imports: [IconComponent],
   templateUrl: './skill-card.component.html',
   styleUrls: ['./skill-card.component.scss']
 })

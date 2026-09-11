@@ -24,7 +24,6 @@
     <div class="hero-content">
       <div class="hero-text">
         <div class="greeting fade-in-up">
-          <span class="wave">👋</span>
           <span>Hello, I'm</span>
         </div>
 
@@ -39,9 +38,9 @@
         </div>
 
         <p class="hero-description fade-in-up delay-3">
-          Motivated software developer passionate about emerging technologies.
-          Committed to writing clean, efficient code and delivering reliable,
-          user-focused software solutions.
+          Software Engineer building production .NET backends and Angular front
+          ends, plus cross-platform .NET MAUI apps — with hands-on cloud, DevOps,
+          and AI integration experience.
         </p>
 
         <div class="hero-buttons fade-in-up delay-4">
@@ -51,7 +50,7 @@
           </button>
           <button class="btn btn-secondary" (click)="downloadCV()">
             <span>Download CV</span>
-            <span class="icon">📄</span>
+            <app-icon name="download" class="icon"></app-icon>
           </button>
         </div>
 
@@ -75,7 +74,7 @@
           <div class="card-glow"></div>
           <div class="profile-image-wrapper">
             <div class="profile-ring"></div>
-            <img src="assets/profile.jpg" alt="Pratham Kamboj" class="profile-image" width="280" height="280" decoding="async">
+            <img src="assets/profile.png" alt="Pratham Kamboj" class="profile-image" width="280" height="280" decoding="async">
           </div>
         </div>
       </div>
@@ -96,7 +95,7 @@
       <div class="stats-grid">
         @for (stat of stats; track stat; let i = $index) {
           <div class="stat-card">
-            <div class="stat-icon">✨</div>
+            <div class="stat-icon"><app-icon [name]="stat.icon || 'star'"></app-icon></div>
             <div class="stat-number">{{ stat.number }}</div>
             <div class="stat-suffix">{{ stat.suffix }}</div>
             <div class="stat-label">{{ stat.label }}</div>
@@ -111,9 +110,7 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">
-          <span class="title-decorator">⚡</span>
           Core Technologies
-          <span class="title-decorator">⚡</span>
         </h2>
         <p class="section-subtitle">Tools and technologies I work with</p>
       </div>
@@ -121,7 +118,7 @@
       <div class="skills-grid">
         @for (skill of skills; track skill) {
           <div class="skill-card tilt-card">
-            <div class="skill-icon">{{ skill.icon }}</div>
+            <div class="skill-icon"><app-icon [name]="skill.icon"></app-icon></div>
             <h3 class="skill-name">{{ skill.name }}</h3>
             <p class="skill-description">{{ skill.description }}</p>
             <div class="skill-badge">Proficient</div>
@@ -142,11 +139,11 @@
       <div class="cta-buttons">
         <button class="btn btn-primary" (click)="navigateTo('contact')">
           <span>Get In Touch</span>
-          <span class="icon">💬</span>
+          <app-icon name="chat" class="icon"></app-icon>
         </button>
         <button class="btn btn-secondary" (click)="navigateTo('projects')">
           <span>View Projects</span>
-          <span class="icon">🚀</span>
+          <app-icon name="rocket" class="icon"></app-icon>
         </button>
       </div>
     </div>

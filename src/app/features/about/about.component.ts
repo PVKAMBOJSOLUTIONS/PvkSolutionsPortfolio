@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { Profile } from '../../core/models';
 import { PortfolioService } from '../../core/services/portfolio.service';
+import { IconComponent } from '../../shared/components/icon/icon.component';
 
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [],
+  imports: [IconComponent],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })

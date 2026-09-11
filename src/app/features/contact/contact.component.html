@@ -8,7 +8,7 @@
 
     <div class="hero-content fade-in-up">
       <div class="hero-badge">
-        <span class="badge-icon">💬</span>
+        <app-icon name="chat" class="badge-icon"></app-icon>
         <span class="badge-text">Let's Connect</span>
       </div>
       <h1 class="hero-title">Get In Touch</h1>
@@ -37,7 +37,7 @@
             <!-- Name Field -->
             <div class="form-group">
               <label for="name" class="form-label">
-                <span class="label-icon">👤</span>
+                <app-icon name="user" class="label-icon"></app-icon>
                 <span>Your Name</span>
               </label>
               <input
@@ -63,7 +63,7 @@
               <!-- Email Field -->
               <div class="form-group">
                 <label for="email" class="form-label">
-                  <span class="label-icon">📧</span>
+                  <app-icon name="mail" class="label-icon"></app-icon>
                   <span>Your Email</span>
                 </label>
                 <input
@@ -89,7 +89,7 @@
                 <!-- Subject Field -->
                 <div class="form-group">
                   <label for="subject" class="form-label">
-                    <span class="label-icon">📝</span>
+                    <app-icon name="edit" class="label-icon"></app-icon>
                     <span>Subject</span>
                   </label>
                   <input
@@ -115,7 +115,7 @@
                   <!-- Message Field -->
                   <div class="form-group">
                     <label for="message" class="form-label">
-                      <span class="label-icon">💭</span>
+                      <app-icon name="message" class="label-icon"></app-icon>
                       <span>Your Message</span>
                     </label>
                     <textarea
@@ -148,7 +148,7 @@
                     @if (!isSubmitting) {
                       <span>
                         <span>Send Message</span>
-                        <span class="btn-icon">🚀</span>
+                        <app-icon name="send" class="btn-icon"></app-icon>
                       </span>
                     }
                     @if (isSubmitting) {
@@ -162,7 +162,7 @@
                   <!-- Error Message -->
                   @if (submitError) {
                     <div class="alert alert-error">
-                      <span class="alert-icon">❌</span>
+                      <app-icon name="error" class="alert-icon"></app-icon>
                       <span>Oops! Something went wrong. Please try again.</span>
                     </div>
                   }
@@ -187,7 +187,7 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       >
-                      <div class="method-icon">{{ method.icon }}</div>
+                      <div class="method-icon"><app-icon [name]="method.icon"></app-icon></div>
                       <div class="method-content">
                         <div class="method-title">{{ method.title }}</div>
                         <div class="method-value">{{ method.value }}</div>

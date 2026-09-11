@@ -8,7 +8,7 @@
               <img [src]="profile.avatar" [alt]="profile.name">
             </div>
           } @else {
-            <div class="avatar-placeholder">👨‍💻</div>
+            <div class="avatar-placeholder"><app-icon name="code"></app-icon></div>
           }
         </div>
         <div class="decorative-shape shape-1"></div>
@@ -17,7 +17,7 @@
 
       <div class="about-text">
         <div class="about-badge">
-          <span class="badge-icon">👋</span>
+          <app-icon name="user" class="badge-icon"></app-icon>
           <span class="badge-text">About Me</span>
         </div>
 
@@ -49,7 +49,7 @@
 
         @if (profile?.resumeUrl) {
           <a class="download-cv-btn" [href]="profile.resumeUrl" download="Pratham_Kamboj_Resume.pdf">
-            <span class="btn-icon">📄</span>
+            <app-icon name="download" class="btn-icon"></app-icon>
             <span>Download Resume</span>
           </a>
         }

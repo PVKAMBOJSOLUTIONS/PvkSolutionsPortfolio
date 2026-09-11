@@ -2,11 +2,12 @@ import { Component, HostListener, OnInit, OnDestroy, ElementRef, ViewChild, PLAT
 import { isPlatformBrowser } from '@angular/common';
 import { Experience } from '../../../core/models';
 import { PortfolioService } from '../../../core/services/portfolio.service';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-wave-timeline',
   standalone: true,
-  imports: [],
+  imports: [IconComponent],
   templateUrl: './wave-timeline.component.html',
   styleUrls: ['./wave-timeline.component.scss']
 })

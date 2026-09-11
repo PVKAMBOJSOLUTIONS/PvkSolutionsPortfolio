@@ -2,6 +2,7 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { IconComponent } from '../../shared/components/icon/icon.component';
 
 interface ContactMethod {
   icon: string;
@@ -13,7 +14,7 @@ interface ContactMethod {
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, IconComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
@@ -33,7 +34,7 @@ export class ContactComponent implements OnInit {
       link: 'mailto:prathamkamboj002@gmail.com'
     },
     {
-      icon: '📱',
+      icon: '�',
       title: 'Phone',
       value: '+91 90450 88352',
       link: 'tel:+919045088352'

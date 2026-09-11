@@ -17,11 +17,11 @@
     <!-- Action buttons -->
     <div class="error-actions">
       <button class="btn-primary" (click)="goHome()">
-        <span class="icon">🏠</span>
+        <app-icon name="home" class="icon"></app-icon>
         <span>Go Home</span>
       </button>
       <button class="btn-secondary" (click)="goBack()">
-        <span class="icon">←</span>
+        <app-icon name="arrow-left" class="icon"></app-icon>
         <span>Go Back</span>
       </button>
     </div>
@@ -31,15 +31,15 @@
       <p class="links-title">You might be looking for:</p>
       <div class="links-grid">
         <a routerLink="/" class="quick-link">
-          <span class="link-icon">🏠</span>
+          <app-icon name="home" class="link-icon"></app-icon>
           <span>Home</span>
         </a>
         <a routerLink="/projects" class="quick-link">
-          <span class="link-icon">🚀</span>
+          <app-icon name="rocket" class="link-icon"></app-icon>
           <span>Projects</span>
         </a>
         <a routerLink="/contact" class="quick-link">
-          <span class="link-icon">📧</span>
+          <app-icon name="mail" class="link-icon"></app-icon>
           <span>Contact</span>
         </a>
       </div>

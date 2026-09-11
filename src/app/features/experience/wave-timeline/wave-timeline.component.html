@@ -46,7 +46,7 @@
             <div class="timeline-card">
               <div class="card-header">
                 <div class="card-icon" [style.background]="getGradient(getColor(i))">
-                  <span class="icon-emoji">{{ exp.icon || '💼' }}</span>
+                  <app-icon class="icon-emoji" [name]="exp.icon || 'briefcase'"></app-icon>
                 </div>
                 <div class="card-title-section">
                   <h3 class="card-title">{{ exp.title }}</h3>
@@ -76,7 +76,7 @@
   <!-- Empty State -->
   @if (!loading && experiences.length === 0) {
     <div class="empty-state">
-      <div class="empty-icon">📋</div>
+      <div class="empty-icon"><app-icon name="clipboard"></app-icon></div>
       <h3>No Experience Yet</h3>
       <p>Experience timeline will appear here soon!</p>
     </div>

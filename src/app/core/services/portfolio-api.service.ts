@@ -12,7 +12,8 @@ import {
   Experience,
   PageContent,
   SkillShowcase,
-  HomeStat
+  HomeStat,
+  Certification
 } from '../models';
 
 /**
@@ -63,6 +64,13 @@ export class PortfolioApiService extends BaseApiService {
    */
   getSkillsByCategory(category: string): Observable<Skill[]> {
     return this.get<Skill[]>('/skills', this.buildParams({ category }));
+  }
+
+  /**
+   * Get all certifications
+   */
+  getAllCertifications(): Observable<Certification[]> {
+    return this.get<Certification[]>('/certifications');
   }
 
   // ============================================

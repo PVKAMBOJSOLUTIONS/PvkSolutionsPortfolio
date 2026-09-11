@@ -12,7 +12,8 @@ import {
   PageContent,
   PageSection,
   SkillShowcase,
-  HomeStat
+  HomeStat,
+  Certification
 } from '../models';
 
 @Injectable({
@@ -129,6 +130,16 @@ export class PortfolioService {
   }
 
   // ============================================
+  // CERTIFICATIONS
+  // ============================================
+  getCertifications(): Observable<Certification[]> {
+    if (this.useApi) {
+      return this.portfolioApi.getAllCertifications();
+    }
+    return of(this.getMockCertifications());
+  }
+
+  // ============================================
   // HOME STATS
   // ============================================
   getHomeStats(): Observable<HomeStat[]> {
@@ -166,9 +177,9 @@ export class PortfolioService {
     return [
       {
         id: 1,
-        title: 'theConnection — Member Management System',
-        description: 'Member tool and management system for Gideons International. Engineered 20+ backend API endpoints with .NET Web API, optimized stored procedures cutting data retrieval time by 30%, and delivered responsive Angular UI with 90%+ NUnit test coverage.',
-        icon: '🤝',
+        title: 'Member Management System',
+        description: 'Member tool and management system for senior citizens. Engineered 20+ backend API endpoints with .NET Web API, optimized stored procedures cutting data retrieval time by 30%, and delivered responsive Angular UI with 90%+ NUnit test coverage.',
+        icon: 'users',
         tags: ['.NET Web API', 'Angular', 'SQL Server', 'NUnit'],
         status: 'published',
         createdAt: new Date('2024-01-01'),
@@ -176,9 +187,9 @@ export class PortfolioService {
       },
       {
         id: 2,
-        title: 'GideonNow — Cross-Platform Mobile App',
-        description: '.NET MAUI app for Gideons International with 10+ custom handlers and validation services. Integrated native OS features (camera, local storage, notifications) and automated deployments via CI/CD with Firebase App Distribution, reducing release time by 60%.',
-        icon: '📱',
+        title: 'Cross-Platform Mobile App',
+        description: '.NET MAUI app with 10+ custom handlers and validation services. Integrated native OS features (camera, local storage, notifications) and automated deployments via CI/CD with Firebase App Distribution, reducing release time by 60%.',
+        icon: 'mobile',
         tags: ['.NET MAUI', 'XAML', 'MVVM', 'CI/CD', 'Firebase'],
         status: 'published',
         createdAt: new Date('2024-01-01'),
@@ -186,23 +197,43 @@ export class PortfolioService {
       },
       {
         id: 3,
+        title: 'SelfForge — Self-Hosted Infrastructure-as-Code Platform',
+        description: 'Self-hosted server platform built end-to-end as infrastructure-as-code, covering networking, container orchestration, monitoring, logging, storage, secrets, and backups. Services provisioned with Ansible and k3s, monitored via Prometheus, Grafana, and Loki, secured with Vault and Cloudflare.',
+        icon: 'server',
+        tags: ['Ansible', 'k3s', 'Docker', 'Prometheus', 'Grafana', 'Vault'],
+        status: 'published',
+        createdAt: new Date('2025-01-01'),
+        updatedAt: new Date('2025-06-01')
+      },
+      {
+        id: 4,
         title: 'Zoho → Monday.com Integration',
         description: 'Middleware system integrating Zoho and Monday.com using webhooks and multi-level API calls. Automated recruitment workflows, reducing HR effort by 30–40%, built with FluentValidation and Clean Architecture principles.',
-        icon: '🔗',
+        icon: 'link',
         tags: ['.NET', 'Webhooks', 'REST APIs', 'FluentValidation'],
         status: 'published',
         createdAt: new Date('2023-07-01'),
         updatedAt: new Date('2023-12-01')
       },
       {
-        id: 4,
+        id: 5,
         title: 'Data Migration System',
         description: 'ASP.NET MVC system for Gideons International that migrated and validated 50,000+ member records from legacy systems with 98%+ accuracy. Automated report generation with iTextSharp improved audit efficiency by 60%.',
-        icon: '🗄️',
+        icon: 'database',
         tags: ['ASP.NET MVC', 'SQL Server', 'FluentValidation', 'iTextSharp'],
         status: 'published',
         createdAt: new Date('2023-07-01'),
         updatedAt: new Date('2023-12-01')
+      },
+      {
+        id: 6,
+        title: 'APORIA — Real-Time Social Music Platform',
+        description: 'Real-time social music platform (in development) with synchronized lyrics, audience interaction, and AI-assisted literary/emotional analysis. Next.js/React frontend, ASP.NET Core + SignalR backend for live sessions, with PostgreSQL, Redis, pgvector, and Python RAG/LLM services.',
+        icon: 'music',
+        tags: ['ASP.NET Core', 'SignalR', 'Next.js', 'PostgreSQL', 'Redis', 'Python'],
+        status: 'draft',
+        createdAt: new Date('2025-06-01'),
+        updatedAt: new Date('2025-09-01')
       }
     ];
   }
@@ -212,19 +243,20 @@ export class PortfolioService {
       {
         category: 'languages',
         displayName: 'Languages',
-        icon: '💻',
+        icon: 'code',
         skills: [
           { id: 1, name: 'C#', category: 'languages', proficiency: 95 },
           { id: 2, name: 'SQL', category: 'languages', proficiency: 90 },
           { id: 3, name: 'TypeScript', category: 'languages', proficiency: 88 },
           { id: 4, name: 'JavaScript', category: 'languages', proficiency: 85 },
-          { id: 5, name: 'XAML', category: 'languages', proficiency: 80 }
+          { id: 5, name: 'XAML', category: 'languages', proficiency: 80 },
+          { id: 21, name: 'Python', category: 'languages', proficiency: 75 }
         ]
       },
       {
         category: 'frameworks',
         displayName: 'Frameworks & Patterns',
-        icon: '⚙️',
+        icon: 'gear',
         skills: [
           { id: 6, name: 'ASP.NET MVC', category: 'frameworks', proficiency: 90 },
           { id: 7, name: '.NET Web API', category: 'frameworks', proficiency: 92 },
@@ -232,13 +264,14 @@ export class PortfolioService {
           { id: 9, name: '.NET MAUI (MVVM)', category: 'frameworks', proficiency: 82 },
           { id: 10, name: 'Clean Architecture', category: 'frameworks', proficiency: 85 },
           { id: 11, name: 'FluentValidation', category: 'frameworks', proficiency: 85 },
-          { id: 12, name: 'NUnit', category: 'frameworks', proficiency: 88 }
+          { id: 12, name: 'NUnit', category: 'frameworks', proficiency: 88 },
+          { id: 22, name: 'RESTful APIs', category: 'frameworks', proficiency: 90 }
         ]
       },
       {
         category: 'technologies',
         displayName: 'Technologies & Tools',
-        icon: '🛠️',
+        icon: 'tools',
         skills: [
           { id: 13, name: '.NET / .NET Core', category: 'technologies', proficiency: 92 },
           { id: 14, name: 'Microsoft SQL Server', category: 'technologies', proficiency: 88 },
@@ -247,7 +280,13 @@ export class PortfolioService {
           { id: 17, name: 'CI/CD Pipelines', category: 'technologies', proficiency: 82 },
           { id: 18, name: 'Firebase App Distribution', category: 'technologies', proficiency: 78 },
           { id: 19, name: 'iTextSharp', category: 'technologies', proficiency: 75 },
-          { id: 20, name: 'Webhooks & REST APIs', category: 'technologies', proficiency: 88 }
+          { id: 20, name: 'Webhooks & REST APIs', category: 'technologies', proficiency: 88 },
+          { id: 23, name: 'PostgreSQL', category: 'technologies', proficiency: 75 },
+          { id: 24, name: 'Redis', category: 'technologies', proficiency: 72 },
+          { id: 25, name: 'Docker', category: 'technologies', proficiency: 80 },
+          { id: 26, name: 'Ansible', category: 'technologies', proficiency: 75 },
+          { id: 27, name: 'k3s / Kubernetes', category: 'technologies', proficiency: 74 },
+          { id: 28, name: 'Prometheus & Grafana', category: 'technologies', proficiency: 72 }
         ]
       }
     ];
@@ -259,25 +298,25 @@ export class PortfolioService {
         id: 1, 
         title: 'Sports', 
         description: 'Playing badminton and basketball — always up for a good match.', 
-        icon: '🏸' 
+        icon: 'trophy' 
       },
       { 
         id: 2, 
         title: 'Travel & Adventure', 
         description: 'Going on treks and long rides to explore new places and unwind.', 
-        icon: '🏍️' 
+        icon: 'compass' 
       },
       { 
         id: 3, 
         title: 'Gaming', 
         description: 'Playing Valorant and other competitive titles, along with immersive story-mode games.', 
-        icon: '🎮' 
+        icon: 'gamepad' 
       },
       { 
         id: 4, 
         title: 'Tech Exploration', 
         description: 'Keeping up with new hardware technologies and exploring all things tech.', 
-        icon: '🖥️' 
+        icon: 'monitor' 
       }
     ];
   }
@@ -288,8 +327,8 @@ export class PortfolioService {
       name: 'Pratham Kamboj',
       title: 'Software Engineer',
       tagline: 'Building scalable web & mobile applications with .NET, Angular & .NET MAUI',
-      bio: 'Motivated software developer with a strong passion for learning and exploring emerging technologies. Committed to writing clean, efficient code and delivering reliable, user-focused software solutions.',
-      avatar: '/assets/profile.jpg',
+      bio: 'Software Engineer with 3+ years building production .NET Core / ASP.NET Web API backends and Angular front ends, plus a cross-platform .NET MAUI app. Shipped 20+ backend API endpoints, cut data retrieval time 30% by optimizing SQL Server stored procedures, and held 90%+ unit test coverage with NUnit inside CI/CD pipelines.',
+      avatar: '/assets/profile.png',
       resumeUrl: '/assets/resume.pdf'
     };
   }
@@ -300,9 +339,9 @@ export class PortfolioService {
       phone: '+91 90450 88352',
       location: 'Mohali, India',
       socialLinks: [
-        { platform: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: '💼' },
-        { platform: 'Instagram', url: 'https://instagram.com/pratham__kamboj', icon: '📸' },
-        { platform: 'Email', url: 'mailto:prathamkamboj002@gmail.com', icon: '✉️' }
+        { platform: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: 'briefcase' },
+        { platform: 'Instagram', url: 'https://instagram.com/pratham__kamboj', icon: 'camera' },
+        { platform: 'Email', url: 'mailto:prathamkamboj002@gmail.com', icon: 'mail' }
       ]
     };
   }
@@ -311,7 +350,7 @@ export class PortfolioService {
     return [
       {
         id: 1,
-        icon: '⚙️',
+        icon: 'gear',
         title: 'Backend Development',
         projectCount: 20,
         yearsExperience: '2+',
@@ -322,18 +361,18 @@ export class PortfolioService {
       },
       {
         id: 2,
-        icon: '🎨',
+        icon: 'palette',
         title: 'Frontend Development',
         projectCount: 10,
         yearsExperience: '2+',
-        description: 'Delivering responsive Angular UI components that enhance user engagement and front-end performance. Certified in Angular with hands-on production experience.',
-        techStack: ['Angular', 'TypeScript', 'JavaScript', 'HTML/CSS', 'RxJS'],
+        description: 'Delivering responsive Angular UI components that enhance user engagement and front-end performance. Certified in Angular with hands-on production experience, plus Next.js/React work on APORIA.',
+        techStack: ['Angular', 'TypeScript', 'JavaScript', 'Next.js', 'React', 'RxJS'],
         order: 2,
         isVisible: true
       },
       {
         id: 3,
-        icon: '📱',
+        icon: 'mobile',
         title: 'Cross-Platform Mobile',
         projectCount: 5,
         yearsExperience: '1+',
@@ -344,18 +383,18 @@ export class PortfolioService {
       },
       {
         id: 4,
-        icon: '🗄️',
+        icon: 'database',
         title: 'Database & Data',
         projectCount: 8,
         yearsExperience: '2+',
         description: 'Developed and optimized stored procedures reducing data retrieval time by 30%. Migrated and validated 50,000+ records with 98%+ accuracy.',
-        techStack: ['SQL Server', 'T-SQL', 'SQLite', 'Stored Procedures', 'Data Migration'],
+        techStack: ['SQL Server', 'T-SQL', 'PostgreSQL', 'Redis', 'SQLite', 'Data Migration'],
         order: 4,
         isVisible: true
       },
       {
         id: 5,
-        icon: '🧪',
+        icon: 'flask',
         title: 'Testing & Quality',
         projectCount: 10,
         yearsExperience: '2+',
@@ -366,13 +405,42 @@ export class PortfolioService {
       },
       {
         id: 6,
-        icon: '🚀',
+        icon: 'rocket',
         title: 'DevOps & Delivery',
         projectCount: 6,
         yearsExperience: '1+',
-        description: 'Automated staging and production deployments using CI/CD pipelines including Firebase App Distribution, reducing release time by 60%.',
-        techStack: ['CI/CD', 'Git', 'Firebase App Distribution', 'Webhooks'],
+        description: 'Automated staging and production deployments using CI/CD pipelines including Firebase App Distribution, reducing release time by 60%. Built SelfForge, a self-hosted IaC platform with Ansible, k3s, and Prometheus/Grafana monitoring.',
+        techStack: ['CI/CD', 'Git', 'Docker', 'Ansible', 'k3s', 'Prometheus', 'Grafana', 'Firebase App Distribution'],
         order: 6,
+        isVisible: true
+      }
+    ];
+  }
+
+  private getMockCertifications(): Certification[] {
+    return [
+      {
+        id: 1,
+        title: 'Microsoft Certified: Azure AI-200',
+        issuer: 'Microsoft',
+        icon: 'cloud',
+        order: 1,
+        isVisible: true
+      },
+      {
+        id: 2,
+        title: 'Angular',
+        issuer: 'Udemy',
+        icon: 'angular',
+        order: 2,
+        isVisible: true
+      },
+      {
+        id: 3,
+        title: '.NET MAUI',
+        issuer: 'Udemy',
+        icon: 'mobile',
+        order: 3,
         isVisible: true
       }
     ];
@@ -385,7 +453,7 @@ export class PortfolioService {
         number: 3,
         label: 'Years Experience',
         suffix: '+',
-        icon: '⭐',
+        icon: 'star',
         order: 1,
         isVisible: true
       },
@@ -394,7 +462,7 @@ export class PortfolioService {
         number: 20,
         label: 'API Endpoints Built',
         suffix: '+',
-        icon: '⚙️',
+        icon: 'gear',
         order: 2,
         isVisible: true
       },
@@ -403,7 +471,7 @@ export class PortfolioService {
         number: 90,
         label: 'Test Coverage',
         suffix: '%+',
-        icon: '🧪',
+        icon: 'flask',
         order: 3,
         isVisible: true
       },
@@ -412,7 +480,7 @@ export class PortfolioService {
         number: 50,
         label: 'Records Migrated',
         suffix: 'K+',
-        icon: '🗃️',
+        icon: 'database',
         order: 4,
         isVisible: true
       }
@@ -510,7 +578,7 @@ export class PortfolioService {
     return [
       {
         id: 1,
-        icon: '🚀',
+        icon: 'rocket',
         title: 'Software Engineer',
         company: 'Covalience, Mohali',
         startDate: 'Jan 2024',
@@ -521,7 +589,7 @@ export class PortfolioService {
       },
       {
         id: 2,
-        icon: '💼',
+        icon: 'briefcase',
         title: 'Software Engineer Intern',
         company: 'Covalience, Mohali',
         startDate: 'Jul 2023',
@@ -532,7 +600,7 @@ export class PortfolioService {
       },
       {
         id: 3,
-        icon: '🎓',
+        icon: 'graduation',
         title: 'B.Tech — Computer Science',
         company: 'Graphic Era Hill University',
         startDate: 'Oct 2020',

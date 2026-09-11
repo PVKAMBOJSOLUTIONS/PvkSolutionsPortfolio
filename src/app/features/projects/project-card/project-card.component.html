@@ -1,5 +1,5 @@
 <div class="project-card">
-  <div class="project-icon">{{ project.icon || '📁' }}</div>
+  <div class="project-icon"><app-icon [name]="project.icon || 'folder'"></app-icon></div>
   <div class="project-content">
     <h3 class="project-title">{{ project.title || 'Untitled Project' }}</h3>
     <p class="project-description">{{ project.description || 'No description available.' }}</p>
@@ -23,7 +23,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="project-link demo">
-            🌐 Live Demo
+            <app-icon name="globe" class="link-icon"></app-icon> Live Demo
           </a>
         }
         @if (project.githubUrl) {
@@ -32,7 +32,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="project-link github">
-            💻 Code
+            <app-icon name="github" class="link-icon"></app-icon> Code
           </a>
         }
       </div>

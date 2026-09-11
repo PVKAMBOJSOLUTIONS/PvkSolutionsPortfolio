@@ -4,11 +4,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { PortfolioService } from '../../core/services/portfolio.service';
 import { PageContent, HomeStat } from '../../core/models';
+import { IconComponent } from '../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [IconComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -32,12 +33,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   pageContent: PageContent | null = null;
   particles = Array.from({ length: 6 }, (_, index) => index);
   skills = [
-    { name: '.NET Web API', icon: '⚙️', description: 'Engineered 20+ production API endpoints improving system reliability and scalability' },
-    { name: 'Angular', icon: '🅰️', description: 'Delivering responsive UI components that enhance user engagement and front-end performance' },
-    { name: '.NET MAUI', icon: '📱', description: 'Building cross-platform mobile apps with custom handlers and native OS integrations' },
-    { name: 'SQL Server', icon: '🗄️', description: 'Optimizing stored procedures and migrating 50K+ records with 98%+ accuracy' },
-    { name: 'C#', icon: '💻', description: 'Writing clean, efficient code following Clean Architecture and FluentValidation principles' },
-    { name: 'CI/CD', icon: '🚀', description: 'Automating deployments with pipelines and Firebase App Distribution, cutting release time by 60%' }
+    { name: '.NET Web API', icon: 'dotnet', description: 'Engineered 20+ production API endpoints improving system reliability and scalability' },
+    { name: 'Angular', icon: 'angular', description: 'Delivering responsive UI components that enhance user engagement and front-end performance' },
+    { name: '.NET MAUI', icon: 'mobile', description: 'Building cross-platform mobile apps with custom handlers and native OS integrations' },
+    { name: 'SQL Server', icon: 'database', description: 'Optimizing stored procedures and migrating 50K+ records with 98%+ accuracy' },
+    { name: 'C#', icon: 'csharp', description: 'Writing clean, efficient code following Clean Architecture and FluentValidation principles' },
+    { name: 'CI/CD', icon: 'rocket', description: 'Automating deployments with pipelines, Docker, and Ansible — cutting release time by 60%' }
   ];
 
   stats: HomeStat[] = [];

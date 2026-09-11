@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { PortfolioService } from '../../../core/services/portfolio.service';
+import { Certification } from '../../../core/models';
 
 
 @Component({
   selector: 'app-skills-page',
   standalone: true,
-  imports: [SkillsShowcaseComponent],
+  imports: [SkillsShowcaseComponent, IconComponent],
   template: `
     <div class="page-container">
       <div class="page-hero">
@@ -15,6 +18,30 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
         <div class="title-underline"></div>
       </div>
       <app-skills-card></app-skills-card>
+
+      <!-- Certifications -->
+      @if (certifications.length > 0) {
+        <section class="cert-section">
+          <div class="cert-header">
+            <h2 class="cert-title">Certifications</h2>
+            <div class="title-underline"></div>
+          </div>
+          <div class="cert-grid">
+            @for (cert of certifications; track cert) {
+              <div class="cert-card">
+                <div class="cert-icon"><app-icon [name]="cert.icon"></app-icon></div>
+                <div class="cert-body">
+                  <h3 class="cert-name">{{ cert.title }}</h3>
+                  <p class="cert-issuer">{{ cert.issuer }}</p>
+                </div>
+                @if (cert.year) {
+                  <span class="cert-year">{{ cert.year }}</span>
+                }
+              </div>
+            }
+          </div>
+        </section>
+      }
     </div>
   `,
   styles: [`
@@ -101,7 +128,87 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
         width: 80px;
       }
     }
+    /* Certifications */
+    .cert-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-xl) var(--spacing-5xl);
+    }
+    .cert-header {
+      text-align: center;
+      margin-bottom: var(--spacing-3xl);
+    }
+    .cert-title {
+      font-size: 2.5em;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: var(--spacing-xl);
+    }
+    .cert-card {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      background: var(--background-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-lg);
+      box-shadow: var(--neu-raised-sm);
+      transition: all var(--transition-normal);
+      animation: fadeInUp 0.6s ease-out;
+    }
+    .cert-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--neu-raised);
+    }
+    .cert-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-lg);
+      background: var(--accent-color);
+      color: var(--primary-color);
+      font-size: 1.6em;
+      box-shadow: var(--neu-inset-xs);
+    }
+    .cert-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .cert-name {
+      font-size: 1.1em;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0 0 4px;
+    }
+    .cert-issuer {
+      font-size: 0.9em;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .cert-year {
+      flex-shrink: 0;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: 0.8em;
+      font-weight: 700;
+      color: var(--primary-color);
+      box-shadow: var(--neu-inset-xs);
+      white-space: nowrap;
+    }
     @media (max-width: 768px) {
+      .cert-section {
+        padding: 0 var(--spacing-md) var(--spacing-4xl);
+      }
+      .cert-title {
+        font-size: 2em;
+      }
       .page-hero {
         padding: var(--spacing-4xl) var(--spacing-lg) var(--spacing-2xl);
       }
@@ -143,4 +250,19 @@ import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
     }
   `]
 })
-export class SkillsPageComponent {}
+export class SkillsPageComponent implements OnInit {
+  certifications: Certification[] = [];
+
+  constructor(private portfolioService: PortfolioService) {}
+
+  ngOnInit(): void {
+    this.portfolioService.getCertifications().subscribe({
+      next: (certs) => {
+        this.certifications = certs
+          .filter(c => c.isVisible)
+          .sort((a, b) => a.order - b.order);
+      },
+      error: (error) => console.error('Error loading certifications:', error)
+    });
+  }
+}

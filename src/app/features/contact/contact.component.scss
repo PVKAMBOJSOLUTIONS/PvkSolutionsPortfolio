@@ -92,6 +92,7 @@
 
 .badge-icon {
   font-size: 1.3em;
+  color: var(--primary-color);
   animation: bounce 2s ease infinite;
 }
 
@@ -210,6 +211,7 @@
 
 .label-icon {
   font-size: 1.2em;
+  color: var(--primary-color);
 }
 
 .form-input,
@@ -259,7 +261,8 @@
   gap: var(--spacing-xs);
   
   &::before {
-    content: '⚠️';
+    content: '!';
+    font-weight: 800;
     font-size: 1em;
   }
 }
@@ -462,6 +465,7 @@
 
   .method-icon {
     font-size: 2.5em;
+    color: var(--primary-color);
     width: 60px;
     height: 60px;
     display: flex;

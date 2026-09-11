@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { IconComponent } from '../icon/icon.component';
 
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, IconComponent],
   templateUrl: './not-found.component.html',
   styleUrls: ['./not-found.component.scss']
 })
