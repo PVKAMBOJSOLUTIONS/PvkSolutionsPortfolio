@@ -2,7 +2,6 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { IconComponent } from '../../shared/components/icon/icon.component';
 
 interface ContactMethod {
   icon: string;
@@ -14,33 +13,33 @@ interface ContactMethod {
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, IconComponent],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  imports: [ReactiveFormsModule, RouterModule],
+  templateUrl: './contact.component.html'
 })
 export class ContactComponent implements OnInit {
   contactForm!: FormGroup;
   isSubmitting = false;
   submitError = false;
+  draftPrepared = false;
 
   // Form messages are bundled into a mailto draft addressed to this email
   readonly recipientEmail = 'prathamkamboj002@gmail.com';
 
   contactMethods: ContactMethod[] = [
     {
-      icon: '📧',
+      icon: 'mail',
       title: 'Email',
       value: 'prathamkamboj002@gmail.com',
       link: 'mailto:prathamkamboj002@gmail.com'
     },
     {
-      icon: '�',
+      icon: 'phone',
       title: 'Phone',
       value: '+91 90450 88352',
       link: 'tel:+919045088352'
     },
     {
-      icon: '📍',
+      icon: 'location',
       title: 'Location',
       value: 'Mohali, India',
       link: 'https://www.google.com/maps/search/?api=1&query=Mohali,+Punjab,+India'
@@ -104,7 +103,7 @@ export class ContactComponent implements OnInit {
     }
 
     this.isSubmitting = false;
-    this.contactForm.reset();
+    this.draftPrepared = true;
   }
 
   hasError(field: string, error: string): boolean {

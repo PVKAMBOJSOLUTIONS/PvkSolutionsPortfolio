@@ -1,41 +1,24 @@
-<div class="project-card">
-  <div class="project-icon"><app-icon [name]="project.icon || 'folder'"></app-icon></div>
+<article class="project-card">
+  <span class="project-number" aria-hidden="true">{{ index < 10 ? '0' + index : index }}</span>
   <div class="project-content">
-    <h3 class="project-title">{{ project.title || 'Untitled Project' }}</h3>
+    <div class="project-meta"><span>Project notes</span><span>{{ project.status === 'draft' ? 'In development' : 'Portfolio project' }}</span></div>
+    <h3 class="project-title">{{ project.title || 'Untitled project' }}</h3>
     <p class="project-description">{{ project.description || 'No description available.' }}</p>
-
-    @if (project.tags && project.tags.length > 0) {
-      <div class="project-tags">
-        @for (tag of project.tags; track tag) {
-          <span
-            class="project-tag">
-            {{ tag }}
-          </span>
+    <details class="project-details">
+      <summary>Technical details<span class="visually-hidden"> for {{ project.title }}</span></summary>
+      <div>
+        @if (project.tags.length) {
+          <p>Technologies used</p>
+          <div class="project-tags">@for (tag of project.tags; track tag) {<span class="project-tag">{{ tag }}</span>}</div>
         }
+        <p class="project-availability">{{ project.demoUrl ? 'A live demo is available using the link below.' : 'No public demo is currently linked for this project.' }}</p>
       </div>
-    }
-
-    @if ((project.demoUrl || project.githubUrl)) {
+    </details>
+    @if (project.demoUrl || project.githubUrl) {
       <div class="project-links">
-        @if (project.demoUrl) {
-          <a
-            [href]="project.demoUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-link demo">
-            <app-icon name="globe" class="link-icon"></app-icon> Live Demo
-          </a>
-        }
-        @if (project.githubUrl) {
-          <a
-            [href]="project.githubUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-link github">
-            <app-icon name="github" class="link-icon"></app-icon> Code
-          </a>
-        }
+        @if (project.demoUrl) {<a [href]="project.demoUrl" target="_blank" rel="noopener noreferrer" class="text-link">Open live demo<span class="visually-hidden"> for {{ project.title }} (new tab)</span></a>}
+        @if (project.githubUrl) {<a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" class="text-link">View source code<span class="visually-hidden"> for {{ project.title }} (new tab)</span></a>}
       </div>
     }
   </div>
-</div>
+</article>

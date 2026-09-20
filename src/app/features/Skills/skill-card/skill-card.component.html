@@ -1,68 +1,21 @@
 <!-- Loading State -->
-@if (loading) {
-  <div class="loading-state">
-    <div class="spinner"></div>
-    <p>Loading skills...</p>
-  </div>
-}
-
+@if (loading) {<app-skeleton label="Loading skills"></app-skeleton>}
 <!-- Skills Grid -->
 @if (!loading && skills.length > 0) {
   <div class="skills-grid">
-    @for (skill of skills; track skill; let i = $index) {
-      <article
-        class="skill-card"
-        [class.visible]="visibleCards.has(i)"
-        #skillCard>
+    @for (skill of skills; track skill.id) {
+      <article class="skill-card">
         <!-- Accent bar -->
-        <div class="card-accent" [style.background]="getGradient(getColor(i, skill))"></div>
-
         <!-- Header: icon + title -->
-        <div class="card-header">
-          <div class="card-icon-wrapper" [style.background]="getGradient(getColor(i, skill))">
-            <app-icon class="card-icon" [name]="skill.icon"></app-icon>
-          </div>
-          <h3 class="card-title">{{ skill.title }}</h3>
-        </div>
-
+        <h2 class="card-title">{{ skill.title }}</h2>
         <!-- Stats -->
-        <div class="card-stats">
-          <div class="stat-item">
-            <span class="stat-value">{{ formatNumber(skill.projectCount) }}+</span>
-            <span class="stat-label">Projects</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-value">{{ skill.yearsExperience }}</span>
-            <span class="stat-label">Years</span>
-          </div>
-        </div>
-
         <!-- Description -->
         <p class="card-description">{{ skill.description }}</p>
-
         <!-- Tech tags -->
-        <div class="tech-section">
-          <div class="tech-header">
-            <app-icon name="bolt" class="tech-icon"></app-icon>
-            <span>Technologies</span>
-          </div>
-          <div class="tech-tags">
-            @for (tech of skill.techStack; track tech) {
-              <span class="tech-tag">{{ tech }}</span>
-            }
-          </div>
-        </div>
+        <div class="tech-section"><div class="tech-header">Technologies</div><div class="tech-tags">@for (tech of skill.techStack; track tech) {<span class="tech-tag">{{ tech }}</span>}</div></div>
       </article>
     }
   </div>
 }
-
 <!-- Empty State -->
-@if (!loading && skills.length === 0) {
-  <div class="empty-state">
-    <div class="empty-icon"><app-icon name="tools"></app-icon></div>
-    <h3>No Skills Yet</h3>
-    <p>Skill showcases will appear here soon!</p>
-  </div>
-}
+@if (!loading && skills.length === 0) {<div class="empty-state"><h2>Skills unavailable</h2><p>No skill information is currently available.</p></div>}

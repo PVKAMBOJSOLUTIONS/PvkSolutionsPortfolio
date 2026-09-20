@@ -197,7 +197,7 @@ export class PortfolioService {
       },
       {
         id: 3,
-        title: 'SelfForge — Self-Hosted Infrastructure-as-Code Platform',
+        title: 'SelfForge: Self-Hosted Infrastructure-as-Code Platform',
         description: 'Self-hosted server platform built end-to-end as infrastructure-as-code, covering networking, container orchestration, monitoring, logging, storage, secrets, and backups. Services provisioned with Ansible and k3s, monitored via Prometheus, Grafana, and Loki, secured with Vault and Cloudflare.',
         icon: 'server',
         tags: ['Ansible', 'k3s', 'Docker', 'Prometheus', 'Grafana', 'Vault'],
@@ -227,7 +227,7 @@ export class PortfolioService {
       },
       {
         id: 6,
-        title: 'APORIA — Real-Time Social Music Platform',
+        title: 'APORIA: Real-Time Social Music Platform',
         description: 'Real-time social music platform (in development) with synchronized lyrics, audience interaction, and AI-assisted literary/emotional analysis. Next.js/React frontend, ASP.NET Core + SignalR backend for live sessions, with PostgreSQL, Redis, pgvector, and Python RAG/LLM services.',
         icon: 'music',
         tags: ['ASP.NET Core', 'SignalR', 'Next.js', 'PostgreSQL', 'Redis', 'Python'],
@@ -297,26 +297,42 @@ export class PortfolioService {
       { 
         id: 1, 
         title: 'Sports', 
-        description: 'Playing badminton and basketball — always up for a good match.', 
-        icon: 'trophy' 
+        description: 'Playing badminton and basketball, always up for a good match.',
+        icon: 'trophy',
+        activities: [
+          { name: 'Badminton', description: 'Quick rallies, racket control, and movement around the court.' },
+          { name: 'Basketball', description: 'A team sport built around passing, positioning, and shooting.' }
+        ]
       },
       { 
         id: 2, 
         title: 'Travel & Adventure', 
         description: 'Going on treks and long rides to explore new places and unwind.', 
-        icon: 'compass' 
+        icon: 'compass',
+        activities: [
+          { name: 'Treks', description: 'Exploring new places on foot, away from the usual routine.' },
+          { name: 'Long rides', description: 'Taking the longer route to explore and unwind.' }
+        ]
       },
       { 
         id: 3, 
         title: 'Gaming', 
         description: 'Playing Valorant and other competitive titles, along with immersive story-mode games.', 
-        icon: 'gamepad' 
+        icon: 'gamepad',
+        activities: [
+          { name: 'Competitive', description: 'Valorant and other competitive titles.' },
+          { name: 'Story mode', description: 'Immersive games built around characters, worlds, and a narrative.' }
+        ]
       },
       { 
         id: 4, 
         title: 'Tech Exploration', 
         description: 'Keeping up with new hardware technologies and exploring all things tech.', 
-        icon: 'monitor' 
+        icon: 'monitor',
+        activities: [
+          { name: 'Hardware', description: 'Keeping up with new hardware technologies and how they work.' },
+          { name: 'Exploration', description: 'Looking into tools and technologies beyond everyday development.' }
+        ]
       }
     ];
   }
@@ -583,7 +599,7 @@ export class PortfolioService {
         company: 'Covalience, Mohali',
         startDate: 'Jan 2024',
         endDate: 'Present',
-        description: 'Engineered 20+ backend API endpoints using .NET Web API for "theConnection" member management system (Gideons International), improving system reliability and scalability. Developed and optimized stored procedures, reducing data retrieval time by 30%. Delivered responsive Angular UI components and achieved 90%+ unit test coverage using NUnit. Also built GideonNow, a cross-platform .NET MAUI app — implemented 10+ custom handlers, integrated native OS features (camera, local storage, notifications), and automated deployments via CI/CD with Firebase App Distribution, reducing release time by 60%.',
+        description: 'Engineered 20+ backend API endpoints using .NET Web API for "theConnection" member management system (Gideons International), improving system reliability and scalability. Developed and optimized stored procedures, reducing data retrieval time by 30%. Delivered responsive Angular UI components and achieved 90%+ unit test coverage using NUnit. Also built GideonNow, a cross-platform .NET MAUI app. Implemented 10+ custom handlers, integrated native OS features (camera, local storage, notifications), and automated deployments via CI/CD with Firebase App Distribution, reducing release time by 60%.',
         tags: ['.NET Web API', 'Angular', '.NET MAUI', 'SQL Server', 'NUnit', 'CI/CD'],
         position: 'left'
       },
@@ -601,7 +617,7 @@ export class PortfolioService {
       {
         id: 3,
         icon: 'graduation',
-        title: 'B.Tech — Computer Science',
+        title: 'B.Tech in Computer Science',
         company: 'Graphic Era Hill University',
         startDate: 'Oct 2020',
         endDate: 'Jul 2024',

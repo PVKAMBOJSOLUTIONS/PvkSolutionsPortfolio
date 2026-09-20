@@ -1,5 +1,89 @@
-<div class="hobby-card">
-  <div class="hobby-icon"><app-icon [name]="hobby.icon"></app-icon></div>
-  <h3 class="hobby-title">{{ hobby.title }}</h3>
-  <p class="hobby-description">{{ hobby.description }}</p>
-</div>
+<article class="hobby-card">
+  <div class="interest-visual" aria-hidden="true">
+    <span class="visual-caption">{{ hobby.title }} / A line study</span>
+    <svg viewBox="0 0 520 280" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      @switch (hobby.icon) {
+        @case ('trophy') {
+          <rect x="60" y="45" width="400" height="190" />
+          <path d="M260 45V235" />
+          @if (activeActivity?.name === 'Basketball') {
+            <circle cx="260" cy="140" r="38" />
+            <path d="M60 93H133V187H60M460 93H387V187H460M60 64C214 64 214 216 60 216M460 64C306 64 306 216 460 216M75 122V158M445 122V158" />
+            <circle cx="90" cy="140" r="9" /><circle cx="430" cy="140" r="9" />
+          } @else {
+            <path d="M85 45V235M435 45V235M60 68H460M60 212H460M190 45V235M330 45V235M60 140H190M330 140H460" />
+            <path class="study-emphasis" d="M253 35V245M267 35V245" />
+          }
+          <path class="study-measure" d="M60 256H460M60 250V262M460 250V262" />
+        }
+        @case ('compass') {
+          @if (selectedActivity === 1) {
+            <circle cx="150" cy="115" r="26" /><circle cx="150" cy="115" r="52" /><circle cx="150" cy="115" r="78" />
+            <circle cx="395" cy="150" r="22" /><circle cx="395" cy="150" r="44" />
+            <path class="study-emphasis" stroke-dasharray="8 6" d="M84 228C134 208 110 168 170 158S262 112 305 138S430 180 444 107" />
+            <path d="M65 228L79 242M79 228L65 242" />
+            <circle class="study-node" cx="452" cy="100" r="9" /><circle cx="452" cy="100" r="3" />
+            <path class="study-measure" d="M72 262H452M72 256V268M452 256V268" />
+          } @else {
+            <path d="M30 225L140 80L195 150L285 50L360 165L430 105L490 225" />
+            <circle class="study-node" cx="140" cy="80" r="4" /><circle class="study-node" cx="285" cy="50" r="4" /><circle class="study-node" cx="430" cy="105" r="4" />
+            <path class="study-emphasis" stroke-dasharray="7 6" d="M60 238L115 224L98 208L168 196L150 180L228 170L215 154L302 146" />
+            <path class="study-measure" d="M30 258H490M30 252V264M490 252V264" />
+            <path class="study-measure" stroke-dasharray="3 5" d="M500 50V225M494 50H500M494 225H500" />
+          }
+        }
+        @case ('gamepad') {
+          @if (selectedActivity === 1) {
+            <rect class="study-node" x="50" y="132" width="16" height="16" />
+            <circle class="study-node" cx="178" cy="88" r="8" /><circle class="study-node" cx="178" cy="198" r="8" />
+            <circle class="study-node" cx="292" cy="52" r="8" /><circle class="study-node" cx="292" cy="140" r="8" /><circle class="study-node" cx="292" cy="228" r="8" />
+            <path class="study-node" d="M455 124L470 140L455 156L440 140Z" />
+            <path d="M66 140L171 91M66 140L171 195M186 86L284 54M185 91L285 137M185 194L285 144M186 200L284 226M299 56L440 140M300 140L440 140M299 224L440 140" />
+            <path class="study-emphasis" d="M58 140L178 88L292 52L455 140" />
+          } @else {
+            <path class="study-emphasis" d="M160 92H360C392 92 418 118 418 150V188C418 212 392 230 366 222L318 202H202L154 222C128 230 102 212 102 188V150C102 118 128 92 160 92Z" />
+            <path class="study-node" d="M143 128H157V143H172V157H157V172H143V157H128V143H143Z" />
+            <circle class="study-node" cx="355" cy="130" r="7" /><circle class="study-node" cx="375" cy="150" r="7" /><circle class="study-node" cx="335" cy="150" r="7" /><circle class="study-node" cx="355" cy="170" r="7" />
+            <circle class="study-node" cx="205" cy="185" r="11" /><circle class="study-node" cx="315" cy="185" r="11" />
+            <path class="study-measure" d="M102 250H418M102 244V256M418 244V256" />
+          }
+        }
+        @case ('monitor') {
+          @if (selectedActivity === 1) {
+            <circle class="study-node" cx="95" cy="200" r="7" /><circle class="study-node" cx="160" cy="80" r="7" /><circle class="study-node" cx="265" cy="145" r="9" />
+            <circle class="study-node" cx="355" cy="60" r="7" /><circle class="study-node" cx="425" cy="185" r="7" /><circle class="study-node" cx="315" cy="235" r="7" />
+            <path d="M98 194L157 86M166 84L257 140M272 139L350 65M274 147L418 183M269 153L312 229M321 232L419 188" />
+            <circle class="study-emphasis" cx="265" cy="145" r="24" stroke-dasharray="4 5" />
+            <path class="study-measure" d="M95 258H425" />
+          } @else {
+            <rect class="study-emphasis" x="195" y="70" width="130" height="130" />
+            <rect x="232" y="107" width="56" height="56" />
+            <path d="M238 70V38M282 70V38M238 200V232M282 200V232" />
+            <path d="M195 113H145M195 157H145M325 113H375M325 157H375" />
+            <circle class="study-node" cx="140" cy="113" r="5" /><circle class="study-node" cx="140" cy="157" r="5" />
+            <circle class="study-node" cx="380" cy="113" r="5" /><circle class="study-node" cx="380" cy="157" r="5" />
+            <path class="study-measure" d="M195 250H325M195 244V256M325 244V256" />
+          }
+        }
+        @default {
+          <text x="260" y="185" text-anchor="middle" class="study-letter">{{ hobby.title.slice(0, 1) }}</text>
+        }
+      }
+    </svg>
+  </div>
+  <div class="interest-copy">
+    <h2 class="hobby-title">{{ hobby.title }}</h2>
+    <p class="hobby-description">{{ hobby.description }}</p>
+    @if (hobby.activities?.length) {
+      <details class="activity-notes">
+        <summary>Explore activity notes</summary>
+        <div class="activity-choices" role="group" [attr.aria-label]="'Activities in ' + hobby.title">
+          @for (activity of hobby.activities; track activity.name; let i = $index) {
+            <button type="button" class="filter-button" [attr.aria-pressed]="selectedActivity === i" (click)="selectedActivity = i">{{ activity.name }}</button>
+          }
+        </div>
+        @if (activeActivity; as activity) {<p class="activity-description" aria-live="polite">{{ activity.description }}</p>}
+      </details>
+    }
+  </div>
+</article>

@@ -54,10 +54,10 @@ describe('NavbarComponent', () => {
     expect(focus).toHaveBeenCalled();
   });
 
-  it('closes when the backdrop is clicked', () => {
+  it('closes when the menu button is clicked again', () => {
     component.toggleMobileMenu();
     fixture.detectChanges();
-    fixture.nativeElement.querySelector('.mobile-menu-backdrop').click();
+    fixture.nativeElement.querySelector('.mobile-menu-btn').click();
     fixture.detectChanges();
     expect(component.isMobileMenuOpen).toBeFalse();
   });

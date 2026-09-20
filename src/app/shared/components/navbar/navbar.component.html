@@ -1,40 +1,30 @@
-<nav class="navbar">
+<nav class="navbar" aria-label="Main navigation">
   <div class="nav-container">
-    <div class="logo" (click)="navigateTo('')">Pratham's Portfolio</div>
-    
+    <a class="logo" routerLink="/" (click)="closeMobileMenu()">Pratham Kamboj<span aria-hidden="true">.</span></a>
     <!-- Desktop Navigation -->
     <div class="nav-links desktop-nav">
-      <a (click)="navigateTo('')" [class.active]="isActiveRoute('')">Home</a>
-      <a (click)="navigateTo('projects')" [class.active]="isActiveRoute('projects')">Projects</a>
-      <a (click)="navigateTo('skills')" [class.active]="isActiveRoute('skills')">Skills</a>
-      <a (click)="navigateTo('hobbies')" [class.active]="isActiveRoute('hobbies')">Hobbies</a>
-      <a (click)="navigateTo('experience')" [class.active]="isActiveRoute('experience')">Experience</a>
-      <a (click)="navigateTo('contact')" [class.active]="isActiveRoute('contact')">Contact</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ariaCurrentWhenActive="page">Home</a>
+      <a routerLink="/projects" routerLinkActive="active" ariaCurrentWhenActive="page">Projects</a>
+      <a routerLink="/skills" routerLinkActive="active" ariaCurrentWhenActive="page">Skills</a>
+      <a routerLink="/experience" routerLinkActive="active" ariaCurrentWhenActive="page">Experience</a>
+      <a routerLink="/hobbies" routerLinkActive="active" ariaCurrentWhenActive="page">Interests</a>
+      <a routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a>
     </div>
-
     <!-- Mobile Menu Button -->
     <button #menuButton type="button" class="mobile-menu-btn" (click)="toggleMobileMenu()"
       aria-controls="mobile-navigation" [attr.aria-expanded]="isMobileMenuOpen"
       [attr.aria-label]="isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'">
-      <span class="menu-icon" [class.open]="isMobileMenuOpen" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
+      {{ isMobileMenuOpen ? 'Close' : 'Menu' }}
     </button>
   </div>
-
   <!-- Mobile Navigation -->
-  <button type="button" class="mobile-menu-backdrop" [class.active]="isMobileMenuOpen"
-    [disabled]="!isMobileMenuOpen" tabindex="-1" aria-label="Close navigation menu"
-    [attr.aria-hidden]="!isMobileMenuOpen" (click)="closeMobileMenu(true)"></button>
   <div id="mobile-navigation" class="mobile-nav" [class.active]="isMobileMenuOpen"
     [attr.inert]="isMobileMenuOpen ? null : ''" [attr.aria-hidden]="!isMobileMenuOpen">
-    <a routerLink="/" (click)="closeMobileMenu()" [class.active]="isActiveRoute('')">Home</a>
-    <a routerLink="/projects" (click)="closeMobileMenu()" [class.active]="isActiveRoute('projects')">Projects</a>
-    <a routerLink="/skills" (click)="closeMobileMenu()" [class.active]="isActiveRoute('skills')">Skills</a>
-    <a routerLink="/hobbies" (click)="closeMobileMenu()" [class.active]="isActiveRoute('hobbies')">Hobbies</a>
-    <a routerLink="/experience" (click)="closeMobileMenu()" [class.active]="isActiveRoute('experience')">Experience</a>
-    <a routerLink="/contact" (click)="closeMobileMenu()" [class.active]="isActiveRoute('contact')">Contact</a>
+    <a routerLink="/" (click)="closeMobileMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ariaCurrentWhenActive="page">Home</a>
+    <a routerLink="/projects" (click)="closeMobileMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Projects</a>
+    <a routerLink="/skills" (click)="closeMobileMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Skills</a>
+    <a routerLink="/experience" (click)="closeMobileMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Experience</a>
+    <a routerLink="/hobbies" (click)="closeMobileMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Interests</a>
+    <a routerLink="/contact" (click)="closeMobileMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a>
   </div>
 </nav>

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { LegalComponent } from './features/legal.component';
 
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { HomeComponent } from './features/home/home.component';
@@ -39,6 +40,8 @@ export const routes: Routes = [
     component: ContactComponent,
     title: 'Contact Me!'
   },
+  { path: 'privacy', component: LegalComponent, data: { kind: 'privacy' }, title: 'Privacy Policy | Pratham Kamboj' },
+  { path: 'terms', component: LegalComponent, data: { kind: 'terms' }, title: 'Terms of Service | Pratham Kamboj' },
   { 
     path: '**', 
     component: NotFoundComponent,

@@ -1,84 +1,23 @@
-<div class="timeline-wrapper" #timelineWrapper>
+<div class="timeline-wrapper">
   <!-- Loading State -->
-  @if (loading) {
-    <div class="loading-state">
-      <div class="spinner"></div>
-      <p>Loading experiences...</p>
-    </div>
-  }
-
+  @if (loading) {<app-skeleton label="Loading experience"></app-skeleton>}
   <!-- Timeline -->
   @if (!loading && experiences.length > 0) {
-    <div class="timeline-container">
-      <!-- Background Line -->
-      <div class="timeline-line timeline-line-bg"></div>
-      <!-- Active Progress Line -->
-      <div
-        class="timeline-line timeline-line-active"
-        [style.height.%]="scrollProgress * 100">
-      </div>
-      <!-- Animated Dot -->
-      <div
-        class="timeline-dot"
-        [style.top.%]="scrollProgress * 100">
-        <div class="dot-pulse"></div>
-        <div class="dot-inner"></div>
-      </div>
-      <!-- Timeline Items -->
-      <div class="timeline-items">
-        @for (exp of experiences; track exp; let i = $index) {
-          <div
-            class="timeline-item"
-            [attr.data-index]="i"
-            [class.timeline-item-left]="i % 2 === 0"
-            [class.timeline-item-right]="i % 2 !== 0"
-            [class.visible]="visibleItems.has(i)">
-            <!-- Node Circle -->
-            <div
-              class="timeline-node"
-              [class.active]="activeNodes.has(i)"
-              [style.background]="getNodeBackground(getColor(i), activeNodes.has(i))">
-              @if (activeNodes.has(i)) {
-                <div class="node-pulse"></div>
-              }
-            </div>
-            <!-- Content Card -->
-            <div class="timeline-card">
-              <div class="card-header">
-                <div class="card-icon" [style.background]="getGradient(getColor(i))">
-                  <app-icon class="icon-emoji" [name]="exp.icon || 'briefcase'"></app-icon>
-                </div>
-                <div class="card-title-section">
-                  <h3 class="card-title">{{ exp.title }}</h3>
-                  <p class="card-company">{{ exp.company }}</p>
-                </div>
-                <span class="card-period" [style.background]="getPeriodBg(getColor(i))">
-                  {{ getPeriod(exp) }}
-                </span>
-              </div>
-              <p class="card-description">{{ exp.description }}</p>
-              <div class="card-skills">
-                @for (tag of exp.tags; track tag; let idx = $index) {
-                  <span
-                    class="skill-tag"
-                    [style.animation-delay]="visibleItems.has(i) ? (idx * 100) + 'ms' : '0ms'">
-                    {{ tag }}
-                  </span>
-                }
-              </div>
-            </div>
-          </div>
-        }
-      </div>
+    <!-- Background Line -->
+    <!-- Active Progress Line -->
+    <!-- Animated Dot -->
+    <!-- Timeline Items -->
+    <div class="timeline-items">
+      @for (exp of experiences; track exp.id) {
+        <!-- Node Circle -->
+        <!-- Content Card -->
+        <article class="timeline-card">
+          <p class="card-period">{{ getPeriod(exp) }}</p>
+          <div><h2 class="card-title">{{ exp.title }}</h2><p class="card-company">{{ exp.company }}</p><p class="card-description">{{ exp.description }}</p><div class="card-skills">@for (tag of exp.tags; track tag) {<span class="skill-tag">{{ tag }}</span>}</div></div>
+        </article>
+      }
     </div>
   }
-
   <!-- Empty State -->
-  @if (!loading && experiences.length === 0) {
-    <div class="empty-state">
-      <div class="empty-icon"><app-icon name="clipboard"></app-icon></div>
-      <h3>No Experience Yet</h3>
-      <p>Experience timeline will appear here soon!</p>
-    </div>
-  }
+  @if (!loading && experiences.length === 0) {<div class="empty-state"><h2>Experience unavailable</h2><p>No experience entries are currently available.</p></div>}
 </div>

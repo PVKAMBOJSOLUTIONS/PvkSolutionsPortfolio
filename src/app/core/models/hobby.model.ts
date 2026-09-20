@@ -3,4 +3,5 @@ export interface Hobby {
   title: string;
   description: string;
   icon: string;
+  activities?: { name: string; description: string }[];
 }

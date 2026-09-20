@@ -1,39 +1,36 @@
-<section id="projects" class="projects-page">
-  <div class="page-hero">
-    <h1 class="page-title">My Projects</h1>
-    <p class="page-subtitle">A showcase of the apps and tools I've built.</p>
-    <div class="title-underline"></div>
-  </div>
-
+<section class="projects-page" [class.is-preview]="limit > 0">
+  @if (limit === 0) {
+    <div class="page-hero"><p class="eyebrow">Work / Project index</p><h1 class="page-title">Selected projects.</h1><p class="page-subtitle">Backend services, web applications, mobile development, and infrastructure. Explore the implementation notes and available project links.</p></div>
+  }
   <div class="projects-container">
-
     <!-- Loading State -->
     @if (loading) {
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <p>Loading projects...</p>
-      </div>
+      <app-skeleton label="Loading projects"></app-skeleton>
+    } @else if (loadError) {
+      <div class="empty-state" role="alert"><h2>Projects unavailable</h2><p>The project list could not be loaded.</p><button class="btn" (click)="loadProjects()">Try again</button></div>
     }
-
     <!-- Projects Grid -->
-    @if (!loading) {
+    @if (!loading && !loadError) {
+      @if (limit === 0) {
+        <div class="project-controls">
+          <label class="search-field">Search projects<input type="search" [value]="query" (input)="query = $any($event.target).value" placeholder="Project name or technology"></label>
+          <div class="filter-group" role="group" aria-label="Filter projects by discipline">
+            @for (item of categories; track item) {<button type="button" class="filter-button" [attr.aria-pressed]="category === item" (click)="category = item">{{ item }}</button>}
+          </div>
+        </div>
+        <p class="result-count" role="status">{{ displayedProjects.length }} {{ displayedProjects.length === 1 ? 'project' : 'projects' }}</p>
+      }
       <div class="projects-grid">
-        @for (project of displayedProjects; track project) {
-          <app-project-card
-            [project]="project">
-          </app-project-card>
+        @for (project of displayedProjects; track project.id; let i = $index) {
+          <app-project-card [project]="project" [index]="i + 1"></app-project-card>
+        } @empty {
+          <div class="empty-state"><h3>No projects found</h3><p>Try another search or select a different discipline.</p></div>
         }
       </div>
     }
-
     <!-- View All Button (only show if limit is set and there are more projects) -->
     @if (showViewAll && limit > 0 && allProjects.length > displayedProjects.length) {
-      <div class="view-all-container">
-        <button class="view-all-btn" (click)="viewAllProjects()">
-          <span>View All Projects</span>
-          <span class="arrow">→</span>
-        </button>
-      </div>
+      <div class="view-all-container"><button class="view-all-btn" (click)="viewAllProjects()">View all projects</button></div>
     }
   </div>
 </section>

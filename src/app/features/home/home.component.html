@@ -1,151 +1,68 @@
 <div class="home-page">
   <!-- Hero Section with Animated Background -->
-  <section class="hero-section">
+  <section class="hero-section" aria-labelledby="intro-title">
     <!-- Animated Gradient Background -->
-    <div class="animated-bg"></div>
-
     <!-- Morphing Blobs -->
-    <div class="blob-container">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
-
     <!-- Floating Particles -->
-    <div class="particles">
-      @for (particle of particles; track particle; let i = $index) {
-        <div class="particle"
-          [style.left.%]="(i * 7) + 5"
-        [style.animation-delay.s]="i * 0.5"></div>
-      }
-    </div>
-
     <!-- Hero Content -->
+    <div class="hero-topline"><span>Mohali, India</span></div>
     <div class="hero-content">
       <div class="hero-text">
-        <div class="greeting fade-in-up">
-          <span>Hello, I'm</span>
-        </div>
-
-        <h1 class="hero-title glowing-text fade-in-up delay-1">
-          Pratham Kamboj
-        </h1>
-
-        <div class="typewriter-container fade-in-up delay-2">
-          <h2 class="typewriter-text">
-            {{ typedText }}<span class="cursor">|</span>
-          </h2>
-        </div>
-
-        <p class="hero-description fade-in-up delay-3">
-          Software Engineer building production .NET backends and Angular front
-          ends, plus cross-platform .NET MAUI apps — with hands-on cloud, DevOps,
-          and AI integration experience.
-        </p>
-
-        <div class="hero-buttons fade-in-up delay-4">
-          <button class="btn btn-primary pulse" (click)="navigateTo('projects')">
-            <span>View My Work</span>
-            <span class="arrow">→</span>
-          </button>
-          <button class="btn btn-secondary" (click)="downloadCV()">
-            <span>Download CV</span>
-            <app-icon name="download" class="icon"></app-icon>
-          </button>
-        </div>
-
-        <div class="social-links fade-in-up delay-5">
-          <a href="https://linkedin.com/in/pratham-kamboj" target="_blank" class="social-icon bounce">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
-          <a href="mailto:prathamkamboj002@gmail.com" class="social-icon bounce delay-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-            </svg>
-          </a>
+        <p class="eyebrow">Software Engineer / Web &amp; Mobile</p>
+        <h1 id="intro-title" class="hero-title">Pratham<br><em>Kamboj.</em></h1>
+        <p class="hero-description">I build backend systems and web interfaces with .NET and Angular, and develop cloud solutions on Azure. Microsoft Certified: Azure Developer Associate.</p>
+        <div class="hero-buttons">
+          <a routerLink="/projects" class="btn btn-primary">Explore projects</a>
+          <a href="assets/resume.pdf" download="Pratham_Kamboj_Resume.pdf" class="text-link">Download resume (PDF)</a>
         </div>
       </div>
-
       <!-- Animated Profile Card -->
-      <div class="hero-image fade-in-right">
-        <div class="tilt-card profile-card">
-          <div class="card-glow"></div>
-          <div class="profile-image-wrapper">
-            <div class="profile-ring"></div>
-            <img src="assets/profile.png" alt="Pratham Kamboj" class="profile-image" width="280" height="280" decoding="async">
-          </div>
+      <figure class="portrait">
+        <div class="portrait-stage">
+          <img src="assets/profile.png" alt="Portrait of Pratham Kamboj" width="1114" height="1412" decoding="async" fetchpriority="high">
         </div>
-      </div>
+      </figure>
     </div>
-
     <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-      <div class="mouse">
-        <div class="wheel"></div>
-      </div>
-      <span>Scroll Down</span>
-    </div>
+    <nav class="section-index" aria-label="On this page">
+      <a href="#selected-work"><span>01</span> Selected work</a>
+      <a href="#technical-practice"><span>02</span> Technical practice</a>
+      <a href="#contact-note"><span>03</span> Contact</a>
+    </nav>
   </section>
 
   <!-- Stats Section -->
-  <section class="stats-section" #animateSection>
-    <div class="container">
-      <div class="stats-grid">
-        @for (stat of stats; track stat; let i = $index) {
-          <div class="stat-card">
-            <div class="stat-icon"><app-icon [name]="stat.icon || 'star'"></app-icon></div>
-            <div class="stat-number">{{ stat.number }}</div>
-            <div class="stat-suffix">{{ stat.suffix }}</div>
-            <div class="stat-label">{{ stat.label }}</div>
-          </div>
+  @if (loading) {
+    <div class="container"><app-skeleton label="Loading professional facts"></app-skeleton></div>
+  } @else if (stats.length) {
+    <section class="facts-section container" aria-label="Professional facts">
+      <dl class="facts-list">
+        @for (stat of stats; track stat.id) {
+          <div><dt>{{ stat.label }}</dt><dd><span class="stat-number">{{ stat.number }}{{ stat.suffix }}</span></dd></div>
         }
-      </div>
-    </div>
+      </dl>
+    </section>
+  }
+
+  <section id="selected-work" class="editorial-section container" aria-labelledby="work-title">
+    <div class="section-heading"><p class="eyebrow">01 / Selected work</p><h2 id="work-title">Systems in practice.</h2><p>Application development across web and mobile.</p></div>
+    <div><app-projects [limit]="2"></app-projects><a routerLink="/projects" class="text-link section-link">Browse the full project index</a></div>
   </section>
 
   <!-- Skills Section -->
-  <section class="skills-section" #animateSection>
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
-          Core Technologies
-        </h2>
-        <p class="section-subtitle">Tools and technologies I work with</p>
-      </div>
-
-      <div class="skills-grid">
-        @for (skill of skills; track skill) {
-          <div class="skill-card tilt-card">
-            <div class="skill-icon"><app-icon [name]="skill.icon"></app-icon></div>
-            <h3 class="skill-name">{{ skill.name }}</h3>
-            <p class="skill-description">{{ skill.description }}</p>
-            <div class="skill-badge">Proficient</div>
-          </div>
-        }
-      </div>
+  <section id="technical-practice" class="editorial-section container" aria-labelledby="practice-title">
+    <div class="section-heading"><p class="eyebrow">02 / Technical practice</p><h2 id="practice-title">Tools of the work.</h2><a routerLink="/skills" class="text-link">Skills and certifications</a></div>
+    <div class="technology-list">
+      @for (skill of skills; track skill.name; let i = $index) {
+        <div class="technology-row"><span class="entry-number">0{{ i + 1 }}</span><h3>{{ skill.name }}</h3><p>{{ skill.description }}</p></div>
+      }
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="cta-section" #animateSection>
-    <div class="cta-card tilt-card">
-      <div class="cta-bg-pattern"></div>
-      <h2 class="cta-title">Let's Build Something Amazing Together</h2>
-      <p class="cta-text">
-        Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
-      </p>
-      <div class="cta-buttons">
-        <button class="btn btn-primary" (click)="navigateTo('contact')">
-          <span>Get In Touch</span>
-          <app-icon name="chat" class="icon"></app-icon>
-        </button>
-        <button class="btn btn-secondary" (click)="navigateTo('projects')">
-          <span>View Projects</span>
-          <app-icon name="rocket" class="icon"></app-icon>
-        </button>
-      </div>
-    </div>
+  <section id="contact-note" class="contact-note container" aria-labelledby="contact-title">
+    <p class="eyebrow">03 / Contact</p>
+    <h2 id="contact-title">Have something<br><em>to discuss?</em></h2>
+    <div><p>For questions about my work, technical collaboration, or engineering roles.</p><a routerLink="/contact" class="text-link">Contact information</a></div>
   </section>
 </div>

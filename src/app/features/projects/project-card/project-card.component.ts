@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-
 import { Project } from '../../../core/models';
-import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 /**
  * ProjectCardComponent - Displays a single project card
@@ -11,10 +9,9 @@ import { IconComponent } from '../../../shared/components/icon/icon.component';
 @Component({
   selector: 'app-project-card',
   standalone: true,
-  imports: [IconComponent],
-  templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss']
+  templateUrl: './project-card.component.html'
 })
 export class ProjectCardComponent {
   @Input() project!: Project;
+  @Input() index = 1;
 }

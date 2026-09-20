@@ -2,14 +2,13 @@ import { Component, HostListener, OnInit, OnDestroy, ElementRef, ViewChild, PLAT
 import { isPlatformBrowser } from '@angular/common';
 import { Experience } from '../../../core/models';
 import { PortfolioService } from '../../../core/services/portfolio.service';
-import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { SkeletonComponent } from '../../../shared/components/skeleton.component';
 
 @Component({
   selector: 'app-wave-timeline',
   standalone: true,
-  imports: [IconComponent],
-  templateUrl: './wave-timeline.component.html',
-  styleUrls: ['./wave-timeline.component.scss']
+  imports: [SkeletonComponent],
+  templateUrl: './wave-timeline.component.html'
 })
 export class WaveTimelineComponent implements OnInit, OnDestroy {
   @ViewChild('timelineWrapper') timelineWrapper!: ElementRef;
@@ -41,7 +40,7 @@ export class WaveTimelineComponent implements OnInit, OnDestroy {
       next: (experiences) => {
         this.experiences = experiences;
         this.loading = false;
-        if (isPlatformBrowser(this.platformId)) {
+        if (isPlatformBrowser(this.platformId) && this.timelineWrapper) {
           // Wait for the @for block to render the items, then observe them
           setTimeout(() => {
             this.setupVisibilityObserver();
@@ -98,7 +97,7 @@ export class WaveTimelineComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll')
   onScroll() {
-    if (!isPlatformBrowser(this.platformId) || this.scrollTicking) return;
+    if (!isPlatformBrowser(this.platformId) || !this.timelineWrapper || this.scrollTicking) return;
     // Throttle to one update per animation frame for smooth scrolling
     this.scrollTicking = true;
     requestAnimationFrame(() => {

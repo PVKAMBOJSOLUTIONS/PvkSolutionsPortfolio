@@ -1,15 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Hobby } from '../../../core/models';
-import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-hobby-card',
   standalone: true,
-  imports: [IconComponent],
-  templateUrl: './hobby-card.component.html',
-  styleUrls: ['./hobby-card.component.scss']
+  templateUrl: './hobby-card.component.html'
 })
-export class HobbyCardComponent {
+export class HobbyCardComponent implements OnChanges {
   @Input() hobby!: Hobby;
+  selectedActivity = 0;
+
+  ngOnChanges(): void {
+    this.selectedActivity = 0;
+  }
+
+  get activeActivity() {
+    return this.hobby.activities?.[this.selectedActivity] ?? this.hobby.activities?.[0];
+  }
 }

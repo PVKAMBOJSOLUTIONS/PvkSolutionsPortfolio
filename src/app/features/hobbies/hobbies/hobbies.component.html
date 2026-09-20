@@ -1,29 +1,47 @@
 <section id="hobbies" class="hobbies-section">
   @if (limit === 0) {
     <div class="page-hero">
-      <h1 class="page-title">Beyond Code</h1>
-      <p class="page-subtitle">What I do when I'm not coding</p>
-      <div class="title-underline"></div>
+      <p class="eyebrow">Personal / Away from work</p>
+      <h1 class="page-title">Other interests.</h1>
+      <p class="page-subtitle">On the court, out exploring, or following a new curiosity. Select an interest to take a closer look.</p>
     </div>
   }
   <div class="hobbies-container">
-
-    <div class="hobbies-grid">
-      @for (hobby of displayedHobbies; track hobby) {
-        <app-hobby-card
-          [hobby]="hobby">
-        </app-hobby-card>
-      }
-    </div>
-
-    <!-- View All Button -->
-    @if (showViewAll && hobbies.length > limit) {
-      <div class="view-all-container">
-        <button class="view-all-btn" (click)="viewAllHobbies()">
-          <span>View All Hobbies</span>
-          <span class="arrow">→</span>
-        </button>
+    @if (loading) {
+      <app-skeleton label="Loading interests"></app-skeleton>
+    } @else if (loadError) {
+      <div class="empty-state" role="alert"><h2>Interests unavailable</h2><p>The interests could not be loaded.</p><button type="button" class="btn retry-interests" (click)="loadHobbies()">Try again</button></div>
+    } @else if (activeHobby) {
+      <div class="interest-explorer">
+        <div class="interest-index">
+          <p class="eyebrow">An index of interests</p>
+          <div class="interest-choices" role="group" aria-label="Choose an interest">
+            @for (hobby of displayedHobbies; track hobby.id; let i = $index) {
+              <button type="button" class="interest-choice" [id]="'interest-choice-' + hobby.id" [attr.aria-controls]="'interest-panel-' + hobby.id" [attr.aria-pressed]="activeHobby.id === hobby.id" (click)="selectedId = hobby.id">
+                <span class="entry-number">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+                <span>{{ hobby.title }}</span>
+                <span class="interest-selection" aria-hidden="true">{{ activeHobby.id === hobby.id ? '−' : '+' }}</span>
+              </button>
+            }
+          </div>
+          <p class="interest-hint">Choose a subject, then open its activity notes.</p>
+        </div>
+        <div class="interest-panels">
+          @for (hobby of displayedHobbies; track hobby.id) {
+            <section [id]="'interest-panel-' + hobby.id" [hidden]="activeHobby.id !== hobby.id" [attr.aria-labelledby]="'interest-choice-' + hobby.id">
+              @if (activeHobby.id === hobby.id) {<app-hobby-card [hobby]="hobby"></app-hobby-card>}
+            </section>
+          }
+          <div class="interest-pagination">
+            <p role="status">{{ activeIndex + 1 }} / {{ displayedHobbies.length }} interests</p>
+            @if (displayedHobbies.length > 1) {<button type="button" class="next-interest" (click)="nextInterest()">Next interest</button>}
+          </div>
+        </div>
       </div>
+    } @else {
+      <p class="empty-state">No interests are currently available.</p>
     }
+    <!-- View All Button -->
+    @if (showViewAll && limit > 0 && hobbies.length > limit) {<div class="view-all-container"><button class="view-all-btn" (click)="viewAllHobbies()">View all interests</button></div>}
   </div>
 </section>

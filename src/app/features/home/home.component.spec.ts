@@ -1,109 +1,71 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { of } from 'rxjs';
+import { of, Subject, throwError } from 'rxjs';
 import { PortfolioService } from '../../core/services/portfolio.service';
+import { HomeStat } from '../../core/models';
 import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let observe: jasmine.Spy;
-  let unobserve: jasmine.Spy;
-  let disconnect: jasmine.Spy;
-  let intersectionCallback: IntersectionObserverCallback;
+  let service: jasmine.SpyObj<PortfolioService>;
 
   beforeEach(async () => {
-    observe = jasmine.createSpy('observe');
-    unobserve = jasmine.createSpy('unobserve');
-    disconnect = jasmine.createSpy('disconnect');
-    spyOnProperty(document, 'hidden', 'get').and.returnValue(false);
-    spyOn(window, 'matchMedia').and.callFake(query => ({ matches: false, media: query } as MediaQueryList));
-    spyOn(window, 'IntersectionObserver').and.callFake(function(callback) {
-      intersectionCallback = callback;
-      return { observe, unobserve, disconnect } as unknown as IntersectionObserver;
-    });
+    service = jasmine.createSpyObj('PortfolioService', ['getHomeStats', 'getProjects']);
+    service.getHomeStats.and.returnValue(of([
+      { id: 1, number: 3, label: 'Years Experience', suffix: '+', order: 1, isVisible: true }
+    ]));
+    service.getProjects.and.returnValue(of([]));
     await TestBed.configureTestingModule({
       imports: [HomeComponent],
-      providers: [
-        provideRouter([]),
-        { provide: PortfolioService, useValue: {
-          getPageContent: () => of({ typewriterWords: ['Software Engineer', 'Angular Developer'] }),
-          getHomeStats: () => of([{ id: 1, number: 3, label: 'Years Experience', suffix: '+', order: 1, isVisible: true }])
-        } }
-      ]
+      providers: [provideRouter([]), { provide: PortfolioService, useValue: service }]
     }).compileComponents();
     fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
   });
 
-  it('renders stats without waiting for animation frames', () => {
+  it('renders a static professional introduction', fakeAsync(() => {
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.stat-number').textContent).toBe('3');
-  });
-
-  it('uses static text and no scroll observer on mobile or reduced motion', fakeAsync(() => {
-    (window.matchMedia as jasmine.Spy).and.returnValue({ matches: true });
-    fixture.detectChanges();
-    expect(component.typedText).toBe('Software Engineer');
-    expect(observe).not.toHaveBeenCalled();
+    const heading = fixture.nativeElement.querySelector('h1').textContent;
     tick(60000);
-    expect(component.typedText).toBe('Software Engineer');
+    expect(fixture.nativeElement.querySelector('h1').textContent).toBe(heading);
+    expect(fixture.nativeElement.textContent).toContain('Software Engineer');
+    expect(fixture.nativeElement.querySelector('.cursor')).toBeNull();
   }));
 
-  it('stops typing and disconnects the observer when destroyed', fakeAsync(() => {
+  it('uses real links for projects and the resume', () => {
     fixture.detectChanges();
-    tick(2200);
-    expect(component.typedText).not.toBe('Software Engineer');
-    fixture.destroy();
-    const text = component.typedText;
-    tick(60000);
-    expect(component.typedText).toBe(text);
-    expect(disconnect).toHaveBeenCalled();
-  }));
-
-  it('does not measure every card on mouse movement', () => {
-    fixture.detectChanges();
-    const card = fixture.nativeElement.querySelector('.tilt-card');
-    const measure = spyOn(card, 'getBoundingClientRect');
-    card.dispatchEvent(new MouseEvent('mousemove', { bubbles: true }));
-    expect(measure).not.toHaveBeenCalled();
+    expect(fixture.nativeElement.querySelector('a[href="/projects"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('a[download][href="assets/resume.pdf"]')).not.toBeNull();
   });
 
-  it('stops typing when the tab becomes hidden', fakeAsync(() => {
+  it('removes decorative effects and icon cards', () => {
     fixture.detectChanges();
-    (Object.getOwnPropertyDescriptor(document, 'hidden')!.get as jasmine.Spy).and.returnValue(true);
-    tick(60000);
-    expect(component.typedText).toBe('Software Engineer');
-  }));
-
-  it('does not hide sections that are already visible during startup', () => {
-    spyOn(HTMLElement.prototype, 'getBoundingClientRect').and.returnValue({ top: 0 } as DOMRect);
-    fixture.detectChanges();
-    expect(observe).not.toHaveBeenCalled();
-    expect(fixture.nativeElement.querySelector('.reveal-pending')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.blob, .particles, .animated-bg, .tilt-card, app-icon')).toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('.technology-row').length).toBe(6);
   });
 
-  it('prepares only below-the-fold sections for a scroll reveal', () => {
-    spyOn(HTMLElement.prototype, 'getBoundingClientRect').and.returnValue({ top: window.innerHeight + 1 } as DOMRect);
+  it('shows a skeleton while facts load', () => {
+    service.getHomeStats.and.returnValue(new Subject<HomeStat[]>());
     fixture.detectChanges();
-    expect(observe).toHaveBeenCalledTimes(3);
-    expect(fixture.nativeElement.querySelectorAll('.reveal-pending').length).toBe(3);
+    expect(fixture.nativeElement.querySelector('app-skeleton [role="status"]')).not.toBeNull();
   });
 
-  it('reveals each section only once', () => {
+  it('removes the portfolio label and shows a static portrait with caption', () => {
     fixture.detectChanges();
-    const target = fixture.nativeElement.querySelector('.stats-section');
-    intersectionCallback([{ target, isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
-    expect(target.classList.contains('animate-in')).toBeTrue();
-    expect(unobserve).toHaveBeenCalledWith(target);
+    expect(fixture.nativeElement.textContent).not.toContain('Independent portfolio');
+    expect(fixture.nativeElement.querySelector('.portrait-controls')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.portrait img')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.portrait figcaption')).toBeNull();
   });
 
-  it('finishes the desktop typing sequence instead of looping forever', fakeAsync(() => {
+  it('renders supplied facts without animation', () => {
     fixture.detectChanges();
-    tick(60000);
-    expect(component.typedText).toBe('Software Engineer');
-    const detectChanges = spyOn(fixture.componentRef.changeDetectorRef, 'detectChanges');
-    tick(60000);
-    expect(detectChanges).not.toHaveBeenCalled();
-  }));
+    expect(fixture.nativeElement.querySelector('.stat-number').textContent).toContain('3');
+  });
+
+  it('does not invent fallback metrics when data fails', () => {
+    service.getHomeStats.and.returnValue(throwError(() => new Error('Unavailable')));
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.stat-number')).toBeNull();
+    expect(fixture.nativeElement.querySelector('app-skeleton')).toBeNull();
+  });
 });

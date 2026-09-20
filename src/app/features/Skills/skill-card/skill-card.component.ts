@@ -2,14 +2,13 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChildren, 
 import { isPlatformBrowser } from '@angular/common';
 import { PortfolioService } from '../../../core/services/portfolio.service';
 import { SkillShowcase } from '../../../core/models';
-import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { SkeletonComponent } from '../../../shared/components/skeleton.component';
 
 @Component({
   selector: 'app-skills-card',
   standalone: true,
-  imports: [IconComponent],
-  templateUrl: './skill-card.component.html',
-  styleUrls: ['./skill-card.component.scss']
+  imports: [SkeletonComponent],
+  templateUrl: './skill-card.component.html'
 })
 export class SkillsShowcaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;
@@ -72,7 +71,7 @@ export class SkillsShowcaseComponent implements OnInit, AfterViewInit, OnDestroy
   }
   
   ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && this.skillCards.length) {
       // Re-run whenever the card list renders/changes (data loads async)
       this.skillCards.changes.subscribe(() => this.setupScrollAnimations());
       this.setupScrollAnimations();
