@@ -8,3 +8,10 @@
 
 <!-- Footer - Always visible at bottom -->
 <app-footer></app-footer>
+
+<!-- Route transition sheet -->
+<div class="page-curtain" [class.is-covering]="covering" [class.is-revealing]="revealing" aria-hidden="true">
+  <div class="curve curve-top"></div>
+  <p class="curtain-label">{{ curtainLabel }}</p>
+  <div class="curve curve-bottom"></div>
+</div>

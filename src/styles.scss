@@ -328,3 +328,21 @@ html { scrollbar-color: var(--border-medium) var(--background-primary); }
   .footer-bottom p { width: 100%; }
   .contact-note { padding-block: 3rem; }
 }
+
+/* ========== ROUTE TRANSITIONS ========== */
+/* A charcoal sheet with a curved leading edge sweeps up, shows the destination name, then lifts away with a curved trailing edge. */
+.page-curtain { position: fixed; inset: 0; z-index: 500; pointer-events: none; visibility: hidden; display: flex; align-items: center; justify-content: center; background: var(--text-primary); color: var(--background-primary); transform: translateY(112%); }
+.page-curtain.is-covering { visibility: visible; transform: translateY(0); transition: transform .42s cubic-bezier(.77, 0, .18, 1); }
+.page-curtain.is-revealing { visibility: visible; transform: translateY(-112%); transition: transform .48s cubic-bezier(.77, 0, .18, 1); }
+.page-curtain .curve { position: absolute; left: -20vw; width: 140vw; height: 20vh; background: var(--text-primary); }
+.page-curtain .curve-top { bottom: 100%; border-radius: 50% 50% 0 0 / 100% 100% 0 0; transform-origin: bottom; transform: scaleY(1); }
+.page-curtain .curve-bottom { top: 100%; border-radius: 0 0 50% 50% / 0 0 100% 100%; transform-origin: top; transform: scaleY(0); }
+.page-curtain.is-covering .curve-top { transform: scaleY(0); transition: transform .28s .3s cubic-bezier(.77, 0, .18, 1); }
+.page-curtain.is-revealing .curve-top { transform: scaleY(0); }
+.page-curtain.is-revealing .curve-bottom { transform: scaleY(1); transition: transform .22s cubic-bezier(.77, 0, .18, 1); }
+.curtain-label { margin: 0; font-family: var(--font-family-heading); font-size: clamp(2.25rem, 7vw, 5rem); letter-spacing: -.02em; opacity: 0; transform: translateY(1.25rem); transition: opacity .3s ease, transform .3s ease; }
+.page-curtain.is-covering .curtain-label { opacity: 1; transform: translateY(0); transition-delay: .32s; }
+.page-curtain.is-revealing .curtain-label { opacity: 0; transform: translateY(-1.25rem); transition-delay: 0s; }
+@media (prefers-reduced-motion: reduce) {
+  .page-curtain { display: none; }
+}
