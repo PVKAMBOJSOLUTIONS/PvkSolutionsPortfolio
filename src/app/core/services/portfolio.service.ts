@@ -178,7 +178,7 @@ export class PortfolioService {
       {
         id: 1,
         title: 'Member Management System',
-        description: 'Member tool and management system for senior citizens. Engineered 20+ backend API endpoints with .NET Web API, optimized stored procedures cutting data retrieval time by 30%, and delivered responsive Angular UI with 90%+ NUnit test coverage.',
+        description: 'Member management system for senior citizens. 20+ .NET Web API endpoints, 30% faster data retrieval, 90%+ NUnit coverage.',
         icon: 'users',
         tags: ['.NET Web API', 'Angular', 'SQL Server', 'NUnit'],
         status: 'published',
@@ -188,7 +188,7 @@ export class PortfolioService {
       {
         id: 2,
         title: 'Cross-Platform Mobile App',
-        description: '.NET MAUI app with 10+ custom handlers and validation services. Integrated native OS features (camera, local storage, notifications) and automated deployments via CI/CD with Firebase App Distribution, reducing release time by 60%.',
+        description: '.NET MAUI app with 10+ custom handlers and native OS integrations. CI/CD via Firebase App Distribution, 60% faster releases.',
         icon: 'mobile',
         tags: ['.NET MAUI', 'XAML', 'MVVM', 'CI/CD', 'Firebase'],
         status: 'published',
@@ -198,7 +198,7 @@ export class PortfolioService {
       {
         id: 3,
         title: 'SelfForge: Self-Hosted Infrastructure-as-Code Platform',
-        description: 'Self-hosted server platform built end-to-end as infrastructure-as-code, covering networking, container orchestration, monitoring, logging, storage, secrets, and backups. Services provisioned with Ansible and k3s, monitored via Prometheus, Grafana, and Loki, secured with Vault and Cloudflare.',
+        description: 'Self-hosted server platform as infrastructure-as-code. Ansible + k3s provisioning, Prometheus/Grafana/Loki monitoring, Vault and Cloudflare security.',
         icon: 'server',
         tags: ['Ansible', 'k3s', 'Docker', 'Prometheus', 'Grafana', 'Vault'],
         status: 'published',
@@ -208,7 +208,7 @@ export class PortfolioService {
       {
         id: 4,
         title: 'Zoho → Monday.com Integration',
-        description: 'Middleware system integrating Zoho and Monday.com using webhooks and multi-level API calls. Automated recruitment workflows, reducing HR effort by 30–40%, built with FluentValidation and Clean Architecture principles.',
+        description: 'Zoho–Monday.com middleware over webhooks and layered API calls. Automated recruitment workflows, 30–40% less HR effort.',
         icon: 'link',
         tags: ['.NET', 'Webhooks', 'REST APIs', 'FluentValidation'],
         status: 'published',
@@ -218,7 +218,7 @@ export class PortfolioService {
       {
         id: 5,
         title: 'Data Migration System',
-        description: 'ASP.NET MVC system for Gideons International that migrated and validated 50,000+ member records from legacy systems with 98%+ accuracy. Automated report generation with iTextSharp improved audit efficiency by 60%.',
+        description: 'ASP.NET MVC system for Gideons International. 50,000+ legacy records migrated at 98%+ accuracy, iTextSharp reports 60% faster.',
         icon: 'database',
         tags: ['ASP.NET MVC', 'SQL Server', 'FluentValidation', 'iTextSharp'],
         status: 'published',
@@ -228,7 +228,7 @@ export class PortfolioService {
       {
         id: 6,
         title: 'APORIA: Real-Time Social Music Platform',
-        description: 'Real-time social music platform (in development) with synchronized lyrics, audience interaction, and AI-assisted literary/emotional analysis. Next.js/React frontend, ASP.NET Core + SignalR backend for live sessions, with PostgreSQL, Redis, pgvector, and Python RAG/LLM services.',
+        description: 'Real-time social music platform, in development. Synchronized lyrics, SignalR live sessions, Python RAG/LLM services.',
         icon: 'music',
         tags: ['ASP.NET Core', 'SignalR', 'Next.js', 'PostgreSQL', 'Redis', 'Python'],
         status: 'draft',

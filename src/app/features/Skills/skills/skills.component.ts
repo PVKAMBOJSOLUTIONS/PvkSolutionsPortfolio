@@ -1,6 +1,6 @@
 import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SkillsShowcaseComponent } from '../skill-card/skill-card.component';
+import { SkillsShowcaseComponent } from '../skills-showcase/skills-showcase.component';
 import { PortfolioService } from '../../../core/services/portfolio.service';
 import { Certification } from '../../../core/models';
 import { SkeletonComponent } from '../../../shared/components/skeleton.component';
@@ -12,7 +12,7 @@ import { SkeletonComponent } from '../../../shared/components/skeleton.component
   template: `
     <div class="page-container">
       <div class="page-hero"><p class="eyebrow">Practice / Technical background</p><h1 class="page-title">Skills &amp; tools.</h1><p class="page-subtitle">The technologies I use and how they fit into my work.</p></div>
-      <app-skills-card></app-skills-card>
+      <app-skills-showcase></app-skills-showcase>
       <!-- Certifications -->
       <section class="cert-section" aria-labelledby="cert-title">
         <h2 id="cert-title">Certifications.</h2>

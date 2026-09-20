@@ -1,0 +1,39 @@
+<div class="timeline-wrapper">
+  @if (loading) {<app-skeleton label="Loading experience"></app-skeleton>}
+  @if (loadError) {
+    <div class="empty-state" role="alert"><h2>Experience unavailable</h2><p>The experience entries could not be loaded.</p><button type="button" class="btn" (click)="loadExperiences()">Try again</button></div>
+  }
+  @if (!loading && !loadError && experiences.length > 0) {
+    <div class="experience-layout">
+      <div class="career-spine" aria-label="Career timeline">
+        <p class="eyebrow">Career span / {{ scaleStartYear }} — Now</p>
+        <div class="spine-track">
+          <div class="spine-scale" aria-hidden="true">
+            @for (tick of yearTicks; track tick.label) {<span class="scale-tick" [style.top.%]="tick.top">{{ tick.label }}</span>}
+          </div>
+          <div class="spine-lane spine-lane-work">
+            @for (exp of workEntries; track exp.id) {
+              <button type="button" class="spine-segment spine-segment-work" [style.top.%]="segTop(exp)" [style.height.%]="segHeight(exp)" (click)="focusEntry(exp.id)" [attr.aria-label]="exp.title + ', ' + exp.startDate + ' to ' + (isCurrent(exp) ? 'present' : exp.endDate)"><span class="segment-label">{{ exp.title }}</span></button>
+            }
+          </div>
+          <div class="spine-lane spine-lane-edu">
+            @for (exp of eduEntries; track exp.id) {
+              <button type="button" class="spine-segment spine-segment-edu" [style.top.%]="segTop(exp)" [style.height.%]="segHeight(exp)" (click)="focusEntry(exp.id)" [attr.aria-label]="exp.title + ', ' + exp.startDate + ' to ' + (isCurrent(exp) ? 'present' : exp.endDate)"><span class="segment-label">{{ exp.title }}</span></button>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="timeline-items">
+        @for (exp of experiences; track exp.id) {
+          <article class="timeline-card" [id]="'exp-entry-' + exp.id">
+            <div class="card-role"><h2 class="card-title">{{ exp.title }}</h2><p class="card-company">{{ exp.company }}</p><p class="card-meta">{{ exp.startDate }} – {{ isCurrent(exp) ? 'Present' : exp.endDate }} · {{ getDuration(exp) }}</p></div>
+            <div class="card-body"><p class="card-description">{{ exp.description }}</p><div class="card-skills">@for (tag of exp.tags; track tag) {<span class="skill-tag">{{ tag }}</span>}</div></div>
+          </article>
+        }
+      </div>
+    </div>
+  }
+  @if (!loading && !loadError && experiences.length === 0) {
+    <div class="empty-state"><h2>Experience unavailable</h2><p>No experience entries are currently available.</p></div>
+  }
+</div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -23,10 +24,12 @@ export class AppComponent implements OnInit {
   curtainLabel = '';
   private currentPath = '';
   private timers: ReturnType<typeof setTimeout>[] = [];
+  private freezeEl: HTMLElement | null = null;
 
   constructor(
     private router: Router,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +43,7 @@ export class AppComponent implements OnInit {
           this.revealing = false;
           this.covering = true;
           this.curtainLabel = this.labelFor(targetPath);
+          this.freezeCurrentPage();
         }
       } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
         if (event instanceof NavigationEnd) {
@@ -50,14 +54,37 @@ export class AppComponent implements OnInit {
           this.timers.push(setTimeout(() => {
             this.covering = false;
             this.revealing = true;
+            this.releaseFreeze();
             this.timers.push(setTimeout(() => {
               this.revealing = false;
               this.curtainLabel = '';
-            }, 480));
-          }, 520));
+            }, 620));
+          }, 750));
         }
       }
     });
+  }
+
+  private freezeCurrentPage(): void {
+    this.releaseFreeze();
+    if (!isPlatformBrowser(this.platformId)) return;
+    const main = document.getElementById('main-content');
+    if (!main) return;
+    const rect = main.getBoundingClientRect();
+    const clone = main.cloneNode(true) as HTMLElement;
+    clone.removeAttribute('id');
+    const freeze = document.createElement('div');
+    freeze.className = 'page-freeze';
+    freeze.style.top = `${rect.top}px`;
+    freeze.style.height = `${rect.height}px`;
+    freeze.appendChild(clone);
+    document.body.appendChild(freeze);
+    this.freezeEl = freeze;
+  }
+
+  private releaseFreeze(): void {
+    this.freezeEl?.remove();
+    this.freezeEl = null;
   }
 
   private labelFor(path: string): string {

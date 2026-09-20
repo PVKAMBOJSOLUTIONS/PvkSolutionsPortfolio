@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-import { WaveTimelineComponent } from '../wave-timeline/wave-timeline.component';
+import { CareerTimelineComponent } from '../career-timeline/career-timeline.component';
 
 @Component({
   selector: 'app-experience-page',
   standalone: true,
-  imports: [WaveTimelineComponent],
+  imports: [CareerTimelineComponent],
   templateUrl: './experience.component.html'
 })
 export class ExperienceComponent {}

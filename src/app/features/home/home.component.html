@@ -54,7 +54,7 @@
     <div class="section-heading"><p class="eyebrow">02 / Technical practice</p><h2 id="practice-title">Tools of the work.</h2><a routerLink="/skills" class="text-link">Skills and certifications</a></div>
     <div class="technology-list">
       @for (skill of skills; track skill.name; let i = $index) {
-        <div class="technology-row"><span class="entry-number">0{{ i + 1 }}</span><h3>{{ skill.name }}</h3><p>{{ skill.description }}</p></div>
+        <div class="tech-tile"><span class="entry-number">0{{ i + 1 }}</span><h3>{{ skill.name }}</h3><p>{{ skill.description }}</p></div>
       }
     </div>
   </section>

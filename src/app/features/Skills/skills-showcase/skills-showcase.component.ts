@@ -5,10 +5,10 @@ import { SkillShowcase } from '../../../core/models';
 import { SkeletonComponent } from '../../../shared/components/skeleton.component';
 
 @Component({
-  selector: 'app-skills-card',
+  selector: 'app-skills-showcase',
   standalone: true,
   imports: [SkeletonComponent],
-  templateUrl: './skill-card.component.html'
+  templateUrl: './skills-showcase.component.html'
 })
 export class SkillsShowcaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;

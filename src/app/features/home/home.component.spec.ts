@@ -40,7 +40,7 @@ describe('HomeComponent', () => {
   it('removes decorative effects and icon cards', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.blob, .particles, .animated-bg, .tilt-card, app-icon')).toBeNull();
-    expect(fixture.nativeElement.querySelectorAll('.technology-row').length).toBe(6);
+    expect(fixture.nativeElement.querySelectorAll('.tech-tile').length).toBe(6);
   });
 
   it('shows a skeleton while facts load', () => {

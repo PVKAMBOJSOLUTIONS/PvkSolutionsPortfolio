@@ -18,12 +18,12 @@ export class HomeComponent implements OnInit {
   stats: HomeStat[] = [];
   loading = true;
   skills = [
-    { name: '.NET Web API', description: 'Backend services, REST endpoints, and application integrations.' },
-    { name: 'Angular', description: 'Component-based interfaces with TypeScript and RxJS.' },
-    { name: '.NET MAUI', description: 'Cross-platform applications with native device integrations.' },
-    { name: 'SQL Server', description: 'Stored procedures, data validation, and migrations.' },
-    { name: 'C#', description: 'Application logic, Clean Architecture, and unit testing with NUnit.' },
-    { name: 'CI/CD', description: 'Deployment pipelines, containers, and infrastructure automation.' }
+    { name: '.NET Web API', description: 'REST services and integrations.' },
+    { name: 'Angular', description: 'TypeScript components and RxJS.' },
+    { name: 'Azure', description: 'App Services, Functions, cloud deployment.' },
+    { name: 'SQL Server', description: 'Procedures, validation, migrations.' },
+    { name: 'C#', description: 'Clean Architecture and NUnit.' },
+    { name: 'CI/CD', description: 'Pipelines, containers, automation.' }
   ];
 
   ngOnInit() {

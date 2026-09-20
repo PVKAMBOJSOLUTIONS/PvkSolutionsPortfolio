@@ -1,6 +1,7 @@
+/// <reference types="jasmine" />
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SkillsShowcaseComponent } from './skill-card.component';
+import { SkillsShowcaseComponent } from './skills-showcase.component';
 
 describe('SkillsShowcaseComponent', () => {
   let component: SkillsShowcaseComponent;
