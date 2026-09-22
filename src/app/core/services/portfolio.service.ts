@@ -356,6 +356,7 @@ export class PortfolioService {
       location: 'Mohali, India',
       socialLinks: [
         { platform: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: 'briefcase' },
+        { platform: 'GitHub', url: 'https://github.com/PRATHAMKAMBOJ', icon: 'github' },
         { platform: 'Instagram', url: 'https://instagram.com/pratham__kamboj', icon: 'camera' },
         { platform: 'Email', url: 'mailto:prathamkamboj002@gmail.com', icon: 'mail' }
       ]

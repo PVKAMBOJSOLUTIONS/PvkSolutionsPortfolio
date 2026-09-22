@@ -16,6 +16,7 @@ export class FooterComponent {
   // Social links (can be moved to service later)
   socialLinks = [
     { name: 'LinkedIn', url: 'https://linkedin.com/in/pratham-kamboj', icon: 'linkedin' },
+    { name: 'GitHub', url: 'https://github.com/PRATHAMKAMBOJ', icon: 'github' },
     { name: 'Instagram', url: 'https://instagram.com/pratham__kamboj', icon: 'instagram' },
     { name: 'Email', url: 'mailto:prathamkamboj002@gmail.com', icon: 'email' }
   ];

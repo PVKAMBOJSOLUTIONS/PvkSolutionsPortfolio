@@ -48,6 +48,7 @@ export class ContactComponent implements OnInit {
 
   socialLinks = [
     { icon: 'linkedin', url: 'https://linkedin.com/in/pratham-kamboj', label: 'LinkedIn' },
+    { icon: 'github', url: 'https://github.com/PRATHAMKAMBOJ', label: 'GitHub' },
     { icon: 'instagram', url: 'https://instagram.com/pratham__kamboj', label: 'Instagram' }
   ];
 

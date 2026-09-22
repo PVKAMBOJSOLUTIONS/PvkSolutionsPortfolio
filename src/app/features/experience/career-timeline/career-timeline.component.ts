@@ -36,69 +36,6 @@ export class CareerTimelineComponent implements OnInit {
     });
   }
 
-  get workEntries(): Experience[] {
-    return this.experiences.filter(e => !this.isEducation(e));
-  }
-
-  get eduEntries(): Experience[] {
-    return this.experiences.filter(e => this.isEducation(e));
-  }
-
-  private isEducation(experience: Experience): boolean {
-    return /universit|college|b\.?tech|degree|school/i.test(experience.company + ' ' + experience.title);
-  }
-
-  private monthIndex(value: string): number {
-    const d = new Date(value);
-    return d.getFullYear() * 12 + d.getMonth();
-  }
-
-  private get startMonth(): number {
-    return Math.min(...this.experiences.map(e => this.monthIndex(e.startDate)));
-  }
-
-  private get endMonth(): number {
-    const now = new Date();
-    return now.getFullYear() * 12 + now.getMonth();
-  }
-
-  private segEnd(experience: Experience): number {
-    return this.isCurrent(experience) ? this.endMonth : this.monthIndex(experience.endDate);
-  }
-
-  segTop(experience: Experience): number {
-    const span = Math.max(1, this.endMonth - this.startMonth);
-    return ((this.endMonth - this.segEnd(experience)) / span) * 100;
-  }
-
-  segHeight(experience: Experience): number {
-    const span = Math.max(1, this.endMonth - this.startMonth);
-    return Math.max(3, ((this.segEnd(experience) - this.monthIndex(experience.startDate)) / span) * 100);
-  }
-
-  get scaleStartYear(): number {
-    return this.experiences.length ? Math.floor(this.startMonth / 12) : new Date().getFullYear();
-  }
-
-  get yearTicks(): { label: string; top: number }[] {
-    if (!this.experiences.length) return [];
-    const span = Math.max(1, this.endMonth - this.startMonth);
-    const now = new Date();
-    const ticks: { label: string; top: number }[] = [];
-    for (let y = this.scaleStartYear; y <= now.getFullYear(); y++) {
-      ticks.push({ label: String(y), top: Math.min(100, ((this.endMonth - y * 12) / span) * 100) });
-    }
-    return ticks;
-  }
-
-  focusEntry(id: number): void {
-    const el = document.getElementById('exp-entry-' + id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    el.classList.add('is-focused');
-    setTimeout(() => el.classList.remove('is-focused'), 1400);
-  }
-
   isCurrent(experience: Experience): boolean {
     return !experience.endDate || experience.endDate.toLowerCase() === 'present';
   }
